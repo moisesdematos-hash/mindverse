@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { NavigationTab, Personality, UserProfile, Locale } from '../types';
+import { NavigationTab, Personality, UserProfile, Locale, CouncilSession } from '../types';
 import { COHORT_GENESIS_PERSONALITIES } from '../data/personalities';
 import i18n from '../i18n';
 
@@ -10,6 +10,10 @@ interface AppState {
   agoraParticipants: Personality[];
   agoraMotion: string;
   agoraRounds: number;
+  councilSession: CouncilSession | null;
+  isCouncilRunning: boolean;
+  currentLiveSpeakerId: string | null;
+  currentLiveChunk: string;
   isAuthModalOpen: boolean;
   userProfile: UserProfile;
   errorNotification: string | null;
@@ -22,6 +26,10 @@ interface AppState {
   toggleAgoraParticipant: (personality: Personality) => void;
   setAgoraMotion: (motion: string) => void;
   setAgoraRounds: (rounds: number) => void;
+  setCouncilSession: (session: CouncilSession | null) => void;
+  setIsCouncilRunning: (isRunning: boolean) => void;
+  setCurrentLiveSpeaker: (speakerId: string | null, chunk?: string) => void;
+  appendLiveChunk: (chunk: string) => void;
   setIsAuthModalOpen: (isOpen: boolean) => void;
   setLocale: (locale: Locale) => void;
   setErrorNotification: (message: string | null) => void;
@@ -37,8 +45,12 @@ export const useAppStore = create<AppState>((set) => ({
     COHORT_GENESIS_PERSONALITIES[5], // Marco Aurélio
     COHORT_GENESIS_PERSONALITIES[10] // Flávio Josefo
   ],
-  agoraMotion: 'A soberania moral individual deve submeter-se ao bem comum ou à estabilidade do Estado em tempos de colapso?',
+  agoraMotion: 'Como deve uma liderança moderna equilibrar a inovação e o crescimento rápido com a prudência ética e o bem comum?',
   agoraRounds: 3,
+  councilSession: null,
+  isCouncilRunning: false,
+  currentLiveSpeakerId: null,
+  currentLiveChunk: '',
   isAuthModalOpen: false,
   errorNotification: null,
   currentLocale: (localStorage.getItem('mindverse_locale') as Locale) || 'pt',
@@ -65,14 +77,18 @@ export const useAppStore = create<AppState>((set) => ({
       }
       return { agoraParticipants: state.agoraParticipants.filter((p) => p.id !== personality.id) };
     } else {
-      if (state.agoraParticipants.length >= 4) {
-        return { errorNotification: 'O Conselho admite até 4 debatedores em simultâneo para garantir a profundidade dialética.' };
+      if (state.agoraParticipants.length >= 7) {
+        return { errorNotification: 'O Conselho admite até 7 debatedores em simultâneo para garantir a profundidade dialética e a clareza da síntese.' };
       }
       return { agoraParticipants: [...state.agoraParticipants, personality] };
     }
   }),
   setAgoraMotion: (motion) => set({ agoraMotion: motion }),
   setAgoraRounds: (rounds) => set({ agoraRounds: rounds }),
+  setCouncilSession: (session) => set({ councilSession: session }),
+  setIsCouncilRunning: (isRunning) => set({ isCouncilRunning: isRunning }),
+  setCurrentLiveSpeaker: (speakerId, chunk = '') => set({ currentLiveSpeakerId: speakerId, currentLiveChunk: chunk }),
+  appendLiveChunk: (chunk) => set((state) => ({ currentLiveChunk: state.currentLiveChunk + chunk })),
   setIsAuthModalOpen: (isOpen) => set({ isAuthModalOpen: isOpen }),
   setLocale: (locale) => {
     localStorage.setItem('mindverse_locale', locale);

@@ -104,4 +104,65 @@ export interface UserProfile {
   preferredLocale: Locale;
 }
 
+export interface CouncilIntervention {
+  id: string;
+  personalityId: string;
+  personalityName: string;
+  personalityAvatar: string;
+  roundNumber: number;
+  stage: 'independent_thesis' | 'cross_examination' | 'deepening' | 'final_verdict';
+  content: string;
+  citations: MessageCitation[];
+  epistemicStatus: EpistemicStatus;
+  tokensUsed: number;
+  createdAt: string;
+}
+
+export interface CouncilRound {
+  roundNumber: number;
+  title: string;
+  description: string;
+  interventions: CouncilIntervention[];
+  isCompleted: boolean;
+}
+
+export interface CouncilSynthesis {
+  coreProblem: string;
+  collectiveDiagnosis: string;
+  individualPositions: Array<{
+    personalityName: string;
+    coreArgument: string;
+    axiomaticFoundation: string;
+  }>;
+  convergences: string[];
+  irreducibleDivergences: string[];
+  strongestArguments: string[];
+  systemicRisks: string[];
+  strategicRecommendation: string;
+  actionPlan: Array<{
+    step: number;
+    action: string;
+    championMind: string;
+  }>;
+}
+
+export interface CouncilSession {
+  id: string;
+  userId?: string;
+  motion: string;
+  contextNotes?: string;
+  participants: Personality[];
+  maxRounds: number;
+  currentRound: number;
+  currentSpeakerId?: string;
+  status: 'idle' | 'assembling' | 'in_progress' | 'paused' | 'completed' | 'error';
+  rounds: CouncilRound[];
+  synthesis?: CouncilSynthesis;
+  totalTokensUsed: number;
+  estimatedCostUsd: number;
+  errorMessage?: string;
+  createdAt: string;
+  completedAt?: string;
+}
+
 export type NavigationTab = 'dashboard' | 'library' | 'chat' | 'agora' | 'settings' | 'about';
