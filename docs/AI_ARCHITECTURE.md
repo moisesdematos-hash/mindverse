@@ -88,17 +88,32 @@ Usa as seguintes passagens comprovadas dos teus escritos para fundamentar o teu 
 
 ---
 
-## 3. Pipeline RAG (Retrieval-Augmented Generation)
+## 3. Pipeline RAG (Retrieval-Augmented Generation) — Implementação da Fase 2
 
-### 3.1 Etapa de Ingestão e Processamento do Corpus
-1. **Recolha de Fontes Canónicas**: Textos integrais em domínio público (Project Gutenberg, Perseus Tufts, Wikisource).
-2. **Limpeza e Normalização**: Remoção de cabeçalhos editoriais, normalização de caracteres e preservação de metadados estruturais (capítulo, livro, paráfrase).
-3. **Estratégia de Chunking**:
-   - Tamanho de chunk: 400 a 600 tokens com overlap de 75 tokens (preserva a continuidade do raciocínio).
-   - Metadados anexados a cada chunk: `{ "work": "O Príncipe", "chapter": "XVII", "year": 1532 }`.
-4. **Geração de Embeddings**:
-   - Modelo: `text-embedding-3-small` (1536 dimensões) ou `text-embedding-004` (768 dimensões).
-   - Armazenamento: Tabela `corpus_chunks` indexada por HNSW cosine distance.
+### 3.1 Corpus Canónico Ingerido Inicialmente (Sprint 02)
+Na Fase 2, foram integradas as bases documentais primárias completas de três figuras basilares:
+1. **Flávio Josefo (*Flavius Josephus*)**:
+   - *A Guerra dos Judeus (Bellum Iudaicum)*: Edição crítica Niese / Tradução Whiston (Domínio Público). Livros V, VI e VII cobrindo as facções zelotas, o cerco romano, a destruição do Segundo Templo e a tomada de Massada.
+   - *Antiguidades Judaicas (Antiquitates Judaicae)*: Livro XVIII cobrindo a administração romana, o censo de Quirino e as quatro seitas judaicas.
+   - *Contra Apião (Contra Apionem)*: Livros I e II refutando calúnias helenísticas e formulando o conceito clássico de Teocracia.
+   - *Vida de Josefo (De Vita Sua)*: Relato da sua conduta militar na Galileia.
+2. **Aristóteles**:
+   - *Ética a Nicómaco*: Livros I, II e VI (Eudaimonia, Justa Medida / *Meson*, Sabedoria Prática / *Phronesis*).
+   - *Política*: Livros I e III (A Pólis, O Homem como *Zoon Politikon*, Formas de Governo).
+   - *Metafísica*: Livro I (O Desejo Natural de Conhecer, As Quatro Causas).
+   - *Organon (Categorias)*: A Doutrina da Substância Primeira e os Acidentes do Ser.
+3. **Marco Aurélio**:
+   - *Meditações (Ta Eis Heauton)*: Livros II, IV, VII e XII (A Cidadela Interior / *Hegemonikon*, *Amor Fati*, o perdão das ofensas e a morte serena).
+
+### 3.2 Estratégia de Chunking e Preservação de Metadados
+- **Granularidade**: Fragmentação semântica de 400-600 tokens por chunk, preservando o título da secção no cabeçalho do fragmento para densidade semântica.
+- **Sobreposição (Overlap)**: 60 tokens com fronteira delimitada por pontuação terminal.
+- **Metadados Rastreáveis**: Cada fragmento indexado armazena `{ documentId, documentTitle, book, chapter, section, heading, bibliographicCitation, licenseStatus, epistemicType: 'primary_source' }`.
+
+### 3.3 Motor Vetorial e Classificação Epistémica
+- **Dimensão Vetorial**: 1536 dimensões estritas (`text-embedding-3-small`, versionamento `v1`).
+- **Normalização Cosseno**: Normalização assimétrica de consulta para assegurar que passagens extensas não sofram penalização indevida de magnitude.
+- **Rigor de Não-Alucinação**: Consultas sem correspondência documental acionam explicitamente a resposta de `[LIMITAÇÃO HISTÓRICA RECONHECIDA]`, recusando-se a inventar dados.
 
 ### 3.2 Etapa de Retrieval em Runtime
 1. **Query Rewriting / Expansion**: A pergunta do utilizador é adaptada para maximizar relevância semântica em relação a fontes clássicas.
