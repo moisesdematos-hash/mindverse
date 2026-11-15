@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Personality, CouncilSession } from '../../types';
 import { councilAudio } from '../../services/councilAudio';
+import { VoiceStudioModal } from './VoiceStudioModal';
 import { 
   Volume2, 
   VolumeX, 
   Mic, 
   Sparkles, 
   Crown,
-  FastForward
+  FastForward,
+  Sliders
 } from 'lucide-react';
 
 interface CouncilChamberProps {
@@ -25,20 +27,22 @@ export const CouncilChamber: React.FC<CouncilChamberProps> = ({
   session,
   motion
 }) => {
-  const [isAudioMuted, setIsAudioMuted] = useState(councilAudio.isMute);
+  const [isVoiceActive, setIsVoiceActive] = useState(councilAudio.isActivated);
   const [speechSpeed, setSpeechSpeed] = useState<number>(1.0);
   const [isSpeakingAudio, setIsSpeakingAudio] = useState(false);
+  const [isVoiceStudioOpen, setIsVoiceStudioOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = councilAudio.subscribe((speaking) => {
       setIsSpeakingAudio(speaking);
+      setIsVoiceActive(councilAudio.isActivated);
     });
     return () => unsubscribe();
   }, []);
 
-  const toggleMute = () => {
-    const muted = councilAudio.toggleMute();
-    setIsAudioMuted(muted);
+  const handleToggleVoice = () => {
+    const nextState = councilAudio.toggleActivation();
+    setIsVoiceActive(nextState);
   };
 
   const cycleSpeed = () => {
@@ -80,8 +84,17 @@ export const CouncilChamber: React.FC<CouncilChamberProps> = ({
           </h3>
         </div>
 
-        {/* Controles de Áudio e Velocidade */}
+        {/* Controles de Áudio, Coleção de Vozes e Velocidade */}
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setIsVoiceStudioOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-mindverse-gold/30 text-xs font-mono text-mindverse-gold-light hover:text-white transition-colors"
+            title="Escolher vozes da coleção e personalizar timbre"
+          >
+            <Sliders className="w-3.5 h-3.5 text-mindverse-gold" />
+            <span>Coleção de Vozes</span>
+          </button>
+
           <button
             onClick={cycleSpeed}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-mindverse-softwhite/80 transition-colors"
@@ -92,23 +105,23 @@ export const CouncilChamber: React.FC<CouncilChamberProps> = ({
           </button>
 
           <button
-            onClick={toggleMute}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
-              isAudioMuted 
-                ? 'bg-red-500/10 border-red-500/30 text-red-400 hover:bg-red-500/20' 
-                : 'bg-mindverse-gold/10 border-mindverse-gold/30 text-mindverse-gold-light hover:bg-mindverse-gold/20'
+            onClick={handleToggleVoice}
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+              isVoiceActive 
+                ? 'bg-mindverse-gold/20 border-mindverse-gold text-mindverse-gold-light shadow-[0_0_15px_rgba(217,169,79,0.3)]' 
+                : 'bg-white/5 border-white/15 text-mindverse-muted hover:text-white hover:border-white/30'
             }`}
-            title={isAudioMuted ? 'Ativar Voz Falada' : 'Silenciar Voz'}
+            title={isVoiceActive ? 'Voz Falada Ativada (Clique para Desativar)' : 'Voz Desativada (Clique para Ativar Fala)'}
           >
-            {isAudioMuted ? (
+            {isVoiceActive ? (
               <>
-                <VolumeX className="w-4 h-4 text-red-400" />
-                <span>Voz Desativada</span>
+                <Volume2 className="w-4 h-4 text-mindverse-gold animate-pulse" />
+                <span className="font-semibold text-mindverse-gold-light">Voz Ativa</span>
               </>
             ) : (
               <>
-                <Volume2 className="w-4 h-4 text-mindverse-gold animate-pulse" />
-                <span>Voz Falada Ativa</span>
+                <VolumeX className="w-4 h-4 text-mindverse-muted" />
+                <span>Ativar Voz</span>
               </>
             )}
           </button>
@@ -292,6 +305,13 @@ export const CouncilChamber: React.FC<CouncilChamberProps> = ({
           <span>"Onde as mentes divergem com rigor, a verdade consolida-se."</span>
         </div>
       </div>
+
+      {/* Modal do Estúdio e Coleção de Vozes */}
+      <VoiceStudioModal
+        isOpen={isVoiceStudioOpen}
+        onClose={() => setIsVoiceStudioOpen(false)}
+        participants={participants}
+      />
     </div>
   );
 };

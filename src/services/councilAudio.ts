@@ -1,16 +1,17 @@
 /**
  * MINDVERSE — Serviço de Síntese de Voz das Grandes Mentes
  * Utiliza a Web Speech API com calibração de timbre, cadência e entoação específica para cada pensador.
+ * Suporta seleção dinâmica dentro da coleção de vozes do sistema e controle estrito de ativação.
  */
 
 export interface VoiceProfile {
   pitch: number;
   rate: number;
-  langPrefix?: string;
+  voiceURI?: string;
   voiceGender?: 'male' | 'female';
 }
 
-const THINKER_VOICE_PROFILES: Record<string, VoiceProfile> = {
+const DEFAULT_THINKER_VOICE_PROFILES: Record<string, VoiceProfile> = {
   socrates: { pitch: 0.82, rate: 0.88, voiceGender: 'male' },         // Ponderado, grave, maiêutico
   aristotle: { pitch: 0.95, rate: 0.92, voiceGender: 'male' },        // Metódico, lúcido, estruturado
   marcus_aurelius: { pitch: 0.85, rate: 0.85, voiceGender: 'male' },  // Estoico, solene, introspetivo
@@ -24,17 +25,58 @@ const THINKER_VOICE_PROFILES: Record<string, VoiceProfile> = {
   josephus: { pitch: 0.88, rate: 0.90, voiceGender: 'male' },         // Historiador, testemunhal, sóbrio
 };
 
+export interface VoiceOption {
+  name: string;
+  lang: string;
+  voiceURI: string;
+  isPortuguese: boolean;
+  genderHint: 'female' | 'male' | 'neutral';
+}
+
 export class CouncilAudioSynthesizer {
+  // Por padrão a voz vem DESATIVADA: só fala quando explicitamente ativada pelo utilizador
+  private isVoiceActivated: boolean = false;
   private isMuted: boolean = false;
   private currentUtterance: SpeechSynthesisUtterance | null = null;
   private isSpeakingActive: boolean = false;
+  private speechRateMultiplier: number = 1.0;
+  private subscribers: Set<(speaking: boolean, activeId: string | null) => void> = new Set();
+  private currentSpeakerId: string | null = null;
+  private customVoiceProfiles: Record<string, VoiceProfile> = {};
+
+  constructor() {
+    this.loadPersistedSettings();
+  }
 
   public get activeUtterance(): SpeechSynthesisUtterance | null {
     return this.currentUtterance;
   }
-  private speechRateMultiplier: number = 1.0;
-  private subscribers: Set<(speaking: boolean, activeId: string | null) => void> = new Set();
-  private currentSpeakerId: string | null = null;
+
+  private loadPersistedSettings() {
+    if (typeof window === 'undefined') return;
+    try {
+      const savedActivation = localStorage.getItem('mindverse_voice_activated');
+      if (savedActivation !== null) {
+        this.isVoiceActivated = savedActivation === 'true';
+      }
+      const savedProfiles = localStorage.getItem('mindverse_voice_profiles');
+      if (savedProfiles) {
+        this.customVoiceProfiles = JSON.parse(savedProfiles);
+      }
+    } catch {
+      // Ignora falha de storage
+    }
+  }
+
+  private saveSettings() {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.setItem('mindverse_voice_activated', String(this.isVoiceActivated));
+      localStorage.setItem('mindverse_voice_profiles', JSON.stringify(this.customVoiceProfiles));
+    } catch {
+      // Ignora falha de storage
+    }
+  }
 
   public subscribe(cb: (speaking: boolean, activeId: string | null) => void): () => void {
     this.subscribers.add(cb);
@@ -52,20 +94,40 @@ export class CouncilAudioSynthesizer {
     return typeof window !== 'undefined' && 'speechSynthesis' in window;
   }
 
-  public get isMute(): boolean {
-    return this.isMuted;
+  public get isActivated(): boolean {
+    return this.isVoiceActivated;
   }
 
-  public toggleMute(): boolean {
-    this.isMuted = !this.isMuted;
-    if (this.isMuted) {
+  public get isMute(): boolean {
+    return this.isMuted || !this.isVoiceActivated;
+  }
+
+  /**
+   * Ativa ou desativa a reprodução de voz falada.
+   */
+  public setActivated(active: boolean): void {
+    this.isVoiceActivated = active;
+    this.saveSettings();
+    if (!this.isVoiceActivated) {
       this.stop();
     }
-    return this.isMuted;
+  }
+
+  public toggleActivation(): boolean {
+    this.isVoiceActivated = !this.isVoiceActivated;
+    this.saveSettings();
+    if (!this.isVoiceActivated) {
+      this.stop();
+    }
+    return this.isVoiceActivated;
   }
 
   public setRate(multiplier: number) {
     this.speechRateMultiplier = Math.max(0.7, Math.min(1.5, multiplier));
+  }
+
+  public getRate(): number {
+    return this.speechRateMultiplier;
   }
 
   public stop() {
@@ -79,6 +141,58 @@ export class CouncilAudioSynthesizer {
     this.currentSpeakerId = null;
     this.currentUtterance = null;
     this.notify();
+  }
+
+  /**
+   * Obtém a coleção de vozes disponíveis no navegador do utilizador.
+   */
+  public getVoiceCollection(): VoiceOption[] {
+    if (!this.isSupported) return [];
+    const voices = window.speechSynthesis.getVoices();
+    
+    return voices.map((v) => {
+      const isPt = v.lang.toLowerCase().startsWith('pt');
+      let genderHint: 'female' | 'male' | 'neutral' = 'neutral';
+      if (/female|mulher|maria|helena|luciana|vitória|camila|zira|yolanda/i.test(v.name)) {
+        genderHint = 'female';
+      } else if (/male|homem|duarte|joão|antónio|felipe|daniel|david|george/i.test(v.name)) {
+        genderHint = 'male';
+      }
+
+      return {
+        name: v.name,
+        lang: v.lang,
+        voiceURI: v.voiceURI,
+        isPortuguese: isPt,
+        genderHint,
+      };
+    }).sort((a, b) => {
+      // Prioriza vozes em português no topo da coleção
+      if (a.isPortuguese && !b.isPortuguese) return -1;
+      if (!a.isPortuguese && b.isPortuguese) return 1;
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  public getThinkerProfile(thinkerId: string): VoiceProfile {
+    return this.customVoiceProfiles[thinkerId] || DEFAULT_THINKER_VOICE_PROFILES[thinkerId] || { pitch: 1.0, rate: 0.95 };
+  }
+
+  public setThinkerVoice(thinkerId: string, voiceURI: string, pitch?: number, rate?: number): void {
+    const current = this.getThinkerProfile(thinkerId);
+    this.customVoiceProfiles[thinkerId] = {
+      ...current,
+      voiceURI,
+      pitch: pitch ?? current.pitch,
+      rate: rate ?? current.rate,
+    };
+    this.saveSettings();
+  }
+
+  public setGlobalVoiceForAll(voiceURI: string, pitch?: number, rate?: number): void {
+    for (const key of Object.keys(DEFAULT_THINKER_VOICE_PROFILES)) {
+      this.setThinkerVoice(key, voiceURI, pitch, rate);
+    }
   }
 
   /**
@@ -99,17 +213,23 @@ export class CouncilAudioSynthesizer {
   }
 
   /**
-   * Encontra a melhor voz disponível no sistema do utilizador (preferência por português).
+   * Encontra a voz selecionada na coleção ou uma correspondência ideal.
    */
-  private findBestVoice(gender?: 'male' | 'female'): SpeechSynthesisVoice | null {
+  private findMatchingVoice(profile: VoiceProfile): SpeechSynthesisVoice | null {
     if (!this.isSupported) return null;
     const voices = window.speechSynthesis.getVoices();
     if (!voices.length) return null;
 
+    // Se o utilizador escolheu uma voz específica na coleção
+    if (profile.voiceURI) {
+      const match = voices.find(v => v.voiceURI === profile.voiceURI);
+      if (match) return match;
+    }
+
     // Procura voz portuguesa (pt-PT ou pt-BR)
-    const ptVoices = voices.filter(v => v.lang.startsWith('pt'));
+    const ptVoices = voices.filter(v => v.lang.toLowerCase().startsWith('pt'));
     if (ptVoices.length > 0) {
-      if (gender === 'female') {
+      if (profile.voiceGender === 'female') {
         const female = ptVoices.find(v => /female|mulher|maria|helena|luciana|vitória|camila/i.test(v.name));
         if (female) return female;
       } else {
@@ -124,14 +244,52 @@ export class CouncilAudioSynthesizer {
   }
 
   /**
+   * Reproduz uma amostra de teste para a voz selecionada.
+   */
+  public previewVoice(voiceURI: string, pitch = 1.0, rate = 1.0, customText?: string): void {
+    if (!this.isSupported) return;
+    this.stop();
+
+    const sample = customText || 'A verdadeira sabedoria reside no rigor do pensamento e na busca da verdade.';
+    const utterance = new SpeechSynthesisUtterance(sample);
+    utterance.pitch = pitch;
+    utterance.rate = rate;
+
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.voiceURI === voiceURI) || voices[0];
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    }
+
+    this.isSpeakingActive = true;
+    this.notify();
+
+    utterance.onend = () => {
+      this.isSpeakingActive = false;
+      this.notify();
+    };
+
+    try {
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      this.isSpeakingActive = false;
+      this.notify();
+    }
+  }
+
+  /**
    * Pronuncia a intervenção de um pensador no Conselho com a sua entoação personalizada.
+   * Só fala se a voz estiver ativada (ou se forcePlay for true, ex: clique direto do utilizador no botão Ouvir).
    */
   public speak(
     thinkerId: string,
     rawText: string,
-    onComplete?: () => void
+    onComplete?: () => void,
+    forcePlay: boolean = false
   ): void {
-    if (!this.isSupported || this.isMuted) {
+    // REGRA FUNDAMENTAL: Só fala se a voz estiver ATIVADA ou se o utilizador clicou diretamente para ouvir
+    if (!this.isSupported || (!this.isVoiceActivated && !forcePlay)) {
       onComplete?.();
       return;
     }
@@ -145,16 +303,17 @@ export class CouncilAudioSynthesizer {
     // Interrompe qualquer áudio prévio
     this.stop();
 
-    const profile = THINKER_VOICE_PROFILES[thinkerId] || { pitch: 1.0, rate: 0.95 };
+    const profile = this.getThinkerProfile(thinkerId);
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
 
     utterance.pitch = profile.pitch;
     utterance.rate = profile.rate * this.speechRateMultiplier;
     utterance.lang = 'pt-PT';
 
-    const bestVoice = this.findBestVoice(profile.voiceGender);
-    if (bestVoice) {
-      utterance.voice = bestVoice;
+    const matchedVoice = this.findMatchingVoice(profile);
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
+      utterance.lang = matchedVoice.lang;
     }
 
     this.currentSpeakerId = thinkerId;
