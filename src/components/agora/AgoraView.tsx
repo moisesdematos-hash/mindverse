@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../store/useAppStore';
 import { COHORT_GENESIS_PERSONALITIES } from '../../data/personalities';
-import { Personality } from '../../types';
 import { 
   Users2, 
   Sparkles, 
@@ -11,7 +10,8 @@ import {
   Scale, 
   CheckCircle2, 
   Flame, 
-  BookOpen
+  BookOpen,
+  Layers
 } from 'lucide-react';
 
 export const AgoraView: React.FC = () => {
@@ -22,56 +22,20 @@ export const AgoraView: React.FC = () => {
     agoraMotion, 
     setAgoraMotion, 
     agoraRounds, 
-    setAgoraRounds,
-    addTokensUsed 
+    setAgoraRounds 
   } = useAppStore();
 
   const [activeSpeakerIndex, setActiveSpeakerIndex] = useState(0);
-  const [isDebating, setIsDebating] = useState(false);
-  const [turns, setTurns] = useState<Array<{
-    speaker: Personality;
-    role: string;
-    content: string;
-    round: number;
-  }>>([]);
+  const [isCouncilReady, setIsCouncilReady] = useState(false);
 
-  const handleStartDebate = () => {
+  const handleAssembleCouncil = () => {
     if (agoraParticipants.length < 2) return;
-    setIsDebating(true);
+    setIsCouncilReady(true);
     setActiveSpeakerIndex(0);
-
-    // Initial rounds simulated for Phase 1 demonstrating dialectical opposition
-    const simulatedTurns = [
-      {
-        speaker: agoraParticipants[0],
-        role: 'Proposição / Tese Inicial',
-        content: `Caros pares neste Senado. Perante a moção: "${agoraMotion}", afirmo que a verdade deve ser perscrutada através dos primeiros princípios. A nossa prioridade inegociável é ${agoraParticipants[0].axioms[0] || agoraParticipants[0].coreWorldview}.`,
-        round: 1
-      },
-      {
-        speaker: agoraParticipants[1],
-        role: 'Antítese / Objeção Dialética',
-        content: `Ouvi a exposição de ${agoraParticipants[0].name}. Contudo, o erro reside em ignorar as circunstâncias práticas e o dever fundamental. Tal como ensinei, "${agoraParticipants[1].quoteFeatured}", nenhuma teoria se sustenta se esquecer a natureza do homem.`,
-        round: 1
-      }
-    ];
-
-    if (agoraParticipants.length > 2) {
-      simulatedTurns.push({
-        speaker: agoraParticipants[2],
-        role: 'Crítica Cruzada / Perspetiva Histórica',
-        content: `A história humana comprovada demonstra que quando os homens se dividem em extremismos abstratos, a ruína é inevitável. Em ${agoraParticipants[2].works[0]?.title || 'minhas crónicas'}, registei que a falta de prudência destrói as instituições sagradas.`,
-        round: 1
-      });
-    }
-
-    setTurns(simulatedTurns);
-    addTokensUsed(680);
   };
 
-  const handleResetDebate = () => {
-    setIsDebating(false);
-    setTurns([]);
+  const handleResetCouncil = () => {
+    setIsCouncilReady(false);
     setActiveSpeakerIndex(0);
   };
 
@@ -175,9 +139,9 @@ export const AgoraView: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {isDebating && (
+            {isCouncilReady && (
               <button
-                onClick={handleResetDebate}
+                onClick={handleResetCouncil}
                 className="px-4 py-2.5 rounded-xl bg-mindverse-deep hover:bg-mindverse-graphite border border-mindverse-graphite text-xs text-mindverse-muted hover:text-mindverse-softwhite transition-all flex items-center gap-1.5"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -186,32 +150,46 @@ export const AgoraView: React.FC = () => {
             )}
 
             <button
-              onClick={handleStartDebate}
+              onClick={handleAssembleCouncil}
               disabled={agoraParticipants.length < 2 || !agoraMotion.trim()}
               className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-mindverse-gold-subtle to-mindverse-gold-accent hover:from-mindverse-gold-light hover:to-mindverse-gold-subtle disabled:opacity-40 disabled:cursor-not-allowed text-xs font-semibold text-mindverse-void transition-all shadow-gold-glow flex items-center gap-2"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>{t('agora.start_debate')}</span>
+              <span>Constituir Conselho</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Deliberation Chamber Floor (Active Turn Visualization) */}
-      {isDebating && (
+      {isCouncilReady && (
         <div className="space-y-6 animate-fade-in">
+          {/* Status Banner */}
+          <div className="p-4 rounded-2xl bg-mindverse-midnight/60 border border-mindverse-gold-subtle/30 flex items-start gap-3">
+            <Layers className="w-5 h-5 text-mindverse-gold-subtle shrink-0 mt-0.5" />
+            <div className="space-y-1 text-xs">
+              <span className="font-semibold text-mindverse-softwhite block font-serif">
+                Conselho Constituído com Sucesso ({agoraParticipants.length} Pensadores • {agoraRounds} Rondas Programadas)
+              </span>
+              <p className="text-mindverse-muted leading-relaxed">
+                A ordem de turnos, os papéis dialéticos e o modelo de deliberação foram instanciados no cliente. A orquestração autónoma inter-agentes e a síntese conclusiva em tempo real serão executadas pelo despachante de backend na Fase 3.
+              </p>
+            </div>
+          </div>
+
           {/* Podiums */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {agoraParticipants.map((p, idx) => {
-              const isSpeaking = activeSpeakerIndex === idx;
+              const isSelectedSpeaker = activeSpeakerIndex === idx;
               return (
                 <div
                   key={p.id}
+                  onClick={() => setActiveSpeakerIndex(idx)}
                   className={`
-                    p-4 rounded-2xl border transition-all duration-300 text-center space-y-2
-                    ${isSpeaking
-                      ? 'bg-mindverse-midnight border-mindverse-gold-subtle shadow-gold-glow scale-102'
-                      : 'bg-mindverse-deep/80 border-mindverse-graphite opacity-80'
+                    p-4 rounded-2xl border transition-all duration-300 text-center space-y-2 cursor-pointer
+                    ${isSelectedSpeaker
+                      ? 'bg-mindverse-midnight border-mindverse-gold-subtle shadow-gold-glow scale-102 ring-1 ring-mindverse-gold-subtle'
+                      : 'bg-mindverse-deep/80 border-mindverse-graphite opacity-80 hover:opacity-100 hover:border-mindverse-gold-subtle/40'
                     }
                   `}
                 >
@@ -226,55 +204,49 @@ export const AgoraView: React.FC = () => {
                       {p.historicalEra.split('(')[0]}
                     </p>
                   </div>
-                  {isSpeaking && (
-                    <span className="inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-mindverse-gold-subtle/20 text-mindverse-gold-light border border-mindverse-gold-subtle/40 animate-pulse">
-                      A Intervir no Senado
-                    </span>
-                  )}
+                  <span className="inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-mindverse-deep text-mindverse-muted border border-mindverse-graphite">
+                    Orador 0{idx + 1}
+                  </span>
                 </div>
               );
             })}
           </div>
 
-          {/* Transcript Stream */}
-          <div className="space-y-4">
-            <h3 className="font-serif font-bold text-lg text-mindverse-softwhite flex items-center gap-2">
+          {/* Order of Turns & Protocol Architecture */}
+          <div className="p-6 rounded-3xl bg-mindverse-midnight/90 border border-mindverse-graphite space-y-4 shadow-md">
+            <h3 className="font-serif font-bold text-base text-mindverse-softwhite flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-mindverse-gold-subtle" />
-              <span>{t('agora.deliberation_chamber')}</span>
+              <span>Protocolo do Senado (Ordem de Deliberação)</span>
             </h3>
 
-            {turns.map((turn, index) => (
-              <div
-                key={index}
-                className="p-5 rounded-2xl bg-mindverse-midnight/90 border border-mindverse-graphite space-y-2.5 shadow-md"
-              >
-                <div className="flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="font-serif font-bold text-mindverse-gold-subtle">
-                      {turn.speaker.name}
+            <div className="space-y-3">
+              {agoraParticipants.map((p, index) => (
+                <div
+                  key={p.id}
+                  className="p-3.5 rounded-xl bg-mindverse-deep/70 border border-mindverse-graphite/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-6 h-6 rounded-full bg-mindverse-midnight border border-mindverse-gold-subtle/30 flex items-center justify-center font-mono font-bold text-[11px] text-mindverse-gold-subtle">
+                      {index + 1}
                     </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-mindverse-deep text-mindverse-gold-accent border border-mindverse-graphite">
-                      {turn.role}
-                    </span>
+                    <span className="font-medium text-mindverse-softwhite">{p.name}</span>
+                    <span className="text-[10px] font-mono text-mindverse-muted">({p.titleEpithet})</span>
                   </div>
-                  <span className="text-[10px] font-mono text-mindverse-muted">
-                    Ronda {turn.round}
+
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-mindverse-midnight text-mindverse-gold-accent border border-mindverse-graphite/80">
+                    {index === 0 ? 'Tese Propositiva' : index === 1 ? 'Antítese Crítica' : 'Exame Histórico Cruzado'}
                   </span>
                 </div>
-
-                <p className="text-sm font-sans text-mindverse-softwhite leading-relaxed">
-                  {turn.content}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Dialectic Synthesis Report Preview */}
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-mindverse-midnight via-mindverse-deep to-mindverse-void border border-mindverse-gold-subtle/40 space-y-4 shadow-xl">
+          {/* Dialectic Synthesis Framework */}
+          <div className="p-6 rounded-3xl bg-gradient-to-br from-mindverse-midnight via-mindverse-deep to-mindverse-void border border-mindverse-gold-subtle/30 space-y-4 shadow-xl">
             <div className="flex items-center gap-2 border-b border-mindverse-graphite/60 pb-3">
               <Sparkles className="w-4 h-4 text-mindverse-gold-subtle" />
               <h3 className="font-serif font-bold text-base text-mindverse-softwhite">
-                {t('agora.synthesis_report')} (Fase 1: Estrutura Metodológica)
+                {t('agora.synthesis_report')} (Estrutura Metodológica da Fase 1)
               </h3>
             </div>
 
@@ -285,7 +257,7 @@ export const AgoraView: React.FC = () => {
                   {t('agora.convergences')}
                 </span>
                 <p className="text-mindverse-muted">
-                  Ambas as correntes reconhecem que o pragmatismo e o exercício do poder desprovidos de um princípio ético conduzem inevitavelmente à autodestruição social.
+                  A síntese dialética identificará em tempo real (Fase 3) as premissas onde os pensadores concordam, mapeando pontos de contato axiológicos entre diferentes épocas da história.
                 </p>
               </div>
 
@@ -295,7 +267,7 @@ export const AgoraView: React.FC = () => {
                   {t('agora.divergences')}
                 </span>
                 <p className="text-mindverse-muted">
-                  Divergência irreconciliável quanto à prioridade: subordinação do indivíduo à harmonia da ordem política vs. inviolabilidade da consciência ética interior.
+                  O moderador destacará os axiomas irreconciliáveis entre as correntes filosóficas e científicas em deliberação, isolando as raízes do desacordo moral ou estratégico.
                 </p>
               </div>
             </div>

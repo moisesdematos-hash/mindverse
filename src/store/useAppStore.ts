@@ -48,7 +48,7 @@ export const useAppStore = create<AppState>((set) => ({
     fullName: 'Investigador Convidado',
     subscriptionTier: 'seeker',
     dailyTokenQuota: 50000,
-    tokensUsedToday: 4250,
+    tokensUsedToday: 0,
     concurrentRequestsActive: 0,
     maxConcurrentRequests: 2,
     preferredLocale: 'pt'

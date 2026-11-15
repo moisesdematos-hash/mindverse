@@ -10,7 +10,9 @@ import {
   ShieldCheck, 
   Info,
   Quote,
-  CheckCircle2
+  CheckCircle2,
+  Clock,
+  Layers
 } from 'lucide-react';
 
 export const ChatView: React.FC = () => {
@@ -18,35 +20,23 @@ export const ChatView: React.FC = () => {
   const { 
     selectedPersonality, 
     setSelectedPersonality, 
-    addTokensUsed, 
     userProfile 
   } = useAppStore();
 
   const [inputPrompt, setInputPrompt] = useState('');
   const [selectedCitation, setSelectedCitation] = useState<MessageCitation | null>(null);
 
-  // Initial messages tailored to the personality
+  // Initial canonical orientation for the selected personality
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: 'welcome-01',
+      id: 'orientation-01',
       conversationId: 'conv-init',
       senderPersonalityId: selectedPersonality.id,
-      role: 'assistant',
-      content: `Saudações. Eu sou ${selectedPersonality.name}, ${selectedPersonality.titleEpithet}. O meu pensamento assenta no princípio de que: "${selectedPersonality.quoteFeatured}". Que questão ou dilema pretendes examinar à luz da razão e do conhecimento comprovado?`,
+      role: 'system',
+      content: `[DNA Intelectual Carregado]: Está em sessão com ${selectedPersonality.name} (${selectedPersonality.titleEpithet}).\n\nMundivisão Canónica: "${selectedPersonality.quoteFeatured}"\n\nCorpus de Referência: ${selectedPersonality.works.map(w => w.title).join('; ')}.`,
       epistemicStatus: 'documented_fact',
-      tokensUsed: 142,
-      modelUsed: 'claude-3-5-sonnet',
-      createdAt: new Date().toISOString(),
-      citations: selectedPersonality.works[0] ? [
-        {
-          id: 'cit-01',
-          workTitle: selectedPersonality.works[0].title,
-          section: 'Introdução Canónica',
-          quoteSnippet: selectedPersonality.quoteFeatured,
-          similarityScore: 0.94,
-          epistemicType: 'primary_source'
-        }
-      ] : []
+      tokensUsed: 0,
+      createdAt: new Date().toISOString()
     }
   ]);
 
@@ -57,6 +47,8 @@ export const ChatView: React.FC = () => {
     const userText = inputPrompt.trim();
     setInputPrompt('');
 
+    const estimatedTokens = Math.ceil(userText.length / 4);
+
     const userMessage: Message = {
       id: `usr-${Date.now()}`,
       conversationId: 'conv-init',
@@ -64,35 +56,33 @@ export const ChatView: React.FC = () => {
       role: 'user',
       content: userText,
       epistemicStatus: 'documented_fact',
-      tokensUsed: Math.round(userText.length / 4),
+      tokensUsed: estimatedTokens,
       createdAt: new Date().toISOString()
     };
 
-    // Simulated responsive turn from the persona based on their core worldview
-    const assistantMessage: Message = {
-      id: `ast-${Date.now()}`,
+    // Honest architectural system response indicating ready-state for Phase 2
+    const systemNotice: Message = {
+      id: `sys-${Date.now()}`,
       conversationId: 'conv-init',
       senderPersonalityId: selectedPersonality.id,
       role: 'assistant',
-      content: `Analisemos a tua questão: "${userText}".\n\nÀ luz dos princípios que formulei em ${selectedPersonality.works[0]?.title || 'meus escritos'}, o primeiro dever do discernimento é distinguir o que é essencial do que é aparente. ${selectedPersonality.coreWorldview}\n\n[Nota de Transparência da Fase 1: Conexão de streaming RAG ativa na Fase 2 com Supabase Edge Functions e OpenAI text-embedding-3-small].`,
-      epistemicStatus: 'historical_interpretation',
-      tokensUsed: 215,
-      modelUsed: 'claude-3-5-sonnet',
+      content: `[Fase 1 • Validação de Contrato]: Pergunta recebida com sucesso e validada pelo cliente (${estimatedTokens} tokens estimados).\n\nA geração inteligente em tempo real e a recuperação vetorial semântica (pgvector / OpenAI text-embedding-3-small) serão conectadas através da Supabase Edge Function na Fase 2.\n\nNenhuma resposta fictícia ou alucinação pré-gravada é emitida em conformidade com o princípio de Transparência do MINDVERSE.`,
+      epistemicStatus: 'hypothetical_simulation',
+      tokensUsed: 0,
       createdAt: new Date().toISOString(),
       citations: selectedPersonality.works[0] ? [
         {
           id: `cit-${Date.now()}`,
           workTitle: selectedPersonality.works[0].title,
-          section: 'Capítulo I',
-          quoteSnippet: selectedPersonality.axioms[0] || selectedPersonality.quoteFeatured,
-          similarityScore: 0.88,
+          section: 'Corpus Verificado',
+          quoteSnippet: selectedPersonality.quoteFeatured,
+          similarityScore: 1.0,
           epistemicType: 'primary_source'
         }
       ] : []
     };
 
-    setMessages((prev) => [...prev, userMessage, assistantMessage]);
-    addTokensUsed(Math.round(userText.length / 4) + 215);
+    setMessages((prev) => [...prev, userMessage, systemNotice]);
   };
 
   const getStatusBadge = (status: Message['epistemicStatus']) => {
@@ -154,13 +144,13 @@ export const ChatView: React.FC = () => {
                 setSelectedPersonality(found);
                 setMessages([
                   {
-                    id: `welcome-${found.id}`,
+                    id: `orientation-${found.id}`,
                     conversationId: 'conv-init',
                     senderPersonalityId: found.id,
-                    role: 'assistant',
-                    content: `Saudações. Eu sou ${found.name}, ${found.titleEpithet}. O meu pensamento assenta no princípio de que: "${found.quoteFeatured}". Que questão pretendes examinar?`,
+                    role: 'system',
+                    content: `[DNA Intelectual Carregado]: Sessão alterada para ${found.name} (${found.titleEpithet}).\n\nMundivisão: "${found.quoteFeatured}".`,
                     epistemicStatus: 'documented_fact',
-                    tokensUsed: 120,
+                    tokensUsed: 0,
                     createdAt: new Date().toISOString()
                   }
                 ]);
@@ -178,20 +168,22 @@ export const ChatView: React.FC = () => {
       </div>
 
       {/* Epistemic Transparency Notice */}
-      <div className="mt-2 shrink-0 p-2.5 rounded-xl bg-mindverse-midnight/40 border border-mindverse-graphite/60 flex items-center justify-between text-[11px] text-mindverse-muted">
+      <div className="mt-2 shrink-0 p-3 rounded-xl bg-mindverse-midnight/40 border border-mindverse-graphite/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-mindverse-muted">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-3.5 h-3.5 text-mindverse-gold-subtle shrink-0" />
+          <ShieldCheck className="w-4 h-4 text-mindverse-gold-subtle shrink-0" />
           <span>{t('chat.epistemic_notice')}</span>
         </div>
-        <span className="font-mono text-[10px] text-mindverse-gold-accent hidden md:inline">
-          RAG Corpus: {selectedPersonality.works.length} Obras
-        </span>
+        <div className="flex items-center gap-2 font-mono text-[10px] text-mindverse-gold-accent shrink-0">
+          <Clock className="w-3.5 h-3.5 text-mindverse-cyan-glow" />
+          <span>Fase 1: Interface & Validação de Esquema</span>
+        </div>
       </div>
 
       {/* Message History Container */}
       <div className="flex-1 overflow-y-auto my-3 space-y-4 pr-1 scrollbar-thin">
         {messages.map((msg) => {
           const isUser = msg.role === 'user';
+          const isSystem = msg.role === 'system';
           return (
             <div
               key={msg.id}
@@ -202,6 +194,8 @@ export const ChatView: React.FC = () => {
                   max-w-3xl rounded-2xl p-4.5 space-y-3 transition-all
                   ${isUser 
                     ? 'bg-mindverse-midnight/90 text-mindverse-softwhite border border-mindverse-graphite' 
+                    : isSystem
+                    ? 'bg-mindverse-deep/90 text-mindverse-gold-light/90 border border-mindverse-gold-subtle/30 font-mono text-xs'
                     : 'bg-mindverse-darkblue/70 text-mindverse-softwhite border border-mindverse-gold-subtle/20 shadow-md'
                   }
                 `}
@@ -209,11 +203,11 @@ export const ChatView: React.FC = () => {
                 {/* Message Header */}
                 <div className="flex items-center justify-between gap-3 text-xs">
                   <span className="font-serif font-bold text-xs text-mindverse-gold-subtle">
-                    {isUser ? userProfile.fullName : selectedPersonality.name}
+                    {isUser ? userProfile.fullName : isSystem ? 'Sistema MINDVERSE' : selectedPersonality.name}
                   </span>
 
                   <div className="flex items-center gap-2">
-                    {!isUser && getStatusBadge(msg.epistemicStatus)}
+                    {!isUser && !isSystem && getStatusBadge(msg.epistemicStatus)}
                     <span className="text-[10px] font-mono text-mindverse-muted">
                       {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
@@ -243,7 +237,7 @@ export const ChatView: React.FC = () => {
                           <Quote className="w-2.5 h-2.5 text-mindverse-gold-subtle" />
                           <span className="font-medium truncate max-w-[220px]">{cit.workTitle}</span>
                           <span className="font-mono text-[9px] text-mindverse-gold-subtle">
-                            ({Math.round(cit.similarityScore * 100)}%)
+                            (Fonte Verificada)
                           </span>
                         </button>
                       ))}
@@ -256,7 +250,7 @@ export const ChatView: React.FC = () => {
         })}
       </div>
 
-      {/* Citation Detail Modal (When a citation is clicked) */}
+      {/* Citation Detail Modal */}
       {selectedCitation && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="w-full max-w-lg rounded-2xl bg-mindverse-deep border border-mindverse-gold-subtle/40 p-6 space-y-4 shadow-2xl">
@@ -280,13 +274,13 @@ export const ChatView: React.FC = () => {
                 Obra: {selectedCitation.workTitle}
               </span>
               <span className="text-mindverse-muted block">
-                Secção / Capítulo: {selectedCitation.section}
+                Secção / Proveniência: {selectedCitation.section}
               </span>
               <div className="p-3 rounded-xl bg-mindverse-midnight border border-mindverse-graphite italic text-mindverse-softwhite leading-relaxed">
                 "{selectedCitation.quoteSnippet}"
               </div>
               <span className="text-[10px] font-mono text-mindverse-muted block pt-1">
-                Grau de Similaridade Vetorial: {Math.round(selectedCitation.similarityScore * 100)}% (HNSW Cosine)
+                Estado: Obra de Domínio Público Verificada no Catálogo Genesis
               </span>
             </div>
           </div>
@@ -316,7 +310,10 @@ export const ChatView: React.FC = () => {
 
         <div className="pt-2 px-1 flex items-center justify-between text-[10px] font-mono text-mindverse-muted">
           <span>Enter para enviar • Shift + Enter para nova linha</span>
-          <span>Fase 1: Fundação & Interface Dialógica</span>
+          <span className="flex items-center gap-1 text-mindverse-gold-accent">
+            <Layers className="w-3 h-3" />
+            <span>Fase 1: Fundação • Streaming SSE em espera da Fase 2</span>
+          </span>
         </div>
       </form>
     </div>
