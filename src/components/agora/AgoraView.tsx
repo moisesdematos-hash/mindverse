@@ -3,6 +3,8 @@ import { useAppStore } from '../../store/useAppStore';
 import { COHORT_GENESIS_PERSONALITIES } from '../../data/personalities';
 import { globalCouncilEngine } from '../../server/council/councilEngine';
 import { CouncilIntervention } from '../../types';
+import { CouncilChamber } from './CouncilChamber';
+import { councilAudio } from '../../services/councilAudio';
 import { 
   Users2, 
   Sparkles, 
@@ -20,7 +22,8 @@ import {
   AlertCircle,
   Clock,
   Compass,
-  ArrowRight
+  ArrowRight,
+  Volume2
 } from 'lucide-react';
 
 const SUGGESTED_MOTIONS = [
@@ -99,18 +102,23 @@ export const AgoraView: React.FC = () => {
           onInterventionComplete: (intervention) => {
             setCurrentLiveSpeaker(null);
             addTokensUsed(intervention.tokensUsed);
+            // Inicia síntese de voz audível calibrada para esta personalidade
+            councilAudio.speak(intervention.personalityId, intervention.content);
           },
           onSynthesisComplete: () => {
+            councilAudio.stop();
             setCurrentLiveSpeaker(null);
             setActiveTab('synthesis');
           },
           onError: (err) => {
+            councilAudio.stop();
             setErrorNotification(err.message);
           }
         },
         abortControllerRef.current.signal
       );
     } catch (err: any) {
+      councilAudio.stop();
       if (err.message?.includes('interrompido')) {
         setErrorNotification('Sessão do Conselho interrompida pelo utilizador.');
       } else {
@@ -124,6 +132,7 @@ export const AgoraView: React.FC = () => {
   };
 
   const handleStopCouncil = () => {
+    councilAudio.stop();
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
       setIsCouncilRunning(false);
@@ -132,6 +141,7 @@ export const AgoraView: React.FC = () => {
   };
 
   const handleResetCouncil = () => {
+    councilAudio.stop();
     handleStopCouncil();
     setCouncilSession(null);
     setCurrentLiveSpeaker(null);
@@ -412,64 +422,14 @@ export const AgoraView: React.FC = () => {
       {/* Live Council Deliberation Chamber */}
       {councilSession && (
         <div className="space-y-6 animate-fade-in">
-          {/* Council Podium Arena */}
-          <div className="p-6 rounded-3xl bg-mindverse-midnight/80 border border-mindverse-graphite space-y-4 shadow-xl">
-            <div className="flex items-center justify-between border-b border-mindverse-graphite/60 pb-3">
-              <div className="flex items-center gap-2 font-serif font-bold text-sm text-mindverse-softwhite">
-                <Users2 className="w-4 h-4 text-mindverse-gold-subtle" />
-                <span>Pódios das Grandes Mentes em Sessão ({councilSession.participants.length} Pensadores)</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-mono text-mindverse-muted">
-                <span>Ronda {councilSession.currentRound} de {councilSession.maxRounds}</span>
-                {isCouncilRunning && (
-                  <span className="flex items-center gap-1.5 text-mindverse-gold-accent animate-pulse font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-mindverse-gold-subtle"></span>
-                    Em Deliberação...
-                  </span>
-                )}
-              </div>
-            </div>
-
-            {/* Podiums Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
-              {councilSession.participants.map((p, idx) => {
-                const isSpeakingNow = currentLiveSpeakerId === p.id;
-                return (
-                  <div
-                    key={p.id}
-                    className={`
-                      p-3 rounded-2xl border text-center space-y-2 transition-all duration-300 relative
-                      ${isSpeakingNow
-                        ? 'bg-mindverse-deep border-mindverse-gold-subtle shadow-gold-glow ring-2 ring-mindverse-gold-subtle scale-105'
-                        : 'bg-mindverse-deep/60 border-mindverse-graphite/80 opacity-80'
-                      }
-                    `}
-                  >
-                    <div className="w-12 h-12 mx-auto rounded-xl bg-mindverse-midnight border border-mindverse-gold-subtle/40 flex items-center justify-center font-serif font-bold text-base text-mindverse-gold-subtle shadow-inner">
-                      {p.name.charAt(0)}
-                    </div>
-                    <div>
-                      <h4 className="font-serif font-bold text-xs text-mindverse-softwhite truncate">
-                        {p.name.split(' ')[0]}
-                      </h4>
-                      <p className="text-[10px] text-mindverse-gold-accent font-mono truncate">
-                        {p.category.split('_')[0]}
-                      </p>
-                    </div>
-                    {isSpeakingNow ? (
-                      <span className="inline-block text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-mindverse-gold-subtle text-mindverse-void font-bold animate-pulse">
-                        A discursar
-                      </span>
-                    ) : (
-                      <span className="inline-block text-[9px] font-mono text-mindverse-muted">
-                        Orador 0{idx + 1}
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          {/* Câmara Cénica Audiovisual do Conselho */}
+          <CouncilChamber
+            participants={councilSession.participants}
+            activeSpeakerId={currentLiveSpeakerId}
+            liveChunk={currentLiveChunk}
+            session={councilSession}
+            motion={agoraMotion}
+          />
 
           {/* Navigation Tabs between Deliberation Timeline and Final Synthesis */}
           <div className="flex items-center gap-3 border-b border-mindverse-graphite/60 pb-1">
@@ -552,6 +512,15 @@ export const AgoraView: React.FC = () => {
                             <span className="text-[10px] font-mono text-mindverse-muted">
                               {int.tokensUsed} tokens
                             </span>
+
+                            <button
+                              onClick={() => councilAudio.speak(int.personalityId, int.content)}
+                              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-mindverse-gold/10 hover:bg-mindverse-gold/25 text-[10px] font-mono text-mindverse-gold-light border border-mindverse-gold/30 transition-all hover:scale-105"
+                              title={`Ouvir discurso de ${int.personalityName}`}
+                            >
+                              <Volume2 className="w-3 h-3 text-mindverse-gold" />
+                              <span>Ouvir</span>
+                            </button>
                           </div>
                         </div>
 

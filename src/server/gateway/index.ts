@@ -36,7 +36,7 @@ export class OpenAIProvider implements AIProvider {
   private apiKey: string;
 
   constructor(apiKey?: string) {
-    this.apiKey = apiKey || process.env.OPENAI_API_KEY || '';
+    this.apiKey = apiKey || (typeof process !== 'undefined' ? process.env?.OPENAI_API_KEY : '') || '';
   }
 
   public isConfigured(): boolean {
@@ -157,7 +157,7 @@ export class AnthropicProvider implements AIProvider {
   private apiKey: string;
 
   constructor(apiKey?: string) {
-    this.apiKey = apiKey || process.env.ANTHROPIC_API_KEY || '';
+    this.apiKey = apiKey || (typeof process !== 'undefined' ? process.env?.ANTHROPIC_API_KEY : '') || '';
   }
 
   public isConfigured(): boolean {
@@ -219,6 +219,10 @@ export class AnthropicProvider implements AIProvider {
   }
 }
 
+declare const __GROQ_API_KEY__: string | undefined;
+declare const __DEFAULT_SOLO_MODEL__: string | undefined;
+declare const __DEFAULT_DEBATE_MODEL__: string | undefined;
+
 /**
  * Adaptador para Groq (Llama 3.3 70B - Baixíssima Latência).
  */
@@ -227,7 +231,11 @@ export class GroqProvider implements AIProvider {
   private apiKey: string;
 
   constructor(apiKey?: string) {
-    this.apiKey = apiKey || process.env.GROQ_API_KEY || '';
+    this.apiKey =
+      apiKey ||
+      (typeof __GROQ_API_KEY__ !== 'undefined' ? __GROQ_API_KEY__ : '') ||
+      (typeof process !== 'undefined' ? process.env?.GROQ_API_KEY : '') ||
+      '';
   }
 
   public isConfigured(): boolean {
@@ -237,7 +245,11 @@ export class GroqProvider implements AIProvider {
   public async complete(messages: AIMessage[], model?: string): Promise<AIGatewayResponse> {
     if (!this.isConfigured()) throw new Error('GROQ_API_KEY não configurada no servidor.');
 
-    const targetModel = model || process.env.DEFAULT_SOLO_MODEL || 'openai/gpt-oss-120b';
+    const targetModel =
+      model ||
+      (typeof __DEFAULT_SOLO_MODEL__ !== 'undefined' ? __DEFAULT_SOLO_MODEL__ : '') ||
+      (typeof process !== 'undefined' ? process.env?.DEFAULT_SOLO_MODEL : '') ||
+      'openai/gpt-oss-120b';
 
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -300,6 +312,27 @@ export class DeterministicIntellectualEngine implements AIProvider {
       const quoteSnippet = matchSource ? matchSource[2].slice(0, 320) + '...' : '';
 
       content = `[FACTO DOCUMENTADO]\nPerante a tua indagação sobre "${user}", os registos comprovados afirmam categoricamente:\n\n"${quoteSnippet}"\n\n[Referência: ${citationRef}]\n\n[INTERPRETAÇÃO FUNDAMENTADA]\nÀ luz da minha mundivisão, este ensinamento estabelece que a ação humana e o julgamento moral não devem desviar-se do princípio supremo. O rigor do dever e a observação da Providência ou da justa medida sobrepõem-se às paixões efémeras.\n\n[Transparência: Resposta sintetizada com base estrita no fragmento primário verificado acima].`;
+    } else if (/fale.*(si|você|ti)|quem és|quem é você|apresente|sobre você|sua vida|sua história/i.test(user)) {
+      const nameMatch = system.match(/És (.*?), conhecido como (.*?)\./);
+      const name = nameMatch ? nameMatch[1] : 'o Pensador';
+      const epithet = nameMatch ? nameMatch[2] : '';
+      const worldviewMatch = system.match(/MUNDIVISÃO FUNDAMENTAL:\s*([\s\S]*?)(?=\n\nAXIOMAS|$)/);
+      const worldview = worldviewMatch ? worldviewMatch[1].trim() : '';
+
+      content = `[FACTO HISTÓRICO DOCUMENTADO]\nSou ${name}${epithet ? `, ${epithet}` : ''}.\n\n[INTERPRETAÇÃO FUNDAMENTADA]\n${worldview}\n\nO meu corpus canónico preservado dedica-se à investigação rigorosa dos princípios fundamentais da realidade, da ética e da ação humana. Podes interrogar-me diretamente sobre os meus textos originais e os problemas centrais da minha filosofia.`;
+    } else if (system.includes('PAPEL NO CONSELHO:') || system.includes('RESUMO DAS POSIÇÕES ANTERIORES:') || system.includes('MODERADOR DO CONSELHO')) {
+      const isRebuttal = system.includes('RÉPLICA E CONTRAPONTO');
+      const isDeepening = system.includes('APROFUNDAMENTO E DECISÃO');
+      const nameMatch = system.match(/Tu és (.*?)\./);
+      const speakerName = nameMatch ? nameMatch[1] : 'O Pensador';
+
+      if (isRebuttal) {
+        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, examinei com rigor as teses que me antecederam neste Conselho. Embora compreenda os apelos ao pragmatismo ou à urgência, qualquer compromisso que sacrifique os princípios fundacionais da virtude e da justiça está fadado a gerar instabilidade duradoura.\n\n[SIMULAÇÃO HIPOTÉTICA]\nNum cenário contemporâneo de crise institucional, a nossa prioridade estratégica não deve ser acomodar aparências, mas sim fortalecer a integridade interior e a clareza dos fins legítimos.`;
+      } else if (isDeepening) {
+        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nA minha posição definitiva como ${speakerName} perante as fricções manifestadas assenta nesta condição inegociável: nenhuma política tem valor se dissociada da responsabilidade pelo bem comum e do respeito pela medida justa.\n\n[SIMULAÇÃO HIPOTÉTICA]\nDeixo esta advertência indelével aos executores: a pressa sem prudência e a eficácia despida de ética conduzem invariavelmente ao descalabro. A solidez de uma grande decisão mede-se pela sua rectidão a longo prazo.`;
+      } else {
+        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, a minha intervenção neste Conselho fundamenta-se na premissa de que a ordem duradoura nasce da verdade e da justiça, não do cálculo oportunista.`;
+      }
     } else {
       content = `[LIMITAÇÃO HISTÓRICA RECONHECIDA]\nNos meus escritos preservados que compõem o corpus canónico, não possuo registo suficiente nem passagem comprovada para deliberar com autoridade documental sobre: "${user}".\n\nEm conformidade com o princípio de Verdade Histórica do MINDVERSE, recuso inventar citações ou atribuir-me posições que não constem dos meus textos originais.`;
     }
@@ -344,9 +377,9 @@ export class AIGateway {
 
   constructor() {
     this.providers = [
+      new GroqProvider(),
       new OpenAIProvider(),
       new AnthropicProvider(),
-      new GroqProvider(),
       new DeterministicIntellectualEngine(),
     ];
   }
@@ -369,9 +402,18 @@ export class AIGateway {
   ): Promise<AIGatewayResponse> {
     const provider = this.getActiveProvider();
 
-    if (onChunk) {
-      return provider.stream(messages, onChunk);
+    try {
+      if (onChunk) {
+        return await provider.stream(messages, onChunk);
+      }
+      return await provider.complete(messages);
+    } catch (err: any) {
+      console.warn(`[AIGateway] Fornecedor ${provider.name} falhou: ${err.message}. Ativando fallback histórico.`);
+      const fallback = this.providers.find((p) => p.name === 'deterministic-historical-engine')!;
+      if (onChunk) {
+        return await fallback.stream(messages, onChunk);
+      }
+      return await fallback.complete(messages);
     }
-    return provider.complete(messages);
   }
 }

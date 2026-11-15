@@ -10,6 +10,8 @@ export interface EmbeddingProvider {
   generateBatchEmbeddings(texts: string[]): Promise<EmbeddingResult[]>;
 }
 
+declare const __GEMINI_API_KEY__: string | undefined;
+
 /**
  * Adaptador oficial para Gemini gemini-embedding-001 (1536 dimensões nativas).
  * Executado exclusivamente no servidor.
@@ -21,7 +23,11 @@ export class GeminiEmbeddingAdapter implements EmbeddingProvider {
   private readonly expectedDimension: number;
 
   constructor(apiKey?: string, model = 'gemini-embedding-001') {
-    this.apiKey = apiKey || process.env.GEMINI_API_KEY || '';
+    this.apiKey =
+      apiKey ||
+      (typeof __GEMINI_API_KEY__ !== 'undefined' ? __GEMINI_API_KEY__ : '') ||
+      (typeof process !== 'undefined' ? process.env?.GEMINI_API_KEY : '') ||
+      '';
     this.model = model;
     this.version = 'v1';
     this.expectedDimension = 1536;
@@ -88,7 +94,7 @@ export class OpenAIEmbeddingAdapter implements EmbeddingProvider {
   private readonly expectedDimension: number;
 
   constructor(apiKey?: string, model = 'text-embedding-3-small') {
-    this.apiKey = apiKey || process.env.OPENAI_API_KEY || '';
+    this.apiKey = apiKey || (typeof process !== 'undefined' ? process.env?.OPENAI_API_KEY : '') || '';
     this.model = model;
     this.version = 'v1';
     this.expectedDimension = 1536;

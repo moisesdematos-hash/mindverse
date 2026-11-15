@@ -25,7 +25,7 @@ export class RAGSearchEngine {
   constructor(embeddingProvider?: EmbeddingProvider) {
     if (embeddingProvider) {
       this.embeddingProvider = embeddingProvider;
-    } else if (process.env.OPENAI_API_KEY) {
+    } else if (typeof process !== 'undefined' && process.env?.OPENAI_API_KEY) {
       this.embeddingProvider = new OpenAIEmbeddingAdapter();
     } else {
       this.embeddingProvider = new DeterministicVectorEmbeddingAdapter();
