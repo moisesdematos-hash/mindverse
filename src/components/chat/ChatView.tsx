@@ -4,6 +4,7 @@ import { useAppStore } from '../../store/useAppStore';
 import { COHORT_GENESIS_PERSONALITIES } from '../../data/personalities';
 import { Message, MessageCitation, EpistemicStatus } from '../../types';
 import { globalRAGOrchestrator, ChatResponse } from '../../server/orchestrator';
+import { councilAudio } from '../../services/councilAudio';
 import { 
   Send, 
   Sparkles, 
@@ -15,7 +16,8 @@ import {
   Clock, 
   Layers,
   Search,
-  AlertTriangle
+  AlertTriangle,
+  Volume2
 } from 'lucide-react';
 
 export const ChatView: React.FC = () => {
@@ -324,6 +326,18 @@ export const ChatView: React.FC = () => {
 
                   <div className="flex items-center gap-2">
                     {!isUser && !isSystem && getStatusBadge(msg.epistemicStatus)}
+
+                    {!isUser && !isSystem && msg.content && (
+                      <button
+                        onClick={() => councilAudio.speak(selectedPersonality.id, msg.content)}
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-mindverse-gold/10 hover:bg-mindverse-gold/25 text-[10px] font-mono text-mindverse-gold-light border border-mindverse-gold/30 transition-all hover:scale-105"
+                        title={`Ouvir ${selectedPersonality.name}`}
+                      >
+                        <Volume2 className="w-3 h-3 text-mindverse-gold" />
+                        <span>Ouvir Voz</span>
+                      </button>
+                    )}
+
                     <span className="text-[10px] font-mono text-mindverse-muted">
                       {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>

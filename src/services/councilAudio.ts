@@ -86,15 +86,15 @@ export class CouncilAudioSynthesizer {
    */
   private prepareSpeechText(rawText: string): string {
     return rawText
-      .replace(/\[FACTO DOCUMENTADO\]/gi, 'Facto documentado:')
-      .replace(/\[INTERPRETAÇÃO FUNDAMENTADA\]/gi, 'Interpretação fundamentada:')
-      .replace(/\[SIMULAÇÃO HIPOTÉTICA\]/gi, 'Simulação hipotética:')
-      .replace(/\[LIMITAÇÃO HISTÓRICA RECONHECIDA\]/gi, 'Limitação histórica reconhecida:')
+      .replace(/\[FACTO DOCUMENTADO\]/gi, '')
+      .replace(/\[INTERPRETAÇÃO FUNDAMENTADA\]/gi, '')
+      .replace(/\[SIMULAÇÃO HIPOTÉTICA\]/gi, '')
+      .replace(/\[LIMITAÇÃO HISTÓRICA RECONHECIDA\]/gi, '')
       .replace(/\[Referência:[^\]]+\]/gi, '')
       .replace(/\[Transparência:[^\]]+\]/gi, '')
       .replace(/--- \[FONTE \d+:[^\]]+\] ---/gi, '')
       .replace(/[*_#`]/g, '')
-      .replace(/\n+/g, ' ')
+      .replace(/\s+/g, ' ')
       .trim();
   }
 
