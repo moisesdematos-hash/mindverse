@@ -234,8 +234,10 @@ export class GroqProvider implements AIProvider {
     return Boolean(this.apiKey) && !this.apiKey.includes('gsk_placeholder');
   }
 
-  public async complete(messages: AIMessage[], model = 'llama-3.3-70b-versatile'): Promise<AIGatewayResponse> {
+  public async complete(messages: AIMessage[], model?: string): Promise<AIGatewayResponse> {
     if (!this.isConfigured()) throw new Error('GROQ_API_KEY não configurada no servidor.');
+
+    const targetModel = model || process.env.DEFAULT_SOLO_MODEL || 'openai/gpt-oss-120b';
 
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -243,7 +245,7 @@ export class GroqProvider implements AIProvider {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.apiKey}`,
       },
-      body: JSON.stringify({ model, messages }),
+      body: JSON.stringify({ model: targetModel, messages }),
     });
 
     if (!res.ok) throw new Error(`Groq Error: ${await res.text()}`);
@@ -251,7 +253,7 @@ export class GroqProvider implements AIProvider {
     const content = data.choices[0]?.message?.content || '';
     return {
       content,
-      model,
+      model: targetModel,
       provider: this.name,
       usage: {
         promptTokens: data.usage?.prompt_tokens || 0,
@@ -265,7 +267,7 @@ export class GroqProvider implements AIProvider {
   public async stream(
     messages: AIMessage[],
     onChunk: (chunk: string) => void,
-    model = 'llama-3.3-70b-versatile'
+    model?: string
   ): Promise<AIGatewayResponse> {
     const res = await this.complete(messages, model);
     onChunk(res.content);

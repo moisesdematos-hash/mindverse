@@ -11,6 +11,73 @@ export interface EmbeddingProvider {
 }
 
 /**
+ * Adaptador oficial para Gemini gemini-embedding-001 (1536 dimensões nativas).
+ * Executado exclusivamente no servidor.
+ */
+export class GeminiEmbeddingAdapter implements EmbeddingProvider {
+  private readonly apiKey: string;
+  private readonly model: string;
+  private readonly version: string;
+  private readonly expectedDimension: number;
+
+  constructor(apiKey?: string, model = 'gemini-embedding-001') {
+    this.apiKey = apiKey || process.env.GEMINI_API_KEY || '';
+    this.model = model;
+    this.version = 'v1';
+    this.expectedDimension = 1536;
+  }
+
+  public isConfigured(): boolean {
+    return Boolean(this.apiKey) && !this.apiKey.includes('placeholder');
+  }
+
+  public async generateEmbedding(text: string): Promise<EmbeddingResult> {
+    if (!this.apiKey) {
+      throw new Error(
+        'GEMINI_API_KEY não configurada no servidor. Adicione a chave ao ambiente do servidor.'
+      );
+    }
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:embedContent?key=${this.apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: { parts: [{ text }] },
+          outputDimensionality: this.expectedDimension,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Falha na API Gemini Embeddings (${response.status}): ${errorText}`);
+    }
+
+    const data = await response.json();
+    const vector = data.embedding?.values;
+
+    if (!vector || vector.length !== this.expectedDimension) {
+      throw new Error(
+        `Incompatibilidade dimensional de embeddings Gemini: esperado ${this.expectedDimension}, obtido ${vector?.length || 0}`
+      );
+    }
+
+    return {
+      embedding: vector,
+      model: this.model,
+      version: this.version,
+      dimension: this.expectedDimension,
+    };
+  }
+
+  public async generateBatchEmbeddings(texts: string[]): Promise<EmbeddingResult[]> {
+    return Promise.all(texts.map((t) => this.generateEmbedding(t)));
+  }
+}
+
+/**
  * Adaptador oficial para OpenAI text-embedding-3-small (1536 dimensões).
  * Executado exclusivamente no servidor.
  */
