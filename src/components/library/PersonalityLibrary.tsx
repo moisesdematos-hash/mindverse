@@ -26,6 +26,10 @@ export const PersonalityLibrary: React.FC = () => {
 
   const categories: { id: string; label: string }[] = [
     { id: 'all', label: t('library.all_categories') },
+    { id: 'presidential_leadership', label: 'Presidentes Históricos' },
+    { id: 'statecraft_and_parliament', label: 'Primeiros-Ministros & Estadistas' },
+    { id: 'industrial_invention', label: 'Grandes Inventores' },
+    { id: 'classical_historiography', label: 'Grandes Historiadores' },
     { id: 'physics_and_science', label: t('library.category_physics') },
     { id: 'invention_and_universal_genius', label: t('library.category_genius') },
     { id: 'electrical_engineering', label: t('library.category_engineering') },
@@ -35,6 +39,9 @@ export const PersonalityLibrary: React.FC = () => {
     { id: 'political_economy', label: t('library.category_economy') },
     { id: 'management_science', label: t('library.category_management') },
     { id: 'radioactivity_and_chemistry', label: t('library.category_chemistry') },
+    { id: 'medicine_and_life_sciences', label: 'Medicina & Ciências da Vida' },
+    { id: 'classical_computing', label: 'Computação & Lógica' },
+    { id: 'existential_philosophy', label: 'Filosofia Existencial' },
     { id: 'ancient_history_and_judaica', label: t('library.category_history') }
   ];
 

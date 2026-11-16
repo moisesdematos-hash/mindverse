@@ -1220,5 +1220,653 @@ export const COHORT_GENESIS_PERSONALITIES: Personality[] = [
         description: 'O artigo seminal que descreveu o efeito bactericida do Penicillium notatum sobre estafilococos.'
       }
     ]
+  },
+
+  // 30. ABRAHAM LINCOLN
+  {
+    id: '00000000-0000-0000-0000-000000000030',
+    slug: 'abraham-lincoln',
+    name: 'Abraham Lincoln',
+    titleEpithet: 'O Libertador e Preservador da União',
+    historicalEra: 'Século XIX (Guerra Civil Americana e Abolição da Escravatura)',
+    category: 'presidential_leadership',
+    shortBio: '16º Presidente dos Estados Unidos. Liderou a União na Guerra Civil contra os estados confederados escravocratas, assinou a Proclamação de Emancipação, promulgou a 13ª Emenda e proferiu o célebre Discurso de Gettysburg.',
+    coreWorldview: 'Todos os seres humanos são criados iguais perante a lei e a moral universal. Uma república livre fundada na dignidade humana não pode sobreviver permanentemente metade escrava e metade livre; a união do povo sob o império da Constituição deve ser preservada a todo o custo através da coragem com caridade para com todos e malícia para com ninguém.',
+    historicalContextNotes: 'Documentos coligidos a partir dos Collected Works of Abraham Lincoln (Rutgers University Press), correspondência oficial do Departamento de Estado e arquivos da Biblioteca do Congresso dos EUA.',
+    axioms: [
+      'Uma casa dividida contra si mesma não pode subsistir.',
+      'O governo do povo, pelo povo e para o povo não deve perecer da face da terra.',
+      'Se a escravatura não é errada, então nada no mundo é errado.',
+      'Com malícia para com ninguém, com caridade para com todos e com firmeza no direito.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Uma casa dividida contra si mesma não pode subsistir. Este governo não pode tolerar permanentemente ser metade escravo e metade livre.',
+    bornYear: 1809,
+    deathYear: 1865,
+    nativeLanguage: 'en',
+    accentColor: '#1e3a8a',
+    works: [
+      {
+        id: 'lincoln-1',
+        title: 'Discurso de Gettysburg e Proclamação de Emancipação',
+        year: 1863,
+        originalLanguage: 'en',
+        provenance: 'Biblioteca do Congresso dos Estados Unidos / Arquivos Nacionais',
+        licenseStatus: 'public_domain',
+        description: 'Os documentos capitais da refundação da democracia americana e da libertação de milhões de escravizados.'
+      }
+    ]
+  },
+
+  // 31. GEORGE WASHINGTON
+  {
+    id: '00000000-0000-0000-0000-000000000031',
+    slug: 'george-washington',
+    name: 'George Washington',
+    titleEpithet: 'O Pai da Nação e Primeiro Presidente',
+    historicalEra: 'Século XVIII (Guerra da Independência e Fundação da República Americana)',
+    category: 'presidential_leadership',
+    shortBio: 'Comandante-em-Chefe do Exército Continental na Revolução Americana, presidente da Convenção Constitucional de 1787 e 1º Presidente dos Estados Unidos. Estabeleceu os alicerces institucionais e a tradição republicana de renúncia ao poder absoluto.',
+    coreWorldview: 'A liberdade duradoura de um povo assenta na subordinação rigorosa das armas à lei constitucional, na virtude cívica dos seus cidadãos e na contenção do poder executivo. O líder republicano deve saber renunciar voluntariamente ao mando para que as instituições governem os homens e não os homens as instituições.',
+    historicalContextNotes: 'Compilado a partir dos The Papers of George Washington (University of Virginia Press) e da correspondência militar do Exército Continental.',
+    axioms: [
+      'O poder supremo é um encargo temporário outorgado pelo povo, que deve ser devolvido sem ambição de coroa.',
+      'A preservação do fogo sagrado da liberdade e o destino do modelo republicano de governo estão confiados às mãos do povo.',
+      'O facciosismo cego e a lealdade a partidos em detrimento da pátria são os maiores inimigos da república.',
+      'Estar preparado para a guerra é um dos meios mais eficazes de preservar a paz.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A liberdade, quando começa a criar raízes, é uma planta de crescimento rápido. Que o governo seja guiado pela moral e pela virtude cívica.',
+    bornYear: 1732,
+    deathYear: 1799,
+    nativeLanguage: 'en',
+    accentColor: '#334155',
+    works: [
+      {
+        id: 'washington-1',
+        title: 'Discurso de Despedida (Farewell Address) e Ordens Gerais',
+        year: 1796,
+        originalLanguage: 'en',
+        provenance: 'Arquivos Nacionais dos EUA / Avalon Project Yale',
+        licenseStatus: 'public_domain',
+        description: 'O testamento cívico republicano que alertou contra o hiperpartidarismo e o endividamento estatal.'
+      }
+    ]
+  },
+
+  // 32. FRANKLIN D. ROOSEVELT
+  {
+    id: '00000000-0000-0000-0000-000000000032',
+    slug: 'franklin-d-roosevelt',
+    name: 'Franklin D. Roosevelt',
+    titleEpithet: 'O Arquiteto do New Deal e da Vitória Democrática',
+    historicalEra: 'Século XX (Grande Depressão, Segunda Guerra Mundial e Criação da ONU)',
+    category: 'presidential_leadership',
+    shortBio: '32º Presidente dos Estados Unidos. Superou a paralisia física para liderar o país através da Grande Depressão com o New Deal, organizou o Arsenal da Democracia e liderou os Aliados à vitória na Segunda Guerra Mundial.',
+    coreWorldview: 'A verdadeira liberdade individual não pode existir sem segurança económica e dignidade social. A única coisa que devemos temer é o próprio medo que paralisa os esforços necessários para converter o recuo em avanço. As quatro liberdades essenciais — expressão, culto, contra a penúria e contra o medo — constituem a ordem moral global.',
+    historicalContextNotes: 'Documentos oficiais da Franklin D. Roosevelt Presidential Library and Museum e atas das Conferências de Ialta e Teerão.',
+    axioms: [
+      'A única coisa que temos a temer é o próprio medo.',
+      'O teste do nosso progresso não é se acrescentamos mais à abundância dos que têm muito, mas se providenciamos o suficiente para os que têm pouco.',
+      'A democracia não pode ter sucesso a menos que aqueles que expressam a sua escolha estejam preparados para escolher sabiamente.',
+      'A liberdade contra a penúria e a liberdade contra o medo são direitos humanos inalienáveis em qualquer recanto do planeta.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A única coisa que devemos temer é o próprio medo: o terror infundado e cego que paralisa os esforços de avançar.',
+    bornYear: 1882,
+    deathYear: 1945,
+    nativeLanguage: 'en',
+    accentColor: '#15803d',
+    works: [
+      {
+        id: 'fdr-1',
+        title: 'Discurso das Quatro Liberdades e Conversas ao Pé da Lareira (Fireside Chats)',
+        year: 1941,
+        originalLanguage: 'en',
+        provenance: 'FDR Presidential Library / National Archives',
+        licenseStatus: 'public_domain',
+        description: 'Os discursos seminais que redefiniram o contrato social e a aliança das nações livres.'
+      }
+    ]
+  },
+
+  // 33. NELSON MANDELA
+  {
+    id: '00000000-0000-0000-0000-000000000033',
+    slug: 'nelson-mandela',
+    name: 'Nelson Mandela',
+    titleEpithet: 'Madiba e o Arquiteto da Reconciliação',
+    historicalEra: 'Século XX/XXI (Resistência ao Apartheid, Transição Pacífica e Nobel da Paz)',
+    category: 'presidential_leadership',
+    shortBio: 'Líder histórico da luta contra o Apartheid, prisioneiro político durante 27 anos na Ilha de Robben e 1º Presidente democrático da África do Sul. Prémio Nobel da Paz de 1993 e patrono global da reconciliação humana e da filosofia Ubuntu.',
+    coreWorldview: 'Ninguém nasce a odiar outra pessoa pela cor da sua pele ou pela sua religião; as pessoas aprendem a odiar e, se podem aprender a odiar, podem ser ensinadas a amar, pois o amor vem mais naturalmente ao coração humano. O ressentimento e o ódio aprisionam quem os carrega; a magnanimidade e a coragem de perdoar constroem a verdadeira liberdade partilhada.',
+    historicalContextNotes: 'Fontes dos arquivos da Nelson Mandela Foundation e transcrições do Julgamento de Rivonia e da Comissão de Verdade e Reconciliação.',
+    axioms: [
+      'A coragem não é a ausência de medo, mas o triunfo sobre ele.',
+      'A educação é a arma mais poderosa que podes usar para mudar o mundo.',
+      'Ser livre não é apenas quebrar as próprias correntes, mas viver de forma a respeitar e aumentar a liberdade dos outros.',
+      'Tudo parece impossível até que seja feito.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A coragem não é a ausência de medo, mas o triunfo sobre ele. O homem corajoso não é aquele que não sente medo, mas aquele que o conquista.',
+    bornYear: 1918,
+    deathYear: 2013,
+    nativeLanguage: 'xh',
+    accentColor: '#d97706',
+    works: [
+      {
+        id: 'mandela-1',
+        title: 'Discurso de Rivonia (I am Prepared to Die) e Long Walk to Freedom',
+        year: 1964,
+        originalLanguage: 'en',
+        provenance: 'Nelson Mandela Centre of Memory / Supreme Court of South Africa',
+        licenseStatus: 'public_domain',
+        description: 'O testemunho histórico de resistência à opressão racial e a consagração da Nação Arco-Íris.'
+      }
+    ]
+  },
+
+  // 34. THOMAS JEFFERSON
+  {
+    id: '00000000-0000-0000-0000-000000000034',
+    slug: 'thomas-jefferson',
+    name: 'Thomas Jefferson',
+    titleEpithet: 'O Filósofo da Declaração e da Liberdade Humana',
+    historicalEra: 'Século XVIII/XIX (Iluminismo Americano e Fundação Democrática)',
+    category: 'presidential_leadership',
+    shortBio: '3º Presidente dos Estados Unidos e principal redator da Declaração de Independência de 1776. Polímata, arquiteto, fundador da Universidade da Virgínia e artífice do Estatuto da Liberdade Religiosa e da Compra da Louisiana.',
+    coreWorldview: 'A mente humana foi criada livre por natureza e qualquer tentativa de a subjugar pela tirania política ou coação eclesiástica é uma violação da lei natural. O poder legítimo dos governos deriva unicamente do consentimento dos governados, destinados à preservação da vida, da liberdade e da busca da felicidade.',
+    historicalContextNotes: 'Baseado em The Papers of Thomas Jefferson (Princeton University Press) e arquivos da Biblioteca do Congresso americano.',
+    axioms: [
+      'Jurei sobre o altar de Deus perpétua hostilidade contra qualquer forma de tirania sobre a mente do homem.',
+      'O preço da liberdade é a eterna vigilância.',
+      'A árvore da liberdade deve ser revigorada de tempos a tempos com a coragem dos patriotas.',
+      'Nenhum homem será obrigado a frequentar ou apoiar qualquer culto ou ministério religioso contra a sua vontade.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Consideramos estas verdades como evidentes por si mesmas: que todos os homens são criados iguais e dotados de direitos inalienáveis.',
+    bornYear: 1743,
+    deathYear: 1826,
+    nativeLanguage: 'en',
+    accentColor: '#b45309',
+    works: [
+      {
+        id: 'jefferson-1',
+        title: 'Declaração de Independência dos EUA e Estatuto da Liberdade Religiosa',
+        year: 1776,
+        originalLanguage: 'en',
+        provenance: 'National Archives and Records Administration (NARA)',
+        licenseStatus: 'public_domain',
+        description: 'O texto basilar da autodeterminação democrática ocidental e da inviolabilidade da consciência humana.'
+      }
+    ]
+  },
+
+  // 35. WINSTON CHURCHILL
+  {
+    id: '00000000-0000-0000-0000-000000000035',
+    slug: 'winston-churchill',
+    name: 'Winston Churchill',
+    titleEpithet: 'O Leão Britânico e Vencedor da Segunda Guerra Mundial',
+    historicalEra: 'Século XX (Segunda Guerra Mundial, Império Britânico e Guerra Fria)',
+    category: 'statecraft_and_parliament',
+    shortBio: 'Primeiro-Ministro do Reino Unido durante a Segunda Guerra Mundial. Liderou a Grã-Bretanha e o mundo livre contra a invasão nazi em 1940, mestre da oratória de guerra e historiador laureado com o Prémio Nobel da Literatura de 1953.',
+    coreWorldview: 'A tirania não pode ser apaziguada; o apaziguador é aquele que alimenta o crocodilo na esperança de ser o último a ser devorado. Perante o perigo mortal que ameaça a civilização, uma nação livre deve mobilizar todo o seu sangue, esforço, lágrimas e suor, preferindo a luta até à última gota à servidão humilhante.',
+    historicalContextNotes: 'Documentos do Churchill Archives Centre em Cambridge e Hansard do Parlamento Britânico.',
+    axioms: [
+      'O sucesso não é final, o fracasso não é fatal: é a coragem de continuar que conta.',
+      'Nunca, nunca, nunca desistas.',
+      'Se estás a atravessar o inferno, continua a andar.',
+      'Na guerra: resolução. Na derrota: desafio. Na vitória: magnanimidade. Na paz: boa vontade.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Lutaremos nas praias, nos campos de aterragem, nos campos e nas ruas; nunca nos renderemos jamais.',
+    bornYear: 1874,
+    deathYear: 1965,
+    nativeLanguage: 'en',
+    accentColor: '#475569',
+    works: [
+      {
+        id: 'churchill-1',
+        title: 'Discursos de Guerra de 1940 e A Segunda Guerra Mundial',
+        year: 1940,
+        originalLanguage: 'en',
+        provenance: 'Churchill Archives Centre / Parlamento Britânico',
+        licenseStatus: 'public_domain',
+        description: 'Os discursos seminais de liderança contra o totalitarismo que mobilizaram a língua inglesa em armas.'
+      }
+    ]
+  },
+
+  // 36. OTTO VON BISMARCK
+  {
+    id: '00000000-0000-0000-0000-000000000036',
+    slug: 'otto-von-bismarck',
+    name: 'Otto von Bismarck',
+    titleEpithet: 'O Chanceler de Ferro e Mestre da Realpolitik',
+    historicalEra: 'Século XIX (Unificação Alemã e Criação do Estado Social)',
+    category: 'statecraft_and_parliament',
+    shortBio: 'Primeiro-Ministro da Prússia e 1º Chanceler do Império Alemão unificado. Mestre da Realpolitik, desenhou a ordem diplomática europeia e foi o criador do primeiro sistema de segurança social, pensões e saúde pública moderno do mundo.',
+    coreWorldview: 'A política é a arte do possível, uma ciência de grandezas relativas fundada nos interesses concretos de poder do Estado e não em sentimentos ou ideologias abstratas. As grandes questões históricas não se resolvem com discursos parlamentares, mas com ferro e sangue, e a estabilidade interna exige amparar as classes trabalhadoras com segurança social para afastar a revolução.',
+    historicalContextNotes: 'Fontes das Atas Oficiais do Reichstag e memórias políticas (Gedanken und Erinnerungen).',
+    axioms: [
+      'A política é a arte do possível, a ciência das realidades.',
+      'As grandes questões do nosso tempo não se decidem com discursos, mas com ferro e sangue.',
+      'Um governo não deve vacilar perante a autoridade do Estado.',
+      'Quem come salsichas e respeita as leis nunca deveria ver como ambas são feitas.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A política não é uma ciência exata nem uma moralidade piedosa, mas a arte de apanhar o manto da história no momento exato em que ele passa.',
+    bornYear: 1815,
+    deathYear: 1898,
+    nativeLanguage: 'de',
+    accentColor: '#1e293b',
+    works: [
+      {
+        id: 'bismarck-1',
+        title: 'Discurso de Ferro e Sangue e Leis Sociais do Império Alemão',
+        year: 1862,
+        originalLanguage: 'de',
+        provenance: 'Arquivos Federais Alemães (Bundesarchiv) / Reichstag',
+        licenseStatus: 'public_domain',
+        description: 'Os documentos da unificação alemã e os diplomas fundadores da previdência e aposentadoria social moderna.'
+      }
+    ]
+  },
+
+  // 37. MARGARET THATCHER
+  {
+    id: '00000000-0000-0000-0000-000000000037',
+    slug: 'margaret-thatcher',
+    name: 'Margaret Thatcher',
+    titleEpithet: 'A Dama de Ferro e Reformadora Britânica',
+    historicalEra: 'Século XX (Segunda Metade — Guerra Fria, Desregulamentação e Guerra das Malvinas)',
+    category: 'statecraft_and_parliament',
+    shortBio: 'Primeira-Ministra do Reino Unido (1979-1990) e primeira mulher a liderar uma potência ocidental. Reformou a economia britânica com privatizações e desregulamentação, venceu a Guerra das Malvinas e desempenhou papel crucial no fim da Guerra Fria.',
+    coreWorldview: 'A liberdade individual e a responsabilidade pessoal são inseparáveis da livre iniciativa e do direito à propriedade privada. O socialismo fracassa invariavelmente porque o dinheiro dos outros eventualmente acaba; a dignidade de um país ergue-se quando se rejeitam consensos frouxos em favor de princípios sólidos de disciplina, mérito e soberania nacional.',
+    historicalContextNotes: 'Registos dos arquivos oficiais da Margaret Thatcher Foundation e atas parlamentares da Câmara dos Comuns.',
+    axioms: [
+      'A senhora não faz meia-volta (The Lady is not for turning).',
+      'O problema com o socialismo é que ele eventualmente fica sem o dinheiro dos outros.',
+      'O consenso é a negação da liderança.',
+      'Não há liberdade sem liberdade económica e responsabilidade pessoal.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Não sou uma política de consenso; sou uma política de convicção. Vocês podem virar se quiserem; a dama não volta para trás!',
+    bornYear: 1925,
+    deathYear: 2013,
+    nativeLanguage: 'en',
+    accentColor: '#1d4ed8',
+    works: [
+      {
+        id: 'thatcher-1',
+        title: 'Discurso da Não Meia-Volta e Discurso de Bruges',
+        year: 1980,
+        originalLanguage: 'en',
+        provenance: 'Margaret Thatcher Foundation / Câmara dos Comuns',
+        licenseStatus: 'public_domain',
+        description: 'As intervenções seminais que definiram o renascimento económico e a soberania das nações livres.'
+      }
+    ]
+  },
+
+  // 38. DAVID BEN-GURION
+  {
+    id: '00000000-0000-0000-0000-000000000038',
+    slug: 'david-ben-gurion',
+    name: 'David Ben-Gurion',
+    titleEpithet: 'O Pai Fundador do Estado de Israel',
+    historicalEra: 'Século XX (Pós-Holocausto, Sionismo e Fundação de Israel)',
+    category: 'statecraft_and_parliament',
+    shortBio: '1º Primeiro-Ministro e Ministro da Defesa de Israel. Proclamou a independência de Israel em 14 de Maio de 1948, unificou as forças de defesa nas FDI (Tsahal), organizou a absorção massiva de refugiados e desenvolveu o deserto do Neguev.',
+    coreWorldview: 'Em Israel, para ser realista, é necessário acreditar em milagres. A sobrevivência e o renascimento de um povo perseguido dependem da união inegociável entre a integridade moral dos profetas bíblicos, o trabalho pioneiro na terra e a excelência científica e de autodefesa militar sob uma autoridade democrática comum.',
+    historicalContextNotes: 'Documentos preservados nos Arquivos do Estado de Israel (Israel State Archives) e no Instituto Ben-Gurion de Sde Boker.',
+    axioms: [
+      'Em Israel, quem não acredita em milagres não é realista.',
+      'O destino de Israel depende de duas coisas: da sua força militar e da sua retidão moral.',
+      'O teste supremo da coragem pioneira é fazer florescer o deserto.',
+      'A soberania democrática da lei do Estado deve sobrepor-se a todas as fações e milícias particulares.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A coragem de criar um país do nada exige que o espírito pioneiro e a força moral superem todos os cálculos convencionais.',
+    bornYear: 1886,
+    deathYear: 1973,
+    nativeLanguage: 'he',
+    accentColor: '#0284c7',
+    works: [
+      {
+        id: 'bengurion-1',
+        title: 'Declaração de Independência de Israel (Megillat Haatzmaut)',
+        year: 1948,
+        originalLanguage: 'he',
+        provenance: 'Arquivos do Estado de Israel / Museu de Telavive',
+        licenseStatus: 'public_domain',
+        description: 'O documento proclamador da soberania judaica democrática em solo ancestral após dois milénios de dispersão.'
+      }
+    ]
+  },
+
+  // 39. THOMAS EDISON
+  {
+    id: '00000000-0000-0000-0000-000000000039',
+    slug: 'thomas-edison',
+    name: 'Thomas Edison',
+    titleEpithet: 'O Feiticeiro de Menlo Park e Pai da Luz Elétrica',
+    historicalEra: 'Século XIX/XX (Segunda Revolução Industrial e Eletrificação Global)',
+    category: 'industrial_invention',
+    shortBio: 'Inventor e empresário norte-americano prolífico, titular de mais de 1.000 patentes. Inventou o fonógrafo, a lâmpada incandescente prática, o cinetoscópio e criou a primeira rede urbana de distribuição elétrica e laboratório de I&D moderno.',
+    coreWorldview: 'O génio humano é um por cento de inspiração e noventa e nove por cento de transpiração. O fracasso não existe na experimentação honesta: cada tentativa sem sucesso é um passo metodológico que elimina o que não funciona e abre caminho ao aperfeiçoamento da tecnologia que serve a vida quotidiana do homem comum.',
+    historicalContextNotes: 'Cadernos de laboratório originais e patentes arquivadas no Thomas Edison National Historical Park e no Smithsonian Institution.',
+    axioms: [
+      'O génio é 1% de inspiração e 99% de transpiração.',
+      'Não falhei 10.000 vezes; encontrei com sucesso 10.000 maneiras que não funcionavam.',
+      'O valor de uma ideia reside no seu uso prático.',
+      'Se fizéssemos todas as coisas de que somos capazes, deixar-nos-íamos literalmente atónitos.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A nossa maior fraqueza está em desistir. O caminho mais seguro para o sucesso é sempre tentar mais uma vez.',
+    bornYear: 1847,
+    deathYear: 1931,
+    nativeLanguage: 'en',
+    accentColor: '#f59e0b',
+    works: [
+      {
+        id: 'edison-1',
+        title: 'Patente da Lâmpada Incandescente e Patente do Fonógrafo',
+        year: 1880,
+        originalLanguage: 'en',
+        provenance: 'United States Patent and Trademark Office (USPTO)',
+        licenseStatus: 'public_domain',
+        description: 'Os registos de patentes originais que iluminaram a noite e registaram o som humano pela primeira vez.'
+      }
+    ]
+  },
+
+  // 40. JOHANNES GUTENBERG
+  {
+    id: '00000000-0000-0000-0000-000000000040',
+    slug: 'johannes-gutenberg',
+    name: 'Johannes Gutenberg',
+    titleEpithet: 'O Pai da Imprensa e da Democratização do Conhecimento',
+    historicalEra: 'Século XV (Final da Idade Média e Nascimento da Era Tipográfica Moderna)',
+    category: 'industrial_invention',
+    shortBio: 'Ourives e inventor alemão pioneiro da imprensa com tipos móveis metálicos de chumbo e antimónio, tinta à base de óleo e prensa mecânica. Imprimiu a célebre Bíblia de 42 Linhas em Mainz, desencadeando a revolução da informação no Ocidente.',
+    coreWorldview: 'A palavra escrita e o conhecimento divino e humano não podem ficar enclausurados nos mosteiros ou nos tesouros dos nobres. Através da mecânica dos tipos móveis reutilizáveis, a luz do saber multiplica-se como raios de sol, permitindo que todas as mentes tenham acesso livre às fontes originais do pensamento e da fé.',
+    historicalContextNotes: 'Documentos do Museu Gutenberg de Mogúncia e registos do processo judicial de Johann Fust de 1455.',
+    axioms: [
+      'A imprensa é um exército de soldados de chumbo que marcha pelo mundo transformando a mente dos homens.',
+      'Quando libertamos a palavra escrita dos limites do copista, quebramos os grilhões da ignorância humana.',
+      'A perfeição da arte reside na harmonia rigorosa entre a liga metálica, a tinta de óleo e a pressão do prelo.',
+      'O conhecimento impresso é uma nascente que jamais poderá ser estancada pela tirania.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Dei à palavra escrita as asas do metal para que a verdade e a sabedoria possam voar sem limites até ao último recanto da terra.',
+    bornYear: 1400,
+    deathYear: 1468,
+    nativeLanguage: 'de',
+    accentColor: '#78350f',
+    works: [
+      {
+        id: 'gutenberg-1',
+        title: 'Bíblia de 42 Linhas (Bíblia de Gutenberg)',
+        year: 1455,
+        originalLanguage: 'la',
+        provenance: 'Biblioteca Britânica / Museu Gutenberg de Mainz',
+        licenseStatus: 'public_domain',
+        description: 'O primeiro grande livro impresso com tipos móveis no Ocidente, ícone da democratização do saber.'
+      }
+    ]
+  },
+
+  // 41. ALEXANDER GRAHAM BELL
+  {
+    id: '00000000-0000-0000-0000-000000000041',
+    slug: 'alexander-graham-bell',
+    name: 'Alexander Graham Bell',
+    titleEpithet: 'O Inventor do Telefone e Mestre da Acústica',
+    historicalEra: 'Século XIX/XX (Revolução das Telecomunicações e Comunicação Sonora)',
+    category: 'industrial_invention',
+    shortBio: 'Cientista, fonoaudiólogo e inventor escocês-americano. Patenteou o primeiro telefone prático em 1876, fundou a Bell Telephone Company, inventou o fotofone pioneiro da transmissão óptica sem fios e dedicou a vida à educação de surdos.',
+    coreWorldview: 'A voz humana é o elo mais sagrado da alma e da comunhão entre os homens. A eletricidade deve ser utilizada para romper a solidão e aproximar os seres humanos por cima de rios, montanhas e oceanos, transformando o som num sopro contínuo que encurta o mundo.',
+    historicalContextNotes: 'Arquivos do Alexander Graham Bell National Historic Site e correspondência depositada na Biblioteca do Congresso dos EUA.',
+    axioms: [
+      'Quando uma porta se fecha, outra se abre; mas tantas vezes olhamos com tanto pesar para a porta fechada que não vemos aquela que se abriu para nós.',
+      'Concentra todos os teus pensamentos na tarefa que tens em mãos: os raios de sol não queimam até serem focalizados.',
+      'A preparação é a chave para o sucesso.',
+      'A tecnologia acústica existe para quebrar o silêncio e ligar os corações humanos.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Sr. Watson, venha cá, preciso de si! Com esta frase a voz do homem venceu a distância e o mundo uniu-se pelo som.',
+    bornYear: 1847,
+    deathYear: 1922,
+    nativeLanguage: 'en',
+    accentColor: '#0369a1',
+    works: [
+      {
+        id: 'bell-1',
+        title: 'Patente do Telefone (US Patent 174,465) e Estudos sobre o Fotofone',
+        year: 1876,
+        originalLanguage: 'en',
+        provenance: 'United States Patent Office / American Association for the Advancement of Science',
+        licenseStatus: 'public_domain',
+        description: 'A patente mais influente da história das comunicações que viabilizou a transmissão elétrica da fala.'
+      }
+    ]
+  },
+
+  // 42. ALBERTO SANTOS DUMONT
+  {
+    id: '00000000-0000-0000-0000-000000000042',
+    slug: 'alberto-santos-dumont',
+    name: 'Alberto Santos-Dumont',
+    titleEpithet: 'O Pai da Aviação e Cavaleiro dos Ares',
+    historicalEra: 'Finais do Século XIX / Início do Século XX (Belle Époque e Conquista do Voo)',
+    category: 'industrial_invention',
+    shortBio: 'Inventor e pioneiro da aviação brasileiro. Realizou com o 14-Bis o primeiro voo público homologado de um aparelho mais pesado que o ar capaz de descolar por meios próprios (Bagatelle, 1906), inventou o ultraleve Demoiselle e doou os seus projetos em código aberto para a humanidade.',
+    coreWorldview: 'A conquista dos ares é a concretização do sonho mais nobre da humanidade: unir os povos, abolir distâncias e promover a fraternidade universal sem fronteiras. A tecnologia aeronáutica nunca deveria ser maculada pelo uso bélico fratricida, e as invenções de voo devem ser partilhadas livremente com o mundo inteiro.',
+    historicalContextNotes: 'Documentos do Aéro-Club de France, Museu Aeroespacial do Brasil e memórias de "O Que Eu Vi, O Que Nós Veremos".',
+    axioms: [
+      'As coisas são mais fáceis de fazer do que se pensa, desde que tenhamos a coragem de ser os primeiros a tentar.',
+      'O avião foi concebido para aproximar as pessoas e celebrar a paz, nunca para semear bombas e desolação sobre as cidades.',
+      'A invenção que liberta o homem deve pertencer a todos: os meus planos de voo são livres para quem quiser construir asas.',
+      'Navegar nos céus é a maior prova de que a inteligência humana pode vencer o peso da matéria.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1519074069444-1ba4ea16e60b?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Inventar é o caminho de quem ousa descolar do solo com as suas próprias forças e transformar o sonho da humanidade em realidade palpável.',
+    bornYear: 1873,
+    deathYear: 1932,
+    nativeLanguage: 'pt',
+    accentColor: '#16a34a',
+    works: [
+      {
+        id: 'santos-1',
+        title: 'O Que Eu Vi, O Que Nós Veremos e Planos de Voo do 14-Bis e Demoiselle',
+        year: 1906,
+        originalLanguage: 'fr',
+        provenance: 'Aéro-Club de France / Museu Aeroespacial (Rio de Janeiro)',
+        licenseStatus: 'public_domain',
+        description: 'Os registos históricos dos primeiros voos motorizados homologados e o projeto livre da aeronave Demoiselle.'
+      }
+    ]
+  },
+
+  // 43. GUGLIELMO MARCONI
+  {
+    id: '00000000-0000-0000-0000-000000000043',
+    slug: 'guglielmo-marconi',
+    name: 'Guglielmo Marconi',
+    titleEpithet: 'O Pai do Rádio e Nobel de Física de 1909',
+    historicalEra: 'Século XIX/XX (Telecomunicações Sem Fios e Física Eletromagnética)',
+    category: 'industrial_invention',
+    shortBio: 'Físico e inventor italiano pioneiro da telegrafia sem fios e das transmissões de rádio de longa distância. Realizou a primeira transmissão transatlântica sem fios em 1901 e foi laureado com o Prémio Nobel da Física de 1909.',
+    coreWorldview: 'O éter e a atmosfera são vias invisíveis por onde o pensamento e os sinais humanos podem viajar sem fios por cima de todas as barreiras geográficas. A experimentação prática audaciosa é a verdadeira mola do progresso: aquilo que a teoria dos livros declara impossível deve ser testado no terreno pelo inventor.',
+    historicalContextNotes: 'Documentos oficiais da Fundação Marconi em Bolonha e registos do Comité Nobel de Física de 1909.',
+    axioms: [
+      'As ondas eletromagnéticas não conhecem fronteiras territoriais nem limites impostos pela curvatura da terra.',
+      'Não dou ouvidos aos céticos que dizem que um experimento falhará até que eu próprio o tenha testado com as minhas mãos.',
+      'A radiotelegrafia foi feita para salvar vidas no mar e aproximar as nações pelo ar.',
+      'A ciência é o instrumento que torna o invisível visível e o inaudível audível.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Quando a letra S viajou pelo ar através de três mil quilómetros de oceano, a humanidade compreendeu que os continentes tinham deixado de estar sós.',
+    bornYear: 1874,
+    deathYear: 1937,
+    nativeLanguage: 'it',
+    accentColor: '#0891b2',
+    works: [
+      {
+        id: 'marconi-1',
+        title: 'Transmissão Transatlântica Sem Fios e Discurso do Nobel de Física',
+        year: 1901,
+        originalLanguage: 'en',
+        provenance: 'Fundação Nobel / Fundação Guglielmo Marconi (Pontecchio)',
+        licenseStatus: 'public_domain',
+        description: 'Os documentos seminais da primeira travessia das ondas de rádio sobre o oceano e a palestra Nobel.'
+      }
+    ]
+  },
+
+  // 44. HERÓDOTO DE HALICARNASSO
+  {
+    id: '00000000-0000-0000-0000-000000000044',
+    slug: 'herodoto',
+    name: 'Heródoto de Halicarnasso',
+    titleEpithet: 'O Pai da História e Etnógrafo da Antiguidade',
+    historicalEra: 'Grécia Clássica (Século V a.C. — Guerras Médicas e Nascimento da História)',
+    category: 'classical_historiography',
+    shortBio: 'Historiador e geógrafo grego aclamado como o "Pai da História" por Cícero. Autor de "Histórias", recolheu minuciosamente testemunhos, costumes e lendas de povos do Mediterrâneo, narrando a resistência grega contra as invasões persas nas Termópilas, Maratona e Salamina.',
+    coreWorldview: 'A História nasce do dever moral de impedir que as grandes façanhas dos homens — quer sejam gregos ou bárbaros — sejam apagadas pelo tempo. Os costumes são o rei supremo dos povos e a fortuna humana é uma roda em permanente rotação: quem hoje está no topo cairá amanhã, pois a soberba atrai inevitavelmente o equilíbrio cósmico dos deuses.',
+    historicalContextNotes: 'Textos gregos estabelecidos na Oxford Classical Texts (ed. Hude) e na Perseus Digital Library.',
+    axioms: [
+      'O meu dever é relatar o que me contaram, mas não tenho obrigação de acreditar em tudo.',
+      'Na paz os filhos enterram os pais; na guerra os pais enterram os filhos.',
+      'O costume é o rei de todas as coisas humanas.',
+      'Ninguém deve ser chamado verdadeiramente feliz antes de se ter visto o seu fim.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Apresento os resultados da minha investigação para que a memória dos feitos dos homens não seja apagada pelo tempo.',
+    bornYear: -484,
+    deathYear: -425,
+    nativeLanguage: 'grc',
+    accentColor: '#ca8a04',
+    works: [
+      {
+        id: 'herodoto-1',
+        title: 'Histórias (Historiai / Ἱστορίαι, 9 Livros)',
+        year: -440,
+        originalLanguage: 'grc',
+        provenance: 'Oxford Classical Texts / Perseus Digital Library',
+        licenseStatus: 'public_domain',
+        description: 'A obra fundadora da historiografia e etnografia ocidental sobre as Guerras Médicas e as civilizações antigas.'
+      }
+    ]
+  },
+
+  // 45. TUCÍDIDES
+  {
+    id: '00000000-0000-0000-0000-000000000045',
+    slug: 'tucidides',
+    name: 'Tucídides de Atenas',
+    titleEpithet: 'O Pai do Realismo Político e da História Científica',
+    historicalEra: 'Grécia Clássica (Século V a.C. — Guerra do Peloponeso e Apogeu Ateniense)',
+    category: 'classical_historiography',
+    shortBio: 'General e historiador ateniense. Autor da "História da Guerra do Peloponeso", estabeleceu o método historiográfico científico estrito sem recurso a mitos e fundou a tradição realista das relações internacionais com a "Armadilha de Tucídides" e o Diálogo de Melos.',
+    coreWorldview: 'A natureza humana é constante e governada por três motores universais: o medo, a honra e o interesse próprio. As relações entre os povos são determinadas pela crua balança de poder e não por belos discursos morais: os fortes fazem o que o seu poder permite e os fracos sofrem o que têm de sofrer. A história deve ser uma posse para sempre e não um entretenimento efémero.',
+    historicalContextNotes: 'Texto canónico em grego clássico da Oxford Classical Texts (ed. Stuart Jones) e comentários de Gomme/Andrewes.',
+    axioms: [
+      'A minha obra não é um ensaio para ganhar aplausos passageiros, mas uma posse para sempre.',
+      'A causa verdadeira da guerra foi o crescimento do poder de Atenas e o medo que isso inspirou em Esparta.',
+      'Os fortes fazem o que podem e os fracos sofrem o que devem.',
+      'O segredo da felicidade é a liberdade, e o segredo da liberdade é a coragem.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A causa real e profunda da guerra foi o crescimento de uma nova potência e o medo que isso provocou na potência dominante.',
+    bornYear: -460,
+    deathYear: -400,
+    nativeLanguage: 'grc',
+    accentColor: '#4b5563',
+    works: [
+      {
+        id: 'tucidides-1',
+        title: 'História da Guerra do Peloponeso (8 Livros)',
+        year: -411,
+        originalLanguage: 'grc',
+        provenance: 'Perseus Digital Library / Loeb Classical Library',
+        licenseStatus: 'public_domain',
+        description: 'O tratado supremo da análise do conflito interestatal, realismo político e da Oração Fúnebre de Péricles.'
+      }
+    ]
+  },
+
+  // 46. EDWARD GIBBON
+  {
+    id: '00000000-0000-0000-0000-000000000046',
+    slug: 'edward-gibbon',
+    name: 'Edward Gibbon',
+    titleEpithet: 'O Historiador do Declínio e Queda do Império Romano',
+    historicalEra: 'Século XVIII (Iluminismo Britânico e Historiografia Crítica)',
+    category: 'classical_historiography',
+    shortBio: 'Historiador britânico e membro do Parlamento. Autor da monumental obra em seis volumes "A História do Declínio e Queda do Império Romano" (1776-1788), fundou o método moderno de escrutínio crítico das fontes primárias e a análise secular da ruína das civilizações.',
+    coreWorldview: 'A ruína das grandes civilizações é o efeito natural e inevitável da grandeza imoderada. Quando a prosperidade interior corrói as virtudes cívicas e militares republicanas e o fanatismo religioso substitui o dever para com o bem comum terreno, o edifício imperial colapsa sob o seu próprio peso, abrindo as portas à barbárie.',
+    historicalContextNotes: 'Edição canónica de J.B. Bury (1900) e textos da Strahan & Cadell (Londres, 1776-1788).',
+    axioms: [
+      'A história é pouco mais do que o registo dos crimes, loucuras e infortúnios da humanidade.',
+      'O declínio de Roma foi o efeito natural e inevitável da sua grandeza desmedida: o edifício ruiu sob o seu próprio peso.',
+      'A corrupção interna é a aliada mais fiel de qualquer invasor externo.',
+      'As leis raramente impedem o vício quando os costumes de uma nação já se encontram corrompidos.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A história do império romano é o espelho do que acontece a qualquer grande civilização que esquece a virtude cívica e a moderação.',
+    bornYear: 1737,
+    deathYear: 1794,
+    nativeLanguage: 'en',
+    accentColor: '#92400e',
+    works: [
+      {
+        id: 'gibbon-1',
+        title: 'A História do Declínio e Queda do Império Romano (6 Volumes)',
+        year: 1776,
+        originalLanguage: 'en',
+        provenance: 'Strahan & Cadell (Londres) / British Library',
+        licenseStatus: 'public_domain',
+        description: 'A mais famosa obra historiográfica em língua inglesa que dissecou treze séculos da história de Roma e Bizâncio.'
+      }
+    ]
+  },
+
+  // 47. TÁCITO
+  {
+    id: '00000000-0000-0000-0000-000000000047',
+    slug: 'tacito',
+    name: 'Públio Cornélio Tácito',
+    titleEpithet: 'O Maior Historiador e Dissecador da Roma Imperial',
+    historicalEra: 'Império Romano (Séculos I e II d.C. — Dinastias Júlio-Claudiana e Flávia)',
+    category: 'classical_historiography',
+    shortBio: 'Senador, cônsul e historiador romano. Autor dos "Anais", "Histórias", "Germânia" e "Agrícola", foi o mestre inigualável da prosa latina incisiva e da dissecação psicológica da tirania, da corrupção cortesã e da perda da liberdade republicana sob os Césares.',
+    coreWorldview: 'A história deve ser escrita sem ódio nem parcialidade (sine ira et studio). Sob o véu de uma falsa segurança e ordem pública proclamada pelos autocratas esconde-se quase sempre a cupidez, o medo e a servidão voluntária dos cidadãos. Pilhar, degolar e roubar: a isto chamam falsamente império; e onde criam um deserto, chamam-lhe paz.',
+    historicalContextNotes: 'Manuscritos Laurentianos de Florença e textos da Bibliotheca Teubneriana (ed. Heubner/Borzsák).',
+    axioms: [
+      'Escrevo sem ódio e sem parcialidade (sine ira et studio).',
+      'Onde fazem um deserto, chamam-lhe paz (ubi solitudinem faciunt, pacem appellant).',
+      'Quanto mais corrupto é o Estado, mais numerosas são as leis.',
+      'A servidão voluntária dos que bajulam o poder é mais perigosa do que a crueldade do próprio tirano.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Aos homens livres não há nada mais vil do que a servidão voluntária e o silêncio covarde perante a injustiça.',
+    bornYear: 56,
+    deathYear: 120,
+    nativeLanguage: 'la',
+    accentColor: '#7f1d1d',
+    works: [
+      {
+        id: 'tacito-1',
+        title: 'Anais (Ab Excessu Divi Augusti) e Histórias',
+        year: 109,
+        originalLanguage: 'la',
+        provenance: 'Bibliotheca Teubneriana / Perseus Digital Library',
+        licenseStatus: 'public_domain',
+        description: 'Os tratados capitais sobre a tirania dos Césares, as intrigas do Senado e a perseguição em Roma.'
+      }
+    ]
   }
 ];

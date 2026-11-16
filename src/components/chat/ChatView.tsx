@@ -88,6 +88,42 @@ export const ChatView: React.FC = () => {
         return `Saudações. Sou Linus Pauling. A melhor forma de ter uma boa ideia é ter muitas ideias e saber descartar as erradas. Dediquei a vida a compreender a arquitetura molecular da matéria viva e a defender a paz entre os povos. Que questão queres debater?`;
       case 'alexander-fleming':
         return `Olá. Sou Alexander Fleming. Por vezes encontramos aquilo que não estávamos à procura, se tivermos a paciência de observar o inesperado. A natureza opera com uma subtileza extraordinária. Que observação ou hipótese tens para partilhar comigo?`;
+      case 'abraham-lincoln':
+        return `Saúdo-te. Sou Abraham Lincoln. Aprendi nas horas mais sombrias da guerra civil que uma casa dividida contra si mesma não pode subsistir, e que a justiça deve ser guiada com firmeza no direito, caridade para com todos e malícia para com ninguém. Que dilema ético, de liderança ou de união trazes para deliberarmos?`;
+      case 'george-washington':
+        return `Saudações. Sou George Washington. A liberdade quando cria raízes é uma planta forte, mas exige virtude cívica inegociável e a coragem de servir sem apego ao poder pessoal. Que encruzilhada institucional, cívica ou de dever tens diante de ti?`;
+      case 'franklin-d-roosevelt':
+        return `Olá! Sou Franklin Delano Roosevelt. No meio das tempestades da depressão e da guerra, aprendemos que a única coisa que devemos temer é o próprio medo que paralisa o avanço. Onde precisamos de agir com ousadia e esperança hoje?`;
+      case 'nelson-mandela':
+        return `Saudações calorosas. Sou Nelson Mandela — Madiba. Passei quase três décadas na prisão para aprender que o perdão e o diálogo constroem pontes indestrutíveis onde a vingança só cava abismos. Tudo parece impossível até que seja feito. Que desafio de reconciliação ou coragem tens pela frente?`;
+      case 'thomas-jefferson':
+        return `Saúdo-te. Sou Thomas Jefferson. A vida, a liberdade e a busca da felicidade são direitos inalienáveis com que todos os homens nascem, e a razão é a única luz capaz de dissipar a tirania sobre a mente. Que questão de liberdade, governo ou direitos humanos queres examinar comigo?`;
+      case 'winston-churchill':
+        return `Saudações. Sou Sir Winston Churchill. Quando a escuridão se abate sobre a civilização e o perigo parece esmagador, não há espaço para capitulação ou apaziguamento: é a coragem indómita que decide o destino das nações. Que desafio de resistência ou decisão tens em mãos?`;
+      case 'otto-von-bismarck':
+        return `Saudações. Sou Otto von Bismarck. A política é a arte do possível e a ciência das realidades concretas, onde as grandes questões se resolvem com firmeza pragmática de ferro e sabedoria de Estado. Que dilema estratégico ou de poder pretendes dissecar?`;
+      case 'margaret-thatcher':
+        return `Bom dia. Sou Margaret Thatcher. A liderança verdadeira nunca se apoia no consenso frouxo, mas na coragem das convicções e na responsabilidade individual. Vocês podem virar se quiserem; a dama não volta para trás! Onde precisas de clareza e determinação para avançar?`;
+      case 'david-ben-gurion':
+        return `Shalom. Sou David Ben-Gurion. Em tempos decisivos, para ser realista é imperativo acreditar em milagres e colocar a audácia pioneira ao serviço do renascimento de um povo. Que deserto precisas de transformar em terra fértil hoje?`;
+      case 'thomas-edison':
+        return `Olá! Sou Thomas Edison. O génio é 1% de inspiração e 99% de transpiração: cada experiência que não funciona é apenas mais um passo seguro que nos aproxima da solução prática. Que problema técnico ou invenção estás a tentar decifrar?`;
+      case 'johannes-gutenberg':
+        return `Saudações. Sou Johannes Gutenberg. Dei à palavra escrita os caracteres móveis do metal para que o saber deixasse de ser privilégio de poucos e iluminasse a humanidade inteira. Que ideia ou conhecimento queres fazer ecoar e multiplicar?`;
+      case 'alexander-graham-bell':
+        return `Olá. Sou Alexander Graham Bell. Toda a minha vida foi dedicada à acústica e ao poder da voz para vencer a distância e ligar os corações humanos. O que parece invisível hoje pode tornar-se a maior ponte de amanhã. Que ligação ou invenção queres explorar comigo?`;
+      case 'alberto-santos-dumont':
+        return `Saudações! Sou Alberto Santos-Dumont. Quando contornei a Torre Eiffel de dirigível e voei em Bagatelle com o 14-Bis, quis provar que o ser humano podia ter asas sem fronteiras para celebrar a fraternidade universal. Que sonho ou voo audacioso tens no teu horizonte?`;
+      case 'guglielmo-marconi':
+        return `Saudações. Sou Guglielmo Marconi. As ondas invisíveis do éter viajam pelo ar através dos oceanos porque recusei aceitar os limites que os teóricos traçavam no papel. Que sinal ou fronteira impossível queres desafiar hoje?`;
+      case 'herodoto':
+        return `Alegra-me encontrar-te. Sou Heródoto de Halicarnasso. Percorri o mundo para investigar as causas dos conflitos humanos e impedir que a glória dos feitos do passado fosse devorada pelo esquecimento. Que povo, memória ou acontecimento queres investigar comigo?`;
+      case 'tucidides':
+        return `Saudações. Sou Tucídides de Atenas. Escrevi a história da guerra entre Atenas e Esparta não para adular o momento com mitos, mas como uma posse para a eternidade fundada na crua realidade do poder e da natureza humana. Que dinâmica geopolítica ou lição do passado pretendes analisar?`;
+      case 'edward-gibbon':
+        return `Saudações. Sou Edward Gibbon. Meditei sobre as ruínas do Capitólio de Roma para compreender como o mais soberbo império da antiguidade ruiu sob o peso da sua grandeza imoderada e da corrupção das virtudes cívicas. Que império, crise civilizacional ou lição histórica pretendes dissecar?`;
+      case 'tacito':
+        return `Saúdo-te. Sou Públio Cornélio Tácito. Descrevi os reinados sombrios dos Césares sem ódio e sem parcialidade (sine ira et studio), desmascarando a tirania e a servidão voluntária dos homens. Que reflexão sobre o poder, a corrupção ou a coragem moral trazes ao meu encontro?`;
       default:
         return `Saudações. Sou ${p.name}. Estou aqui para dialogar contigo e partilhar a sabedoria e os princípios que guiaram a minha vida. Que questão trazes ao meu encontro hoje?`;
     }

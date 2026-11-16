@@ -46,6 +46,32 @@ const DEFAULT_THINKER_VOICE_PROFILES: Record<string, VoiceProfile> = {
   'ernest-rutherford': { pitch: 0.82, rate: 1.02, voiceGender: 'male' }, // Descobridor do núcleo, vigoroso e direto
   'linus-pauling': { pitch: 0.95, rate: 0.96, voiceGender: 'male' },     // Ligação química, caloroso e humanista
   'alexander-fleming': { pitch: 0.89, rate: 0.92, voiceGender: 'male' }, // Penicilina, atento, meticuloso e sereno
+
+  // Presidentes Históricos
+  'abraham-lincoln': { pitch: 0.88, rate: 0.88, voiceGender: 'male' },       // Grave, solene, paternal
+  'george-washington': { pitch: 0.85, rate: 0.86, voiceGender: 'male' },     // Digno, comedido, austero
+  'franklin-d-roosevelt': { pitch: 0.95, rate: 0.94, voiceGender: 'male' },  // Confiante, persuasivo, caloroso
+  'nelson-mandela': { pitch: 0.82, rate: 0.85, voiceGender: 'male' },        // Nobre, compassivo, sereno
+  'thomas-jefferson': { pitch: 0.92, rate: 0.90, voiceGender: 'male' },      // Filosófico, polido, iluminista
+
+  // Primeiros-Ministros Históricos
+  'winston-churchill': { pitch: 0.78, rate: 0.85, voiceGender: 'male' },     // Profundo, vibrante, retórico
+  'otto-von-bismarck': { pitch: 0.80, rate: 0.95, voiceGender: 'male' },     // Autoritário, resoluto, marcial
+  'margaret-thatcher': { pitch: 1.08, rate: 0.94, voiceGender: 'female' },   // Firme, assertiva, precisa
+  'david-ben-gurion': { pitch: 0.90, rate: 1.00, voiceGender: 'male' },      // Apaixonado, incisivo, pioneiro
+
+  // Grandes Inventores Históricos
+  'thomas-edison': { pitch: 0.96, rate: 1.02, voiceGender: 'male' },         // Prático, expedito, pragmático
+  'johannes-gutenberg': { pitch: 0.88, rate: 0.88, voiceGender: 'male' },    // Meticuloso, reverente, artesão
+  'alexander-graham-bell': { pitch: 0.98, rate: 0.95, voiceGender: 'male' }, // Articulado, elocução clara, empático
+  'alberto-santos-dumont': { pitch: 1.02, rate: 0.98, voiceGender: 'male' }, // Elegante, sonhador, cavalheiro
+  'guglielmo-marconi': { pitch: 0.94, rate: 0.98, voiceGender: 'male' },     // Audacioso, dinâmico, focado
+
+  // Grandes Historiadores Históricos
+  herodoto: { pitch: 0.92, rate: 0.92, voiceGender: 'male' },                // Narrativo, cativante, viajante
+  tucidides: { pitch: 0.84, rate: 0.90, voiceGender: 'male' },               // Analítico, austero, cortante
+  'edward-gibbon': { pitch: 0.90, rate: 0.90, voiceGender: 'male' },         // Erudito, polido, irónico
+  tacito: { pitch: 0.82, rate: 0.88, voiceGender: 'male' },                  // Sentencioso, incisivo, profundo
 };
 
 export interface VoiceOption {

@@ -7,8 +7,8 @@ import fr from '../i18n/locales/fr.json';
 import es from '../i18n/locales/es.json';
 
 describe('Auditoria Técnica e Histórica da Fase 1', () => {
-  it('deve confirmar a presença exata das 29 personalidades canónicas do Cohort Genesis e Expansão', () => {
-    expect(COHORT_GENESIS_PERSONALITIES).toHaveLength(29);
+  it('deve confirmar a presença exata das 47 personalidades canónicas do Cohort Genesis e Expansões', () => {
+    expect(COHORT_GENESIS_PERSONALITIES).toHaveLength(47);
     
     const slugs = COHORT_GENESIS_PERSONALITIES.map(p => p.slug);
     expect(slugs).toContain('albert-einstein');

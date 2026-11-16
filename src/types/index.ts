@@ -14,7 +14,11 @@ export type PersonalityCategory =
   | 'political_philosophy'
   | 'classical_computing'
   | 'existential_philosophy'
-  | 'medicine_and_life_sciences';
+  | 'medicine_and_life_sciences'
+  | 'presidential_leadership'
+  | 'statecraft_and_parliament'
+  | 'industrial_invention'
+  | 'classical_historiography';
 
 export interface PersonalityWork {
   id: string;
