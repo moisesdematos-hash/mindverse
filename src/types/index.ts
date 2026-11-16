@@ -186,5 +186,6 @@ export type NavigationTab =
   | 'war_room'
   | 'whatif'
   | 'fusion'
+  | 'admin'
   | 'settings' 
   | 'about';

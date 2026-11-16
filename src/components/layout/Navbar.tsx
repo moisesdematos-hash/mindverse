@@ -10,7 +10,8 @@ import {
   Database,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  Activity
 } from 'lucide-react';
 import { MindverseSpecialLogo } from '../brand/MindverseSpecialLogo';
 
@@ -70,6 +71,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileMenu, isMobileMenu
         >
           <Sparkles className="w-3.5 h-3.5 text-mindverse-gold-subtle" />
           <span>Landing Page</span>
+        </button>
+
+        {/* Admin Telemetry Button */}
+        <button
+          onClick={() => setCurrentTab('admin')}
+          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-mindverse-midnight hover:bg-mindverse-graphite border border-emerald-500/30 hover:border-emerald-500/60 text-xs font-mono text-emerald-400 transition-all"
+          title="Painel de Administração & Métricas"
+        >
+          <Activity className="w-3.5 h-3.5" />
+          <span>Admin</span>
         </button>
         {/* Supabase Connection Status Badge */}
         <div 

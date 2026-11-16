@@ -14,6 +14,8 @@ import { WhatIfView } from './components/whatif/WhatIfView';
 import { FusionView } from './components/fusion/FusionView';
 import { AboutView } from './components/about/AboutView';
 import { LandingPage } from './components/landing/LandingPage';
+import { AdminDashboardView } from './components/admin/AdminDashboardView';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { AuthModal } from './components/auth/AuthModal';
 import { ErrorToast } from './components/ui/ErrorToast';
 
@@ -51,6 +53,8 @@ export const App: React.FC = () => {
         return <WhatIfView />;
       case 'fusion':
         return <FusionView />;
+      case 'admin':
+        return <AdminDashboardView />;
       case 'about':
       case 'settings':
       default:
@@ -74,10 +78,13 @@ export const App: React.FC = () => {
             onCloseMobile={() => setIsMobileMenuOpen(false)} 
           />
 
-          <main className="flex-1 overflow-x-hidden min-w-0">
+          <main className="flex-1 overflow-x-hidden min-w-0 pb-20 lg:pb-0">
             {renderActiveView()}
           </main>
         </div>
+
+        {/* Mobile Bottom Thumb Navigation */}
+        <MobileBottomNav />
 
         {/* Modals and Floating Alerts */}
         <PersonalityDetailModal />

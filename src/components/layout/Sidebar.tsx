@@ -12,7 +12,8 @@ import {
   Info,
   Swords,
   History,
-  Zap
+  Zap,
+  Activity
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -80,6 +81,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, onCloseMobile })
       label: 'Síntese Trans-Séculos',
       icon: <Sparkles className="w-4 h-4 text-amber-300" />,
       badge: 'Fusão'
+    },
+    {
+      id: 'admin',
+      label: 'Painel Admin & Telemetria',
+      icon: <Activity className="w-4 h-4 text-emerald-400" />,
+      badge: 'Métricas'
     }
   ];
 
