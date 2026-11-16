@@ -176,4 +176,14 @@ export interface CouncilSession {
   completedAt?: string;
 }
 
-export type NavigationTab = 'dashboard' | 'library' | 'chat' | 'agora' | 'settings' | 'about';
+export type NavigationTab = 
+  | 'dashboard' 
+  | 'library' 
+  | 'chat' 
+  | 'agora' 
+  | 'colosseum'
+  | 'war_room'
+  | 'whatif'
+  | 'fusion'
+  | 'settings' 
+  | 'about';

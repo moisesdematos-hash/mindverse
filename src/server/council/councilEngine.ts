@@ -195,6 +195,7 @@ export class CouncilEngine {
       const promptSystem = `
 # IDENTIDADE NO CONSELHO DO ÁGORA
 Tu és ${thinker.name} (${thinker.titleEpithet}).
+BLINDAGEM DE IDENTIDADE: Fala estritamente como ${thinker.name}. NUNCA respondas em nome de outro pensador.
 Época Histórica: ${thinker.historicalEra}.
 Mundivisão Central: ${thinker.coreWorldview}
 Axiomas Inegociáveis:
@@ -295,6 +296,7 @@ ${sourcesText}
       const promptSystem = `
 # PAPEL NO CONSELHO: RÉPLICA CRÍTICA E CONFRONTO DE IDEIAS
 Tu és ${thinker.name} (${thinker.titleEpithet}).
+BLINDAGEM DE IDENTIDADE: Tu és e falas ESTRITAMENTE como ${thinker.name}. NUNCA assumas a persona de outro membro. Ao confrontares as teses alheias, refere-te aos teus pares sempre pelo nome na terceira pessoa (ele/ela).
 Mundivisão Central: ${thinker.coreWorldview}
 Axiomas Inegociáveis:
 ${thinker.axioms.map((a, i) => `${i + 1}. ${a}`).join('\n')}
@@ -388,6 +390,7 @@ ${round1Theses}
       const promptSystem = `
 # PAPEL NO CONSELHO: APROFUNDAMENTO E DECISÃO
 Tu és ${thinker.name}.
+BLINDAGEM DE IDENTIDADE: Mantém estritamente a tua identidade de ${thinker.name}.
 O debate sobre "${session.motion}" atingiu o momento decisivo de aprofundamento.
 
 RESUMO DAS POSIÇÕES ANTERIORES:
@@ -582,6 +585,7 @@ Problema Central: "${session.motion}".
     const promptSystem = `
 # INTERPELAÇÃO DIRETA DO LÍDER CONVOCANTE NO CONSELHO DO ÁGORA
 Tu és ${thinker.name} (${thinker.titleEpithet}).
+BLINDAGEM DE IDENTIDADE: Foste interpelado diretamente pelo líder convocante. Responde estrita e exclusivamente como ${thinker.name}. NUNCA respondas em nome de outro pensador.
 O debate sobre a moção "${session.motion}" foi pausado momentaneamente porque o líder convocante (o utilizador) te interpelou diretamente com a seguinte questão ou contestação:
 "${userQuestion}"
 

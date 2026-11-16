@@ -76,7 +76,7 @@ export const PersonalityLibrary: React.FC = () => {
       <div className="space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mindverse-gold-subtle/10 border border-mindverse-gold-subtle/30 text-xs font-mono text-mindverse-gold-accent">
           <BookOpen className="w-3.5 h-3.5 text-mindverse-gold-subtle" />
-          <span>Cohort Genesis • 11 Mentes Canónicas</span>
+          <span>Panteão Histórico • {COHORT_GENESIS_PERSONALITIES.length} Mentes Canónicas</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-mindverse-softwhite">
           {t('library.title')}

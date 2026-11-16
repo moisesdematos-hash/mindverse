@@ -7,7 +7,11 @@ import {
   ArrowRight, 
   Users2, 
   Flame, 
-  CheckCircle2
+  CheckCircle2,
+  Swords,
+  ShieldAlert,
+  History,
+  Zap
 } from 'lucide-react';
 
 export const DashboardView: React.FC = () => {
@@ -82,7 +86,7 @@ export const DashboardView: React.FC = () => {
                 Cohort Genesis Canónico
               </span>
               <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-mindverse-gold-subtle/10 text-mindverse-gold-light border border-mindverse-gold-subtle/30">
-                11 Mentes
+                47 Mentes Históricas
               </span>
             </div>
             <h2 className="text-2xl font-serif font-bold text-mindverse-softwhite pt-1">
@@ -150,6 +154,121 @@ export const DashboardView: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Inovações Dialéticas Hub */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Zap className="w-5 h-5 text-mindverse-gold animate-pulse" />
+          <h2 className="text-xl font-serif font-bold text-mindverse-softwhite">
+            Inovações Dialéticas Exclusivas
+          </h2>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-mindverse-gold/10 text-mindverse-gold-light border border-mindverse-gold/30">
+            Novos Modos de Interação
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Card 1: Coliseu Dialético */}
+          <div 
+            onClick={() => setCurrentTab('colosseum')}
+            className="p-5 rounded-2xl bg-gradient-to-br from-amber-950/30 to-mindverse-midnight border border-amber-500/30 hover:border-amber-400/70 shadow-lg hover:shadow-gold-glow transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Swords className="w-6 h-6 text-mindverse-gold group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-mindverse-gold/20 text-mindverse-gold-light font-bold">
+                  1 vs 1
+                </span>
+              </div>
+              <h3 className="font-serif font-bold text-base text-mindverse-softwhite group-hover:text-mindverse-gold transition-colors">
+                Coliseu Dialético
+              </h3>
+              <p className="text-xs text-mindverse-muted leading-relaxed">
+                Duelos frente a frente entre 2 titãs com troca de golpes diretos e intervenção do utilizador como árbitro.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-mindverse-gold font-mono pt-2 border-t border-mindverse-graphite/40">
+              <span>Abrir Arena</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 2: Gabinete de Crise */}
+          <div 
+            onClick={() => setCurrentTab('war_room')}
+            className="p-5 rounded-2xl bg-gradient-to-br from-rose-950/30 to-mindverse-midnight border border-rose-500/30 hover:border-rose-400/70 shadow-lg transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <ShieldAlert className="w-6 h-6 text-rose-400 group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-rose-950/60 text-rose-300 font-bold">
+                  Decisão
+                </span>
+              </div>
+              <h3 className="font-serif font-bold text-base text-mindverse-softwhite group-hover:text-rose-300 transition-colors">
+                Gabinete de Crise
+              </h3>
+              <p className="text-xs text-mindverse-muted leading-relaxed">
+                Matriz tripla de decisão para dilemas reais: Realismo de Poder, Ética da Virtude e Inovação Ousada.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-rose-300 font-mono pt-2 border-t border-mindverse-graphite/40">
+              <span>Convocar Gabinete</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 3: História Contrafactual */}
+          <div 
+            onClick={() => setCurrentTab('whatif')}
+            className="p-5 rounded-2xl bg-gradient-to-br from-sky-950/30 to-mindverse-midnight border border-sky-500/30 hover:border-sky-400/70 shadow-lg transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <History className="w-6 h-6 text-sky-400 group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-950/60 text-sky-300 font-bold">
+                  E Se...?
+                </span>
+              </div>
+              <h3 className="font-serif font-bold text-base text-mindverse-softwhite group-hover:text-sky-300 transition-colors">
+                História Contrafactual
+              </h3>
+              <p className="text-xs text-mindverse-muted leading-relaxed">
+                Simula ramificações causais de encruzilhadas históricas alternativas com os grandes mestres da história.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-sky-300 font-mono pt-2 border-t border-mindverse-graphite/40">
+              <span>Explorar Linha</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 4: Síntese Trans-Séculos */}
+          <div 
+            onClick={() => setCurrentTab('fusion')}
+            className="p-5 rounded-2xl bg-gradient-to-br from-amber-950/20 via-mindverse-midnight to-mindverse-deep border border-amber-400/30 hover:border-amber-300/70 shadow-lg transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Sparkles className="w-6 h-6 text-amber-300 group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-950/60 text-amber-300 font-bold">
+                  Co-Criação
+                </span>
+              </div>
+              <h3 className="font-serif font-bold text-base text-mindverse-softwhite group-hover:text-amber-300 transition-colors">
+                Síntese Trans-Séculos
+              </h3>
+              <p className="text-xs text-mindverse-muted leading-relaxed">
+                Funde duas mentes de séculos distantes para co-criarem uma invenção ou constituição contemporânea.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-amber-300 font-mono pt-2 border-t border-mindverse-graphite/40">
+              <span>Iniciar Co-Criação</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
         </div>
       </section>
 

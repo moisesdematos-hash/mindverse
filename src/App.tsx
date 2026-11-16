@@ -8,6 +8,10 @@ import { PersonalityLibrary } from './components/library/PersonalityLibrary';
 import { PersonalityDetailModal } from './components/library/PersonalityDetailModal';
 import { ChatView } from './components/chat/ChatView';
 import { AgoraView } from './components/agora/AgoraView';
+import { ColosseumView } from './components/colosseum/ColosseumView';
+import { WarRoomView } from './components/warroom/WarRoomView';
+import { WhatIfView } from './components/whatif/WhatIfView';
+import { FusionView } from './components/fusion/FusionView';
 import { AboutView } from './components/about/AboutView';
 import { AuthModal } from './components/auth/AuthModal';
 import { ErrorToast } from './components/ui/ErrorToast';
@@ -26,6 +30,14 @@ export const App: React.FC = () => {
         return <ChatView />;
       case 'agora':
         return <AgoraView />;
+      case 'colosseum':
+        return <ColosseumView />;
+      case 'war_room':
+        return <WarRoomView />;
+      case 'whatif':
+        return <WhatIfView />;
+      case 'fusion':
+        return <FusionView />;
       case 'about':
       case 'settings':
       default:

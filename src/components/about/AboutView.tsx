@@ -79,10 +79,10 @@ export const AboutView: React.FC = () => {
       {/* Cohort Genesis Specifications */}
       <div className="p-6 rounded-3xl bg-mindverse-midnight/40 border border-mindverse-graphite space-y-4">
         <h3 className="font-serif font-bold text-xl text-mindverse-softwhite">
-          Cohort Genesis Canónico (11 Personalidades)
+          Panteão Histórico Canónico (47 Grandes Mentes)
         </h3>
         <p className="text-xs text-mindverse-muted">
-          Constituído oficialmente por: Albert Einstein, Leonardo da Vinci, Nikola Tesla, Aristóteles, Sócrates, Marco Aurélio, Sun Tzu, Adam Smith, Peter Drucker, Marie Curie e Flávio Josefo (*Flavius Josephus*).
+          Expandido para 47 personalidades de referência mundial: Filósofos, Estrategas, Fundadores, Prémios Nobel da Ciência (Física e Química), Presidentes, Primeiros-Ministros, Inventores e Historiadores da Humanidade com corpora canónicos indexados.
         </p>
         <div className="pt-2 text-xs font-mono text-mindverse-gold-accent flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-mindverse-gold-subtle" />
