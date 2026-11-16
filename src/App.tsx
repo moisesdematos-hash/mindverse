@@ -13,12 +13,25 @@ import { WarRoomView } from './components/warroom/WarRoomView';
 import { WhatIfView } from './components/whatif/WhatIfView';
 import { FusionView } from './components/fusion/FusionView';
 import { AboutView } from './components/about/AboutView';
+import { LandingPage } from './components/landing/LandingPage';
 import { AuthModal } from './components/auth/AuthModal';
 import { ErrorToast } from './components/ui/ErrorToast';
 
 export const App: React.FC = () => {
   const { currentTab } = useAppStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // If in landing mode, display the full standalone luxury landing page
+  if (currentTab === 'landing') {
+    return (
+      <ErrorBoundary>
+        <LandingPage />
+        <PersonalityDetailModal />
+        <AuthModal />
+        <ErrorToast />
+      </ErrorBoundary>
+    );
+  }
 
   const renderActiveView = () => {
     switch (currentTab) {

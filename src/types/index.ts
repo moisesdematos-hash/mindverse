@@ -177,6 +177,7 @@ export interface CouncilSession {
 }
 
 export type NavigationTab = 
+  | 'landing'
   | 'dashboard' 
   | 'library' 
   | 'chat' 

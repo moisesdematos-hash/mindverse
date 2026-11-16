@@ -26,6 +26,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, onCloseMobile })
 
   const mainNavItems: { id: NavigationTab; label: string; icon: React.ReactNode; badge?: string }[] = [
     {
+      id: 'landing',
+      label: 'Portal / Landing Page',
+      icon: <Sparkles className="w-4 h-4 text-mindverse-gold-subtle" />,
+      badge: 'Home'
+    },
+    {
       id: 'dashboard',
       label: t('nav.dashboard'),
       icon: <LayoutDashboard className="w-4 h-4" />

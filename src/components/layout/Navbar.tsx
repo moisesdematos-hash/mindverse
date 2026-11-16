@@ -9,8 +9,10 @@ import {
   UserCircle2, 
   Database,
   Menu,
-  X
+  X,
+  Sparkles
 } from 'lucide-react';
+import { MindverseSpecialLogo } from '../brand/MindverseSpecialLogo';
 
 interface NavbarProps {
   onToggleMobileMenu: () => void;
@@ -51,30 +53,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileMenu, isMobileMenu
         </button>
 
         <div 
-          onClick={() => setCurrentTab('dashboard')} 
-          className="flex items-center gap-3 cursor-pointer group"
+          onClick={() => setCurrentTab('landing')} 
+          className="cursor-pointer group flex items-center"
+          title="Ver Landing Page Institucional"
         >
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-mindverse-midnight via-mindverse-graphite to-mindverse-void border border-mindverse-gold-subtle/30 flex items-center justify-center shadow-gold-glow group-hover:border-mindverse-gold-subtle transition-all duration-300">
-            <span className="font-serif font-bold text-mindverse-gold-subtle text-lg tracking-wider">M</span>
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-serif font-bold text-mindverse-softwhite tracking-widest text-base group-hover:text-mindverse-gold-light transition-colors">
-                MINDVERSE
-              </span>
-              <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-mindverse-gold-subtle/10 text-mindverse-gold-accent border border-mindverse-gold-subtle/20">
-                v0.1
-              </span>
-            </div>
-            <p className="text-[10px] text-mindverse-muted hidden sm:block tracking-wide">
-              Human Intelligence Augmented
-            </p>
-          </div>
+          <MindverseSpecialLogo size="sm" showWordmark={true} />
         </div>
       </div>
 
       {/* Right Controls */}
       <div className="flex items-center gap-3 sm:gap-5">
+        {/* Landing Page Button */}
+        <button
+          onClick={() => setCurrentTab('landing')}
+          className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-mindverse-midnight hover:bg-mindverse-graphite border border-mindverse-gold-subtle/30 text-xs font-mono text-mindverse-gold-light transition-all hover:border-mindverse-gold-subtle shadow-gold-glow"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-mindverse-gold-subtle" />
+          <span>Landing Page</span>
+        </button>
         {/* Supabase Connection Status Badge */}
         <div 
           className="hidden md:flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-mono border transition-all"
