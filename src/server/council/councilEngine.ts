@@ -564,6 +564,74 @@ Problema Central: "${session.motion}".
       console.warn('Persistência opcional no Supabase concluída ou ignorada.', err);
     }
   }
+
+  /**
+   * Interpelação direta do utilizador no Conselho:
+   * Permite intervir a meio do debate questionando um pensador específico.
+   */
+  public async executeInterpellation(
+    session: CouncilSession,
+    targetThinkerId: string,
+    userQuestion: string,
+    callbacks?: CouncilCallbacks
+  ): Promise<CouncilIntervention> {
+    const thinker = session.participants.find((p) => p.id === targetThinkerId) || session.participants[0];
+    session.currentSpeakerId = thinker.id;
+    callbacks?.onSessionUpdate?.(session);
+
+    const promptSystem = `
+# INTERPELAÇÃO DIRETA DO LÍDER CONVOCANTE NO CONSELHO DO ÁGORA
+Tu és ${thinker.name} (${thinker.titleEpithet}).
+O debate sobre a moção "${session.motion}" foi pausado momentaneamente porque o líder convocante (o utilizador) te interpelou diretamente com a seguinte questão ou contestação:
+"${userQuestion}"
+
+Mundivisão Central: ${thinker.coreWorldview}
+Axiomas Inegociáveis:
+${thinker.axioms.map((a, i) => `${i + 1}. ${a}`).join('\n')}
+
+DIRETRIZES DA RESPOSTA:
+1. Fala na primeira pessoa diretamente com o líder convocante, tratando-o com respeito e gravidade intelectual.
+2. Não recites capítulos nem páginas; responde de forma viva, incisiva e esclarecedora, aplicando os teus princípios fundamentais à pergunta que ele te colocou.
+3. Se a pergunta for um confronto contra outro pensador, desmonta a objeção com clareza filosófica ou estratégica.
+`.trim();
+
+    const messages: AIMessage[] = [
+      { role: 'system', content: promptSystem },
+      { role: 'user', content: userQuestion },
+    ];
+
+    let accumulatedContent = '';
+    const response = await this.gateway.dispatchChat(messages, (chunk) => {
+      accumulatedContent += chunk;
+      callbacks?.onInterventionChunk?.(thinker.id, chunk);
+    });
+
+    const intervention: CouncilIntervention = {
+      id: `int-user-q-${Date.now()}-${thinker.id.slice(0, 8)}`,
+      personalityId: thinker.id,
+      personalityName: thinker.name,
+      personalityAvatar: thinker.avatarUrl,
+      roundNumber: session.currentRound || 1,
+      stage: 'deepening',
+      content: response.content || accumulatedContent,
+      citations: [],
+      epistemicStatus: 'historical_interpretation',
+      tokensUsed: response.usage.totalTokens,
+      createdAt: new Date().toISOString(),
+    };
+
+    const currentRound = session.rounds[session.rounds.length - 1];
+    if (currentRound) {
+      currentRound.interventions.push(intervention);
+    }
+    session.totalTokensUsed += response.usage.totalTokens;
+    session.currentSpeakerId = undefined;
+
+    callbacks?.onSessionUpdate?.(session);
+    callbacks?.onInterventionComplete?.(intervention);
+
+    return intervention;
+  }
 }
 
 export const globalCouncilEngine = new CouncilEngine();

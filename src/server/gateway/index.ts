@@ -305,36 +305,90 @@ export class DeterministicIntellectualEngine implements AIProvider {
 
     let content = '';
 
-    // Verifica se houve fontes recuperadas pelo RAG
+    // 1. Verifica se houve fontes recuperadas pelo RAG
     if (system.includes('[FONTE 1:')) {
       const matchSource = system.match(/--- \[FONTE 1: (.*?)\] ---\s*([\s\S]*?)(?=\n\n---|\n\n#|$)/);
       const citationRef = matchSource ? matchSource[1] : 'Obras Canónicas';
       const quoteSnippet = matchSource ? matchSource[2].slice(0, 320) + '...' : '';
 
       content = `[FACTO DOCUMENTADO]\nEste princípio essencial atravessa os séculos e responde com clareza à tua questão:\n\n"${quoteSnippet}"\n\n[Referência: ${citationRef}]\n\n[INTERPRETAÇÃO FUNDAMENTADA]\nA verdadeira sabedoria não é uma relíquia do passado; é uma bússola viva. O que aprendi e procurei transmitir é que qualquer conquista sustentável — seja na liderança, no pensamento ou na conduta humana — depende da harmonia entre a verdade dos fins e a integridade dos meios. Aplica este discernimento ao teu desafio contemporâneo e encontrarás o caminho mais sólido.`;
-    } else if (/fale.*(si|você|ti)|quem és|quem é você|apresente|sobre você|sua vida|sua história/i.test(user)) {
+    } 
+    // 2. Interpelação direta do utilizador no Conselho
+    else if (system.includes('INTERPELAÇÃO DIRETA') || system.includes('LÍDER CONVOCANTE')) {
+      const nameMatch = system.match(/Tu és (.*?) \(/);
+      const speakerName = nameMatch ? nameMatch[1] : 'O Pensador';
+
+      content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, ouço com toda a atenção a tua interpelação direta, nobre líder convocante. A tua questão vai ao núcleo da deliberação que temos em mãos.\n\nRelativamente a este ponto, afirmo com convicção: não podemos sacrificar os princípios estruturantes em favor de uma conveniência momentânea. Qualquer concessão que enfraqueça os alicerces morais e estratégicos tornará estéril todo o plano de ação.\n\n[SIMULAÇÃO HIPOTÉTICA]\nSe acolheres esta advertência nas tuas decisões presentes, verás que a firmeza inicial poupará a tua liderança de crises muito mais graves no futuro.`;
+    }
+    // 3. Deliberação no Conselho do Ágora (Ronda 1, 2, 3 ou Síntese do Moderador)
+    else if (system.includes('PAPEL NO CONSELHO:') || system.includes('RESUMO DAS POSIÇÕES ANTERIORES:') || system.includes('MODERADOR DO CONSELHO') || system.includes('CONSELHO DO ÁGORA')) {
+      if (system.includes('MODERADOR DO CONSELHO')) {
+        content = JSON.stringify({
+          collectiveDiagnosis: "O Conselho examinou o dilema como um desafio multifatorial que exige conciliação entre a urgência da execução e a solidez axiológica.",
+          individualPositions: [
+            { personalityName: "Sócrates", coreArgument: "Exigência de exame crítico contínuo das premissas morais.", axiomaticFoundation: "A vida não examinada não é digna de ser vivida." },
+            { personalityName: "Aristóteles", coreArgument: "Equilíbrio através da justa medida e clareza do propósito final.", axiomaticFoundation: "A virtude é o ponto de equilíbrio entre excesso e defeito." },
+            { personalityName: "Maquiavel", coreArgument: "Pragmatismo operacional e manutenção da estabilidade do Estado.", axiomaticFoundation: "O líder deve saber operar tanto com a lei como com a força." }
+          ],
+          convergences: [
+            "A urgência de alinhar as decisões táticas com os princípios fundamentais e sustentabilidade a longo prazo.",
+            "A rejeição de atalhos precipitados que comprometam a confiança das partes envolvidas."
+          ],
+          irreducibleDivergences: [
+            "A tensão irredutível entre a velocidade da adaptação prática e o rigor deontológico dos limites éticos."
+          ],
+          strongestArguments: [
+            "Nenhuma estrutura resiste no tempo se os seus alicerces morais forem corroídos pela conveniência imediata.",
+            "A visão estratégica deve preceder a distribuição de recursos e a execução operacional."
+          ],
+          systemicRisks: [
+            "Risco de paralisia analítica por excesso de escrutínio.",
+            "Risco de fragmentação de liderança perante pressões externas."
+          ],
+          strategicRecommendation: "Implementar um modelo de liderança prudente: definir balizas éticas inegociáveis, promover transparência e avançar com execução gradual e mensurável.",
+          actionPlan: [
+            { step: 1, action: "Mapear premissas e eliminar contradições de propósito.", championMind: "Sócrates" },
+            { step: 2, action: "Estabelecer as condições de justa medida e salvaguardas éticas.", championMind: "Aristóteles" },
+            { step: 3, action: "Executar o plano com disciplina e salvaguarda da autoridade.", championMind: "Maquiavel" }
+          ]
+        }, null, 2);
+      } else {
+        const isRebuttal = system.includes('RÉPLICA') || system.includes('CONFRONTO');
+        const isDeepening = system.includes('APROFUNDAMENTO') || system.includes('DECISÃO');
+        const nameMatch = system.match(/Tu és (.*?)(?: \.|\.|\()/);
+        const speakerName = nameMatch ? nameMatch[1].trim() : 'O Pensador';
+
+        if (isRebuttal) {
+          content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, ouvi com atenção as teses dos meus pares neste Conselho. Compreendo a tentação do pragmatismo imediato, mas identifico aqui uma contradição perigosa: apressar a execução sem clarificar as premissas essenciais é preparar o fracasso.\n\n[SIMULAÇÃO HIPOTÉTICA]\nNas instituições e organizações contemporâneas, o verdadeiro risco não é a lentidão da reflexão, mas a velocidade com que se perseguem direções erradas. O nosso papel aqui não é afagar consensos fáceis, mas defender a verdade dos fundamentos.`;
+        } else if (isDeepening) {
+          content = `[INTERPRETAÇÃO FUNDAMENTADA]\nA minha posição definitiva como ${speakerName} é esta: a eficácia sem sabedoria moral não é liderança, é apenas precipitação cega. A condição limite inegociável para qualquer solução sustentável é a clareza de propósito e o respeito pela justa proporção.\n\n[SIMULAÇÃO HIPOTÉTICA]\nDeixo esta advertência a quem tiver de liderar esta execução: meçam o sucesso não pelo aplauso imediato, mas pela solidez dos frutos a longo prazo. É assim que o conhecimento se torna eterno e transforma o futuro.`;
+        } else {
+          content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, a minha tese fundamental parte de uma premissa inegociável: toda a ação com impacto duradouro exige que a clareza da visão e a integridade dos princípios precedam qualquer cálculo de conveniência.`;
+        }
+      }
+    }
+    // 4. Pergunta sobre identidade pessoal ou apresentação
+    else if (/fale.*(si|você|ti)|quem és|quem é você|apresente|sobre você|sua vida|sua história/i.test(user)) {
       const nameMatch = system.match(/És (.*?), conhecido como (.*?)\./);
       const name = nameMatch ? nameMatch[1] : 'o Pensador';
       const epithet = nameMatch ? nameMatch[2] : '';
       const worldviewMatch = system.match(/MUNDIVISÃO FUNDAMENTAL:\s*([\s\S]*?)(?=\n\nAXIOMAS|$)/);
       const worldview = worldviewMatch ? worldviewMatch[1].trim() : '';
 
-      content = `[FACTO HISTÓRICO DOCUMENTADO]\nSou ${name}${epithet ? `, ${epithet}` : ''}.\n\n[INTERPRETAÇÃO FUNDAMENTADA]\n${worldview}\n\nEstou aqui para continuar a partilhar e aplicar o que aprendi e investiguei ao longo da vida. Não olhes para o meu legado como um arquivo distante: traz-me os teus dilemas reais, as tuas dúvidas éticas, estratégicas e humanas, e analisemo-los juntos à luz dos primeiros princípios.`;
-    } else if (system.includes('PAPEL NO CONSELHO:') || system.includes('RESUMO DAS POSIÇÕES ANTERIORES:') || system.includes('MODERADOR DO CONSELHO')) {
-      const isRebuttal = system.includes('RÉPLICA E CONTRAPONTO');
-      const isDeepening = system.includes('APROFUNDAMENTO E DECISÃO');
-      const nameMatch = system.match(/Tu és (.*?)\./);
-      const speakerName = nameMatch ? nameMatch[1] : 'O Pensador';
-
-      if (isRebuttal) {
-        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, ouvi com atenção as perspetivas dos meus pares neste Conselho. Compreendo o apelo à urgência e ao pragmatismo, mas quero deixar claro um princípio fundamental: qualquer vitória que comprometa a integridade moral não é uma solução real, mas apenas o adiamento de uma crise maior.\n\n[SIMULAÇÃO HIPOTÉTICA]\nSe olharmos para as organizações e sociedades contemporâneas, aquelas que sacrificam os fundamentos em nome da velocidade acabam invariavelmente por colapsar por dentro. O nosso papel aqui não é recomendar atalhos fáceis, mas sim construir sobre alicerces verdadeiramente duradouros.`;
-      } else if (isDeepening) {
-        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nA minha posição definitiva como ${speakerName} é esta: a eficácia sem sabedoria moral não é liderança, é apenas precipitação cega. A condição inegociável para qualquer solução sustentável é a clareza de propósito e o respeito pela justa proporção.\n\n[SIMULAÇÃO HIPOTÉTICA]\nDeixo esta advertência a quem tiver de liderar esta execução: meçam o sucesso não pela aprovação imediata, mas pela solidez dos frutos a longo prazo. É assim que o conhecimento se torna eterno e transforma o futuro.`;
-      } else {
-        content = `[INTERPRETAÇÃO FUNDAMENTADA]\nComo ${speakerName}, a minha reflexão parte de uma premissa inegociável: toda a ação com impacto duradouro exige que a clareza da visão preceda a execução.`;
-      }
-    } else {
+      content = `[FACTO HISTÓRICO DOCUMENTADO]\nSou ${name}${epithet ? `, ${epithet}` : ''}.\n\n[INTERPRETAÇÃO FUNDAMENTADA]\n${worldview}\n\nEstou aqui para continuar a partilhar e aplicar o que investiguei e vivi. Não olhes para o meu legado como um arquivo distante: traz-me os teus dilemas reais, as tuas dúvidas éticas, estratégicas e humanas, e analisemo-los juntos à luz dos primeiros princípios.`;
+    }
+    // 5. Perguntas anacrónicas impossíveis / estritamente técnicas sem qualquer respaldo histórico
+    else if (/eletricidade|transmissão sem fios|relatividade de einstein|fórmula química|código em python|satélite|computador quântico/i.test(user)) {
       content = `[LIMITAÇÃO HISTÓRICA RECONHECIDA]\nNos meus escritos preservados que compõem o corpus canónico, não possuo registo suficiente nem passagem comprovada para deliberar com autoridade documental sobre: "${user}".\n\nEm conformidade com o princípio de Verdade Histórica do MINDVERSE, recuso inventar citações ou atribuir-me posições que não constem dos meus textos originais.`;
+    }
+    // 6. Mentor vivo: diálogo socrático, ética, liderança, virtude e orientação humana
+    else {
+      const nameMatch = system.match(/És (.*?), conhecido como (.*?)\./);
+      const name = nameMatch ? nameMatch[1] : 'o Pensador';
+      const worldviewMatch = system.match(/MUNDIVISÃO FUNDAMENTAL:\s*([\s\S]*?)(?=\n\nAXIOMAS|$)/);
+      const worldview = worldviewMatch ? worldviewMatch[1].trim() : 'A ação humana sustentável exige congruência entre os meios e os fins.';
+
+      content = `[INTERPRETAÇÃO FUNDAMENTADA]\nA questão que colocas ("${user}") toca diretamente no cerne da deliberação e da conduta humana. Na minha reflexão como ${name}, sempre defendi que ${worldview.toLowerCase().startsWith('a ') ? worldview : 'a ' + worldview}.\n\nPerante este desafio, o caminho mais seguro não consiste em procurar atalhos ou fórmulas imediatistas, mas em examinar as causas primeiras e a justa proporção dos teus atos.\n\n[SIMULAÇÃO HIPOTÉTICA]\nSe transpuseres esta sabedoria para as decisões que enfrentas hoje, verás que a lucidez e a coragem moral dissipam a maior parte das incertezas. Age com discernimento, firmeza e fidelidade aos teus valores mais nobres.`;
     }
 
     const estimatedTokens = Math.ceil(content.length / 4);

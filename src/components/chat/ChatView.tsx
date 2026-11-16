@@ -16,7 +16,6 @@ import {
   Clock, 
   Layers,
   Search,
-  AlertTriangle,
   Volume2
 } from 'lucide-react';
 
@@ -62,7 +61,6 @@ export const ChatView: React.FC = () => {
   const [selectedCitation, setSelectedCitation] = useState<MessageCitation | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [ragStatus, setRagStatus] = useState<'idle' | 'searching' | 'streaming' | 'completed'>('idle');
-  const [insufficientDocsWarning, setInsufficientDocsWarning] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Mensagens do histórico — O pensador dá as boas-vindas imediatamente em primeira pessoa
@@ -101,7 +99,6 @@ export const ChatView: React.FC = () => {
     setInputPrompt('');
     setIsProcessing(true);
     setRagStatus('searching');
-    setInsufficientDocsWarning(false);
 
     const estimatedTokens = Math.ceil(userText.length / 4);
 
@@ -184,7 +181,6 @@ export const ChatView: React.FC = () => {
       );
 
       addTokensUsed(result.tokensUsed);
-      setInsufficientDocsWarning(!result.hasSufficientDocumentation);
       setRagStatus('completed');
     } catch (err: any) {
       setMessages((prev) =>
@@ -316,15 +312,6 @@ export const ChatView: React.FC = () => {
         </div>
       </div>
 
-      {/* Warning when documentation is insufficient */}
-      {insufficientDocsWarning && (
-        <div className="mt-2 p-3 rounded-xl bg-amber-950/30 border border-amber-500/40 text-amber-200 text-xs flex items-center gap-2 animate-fade-in">
-          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
-          <span>
-            <strong>Limitação Documental Identificada:</strong> Nenhuma passagem do corpus de {selectedPersonality.name} atingiu relevância para esta consulta. A resposta declarará com honestidade a carência de fontes.
-          </span>
-        </div>
-      )}
 
       {/* Message History Container */}
       <div className="flex-1 overflow-y-auto my-3 space-y-4 pr-1 scrollbar-thin">

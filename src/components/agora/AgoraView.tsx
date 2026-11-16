@@ -4,6 +4,7 @@ import { COHORT_GENESIS_PERSONALITIES } from '../../data/personalities';
 import { globalCouncilEngine } from '../../server/council/councilEngine';
 import { CouncilIntervention } from '../../types';
 import { CouncilChamber } from './CouncilChamber';
+import { CouncilCharterModal } from './CouncilCharterModal';
 import { councilAudio } from '../../services/councilAudio';
 import { 
   Users2, 
@@ -13,7 +14,7 @@ import {
   Scale, 
   CheckCircle2, 
   Flame, 
-  BookOpen,
+  BookOpen, 
   StopCircle,
   Download,
   Copy,
@@ -23,7 +24,8 @@ import {
   Clock,
   Compass,
   ArrowRight,
-  Volume2
+  Volume2,
+  Award
 } from 'lucide-react';
 
 const SUGGESTED_MOTIONS = [
@@ -58,6 +60,7 @@ export const AgoraView: React.FC = () => {
   const [, setSelectedIntervention] = useState<CouncilIntervention | null>(null);
   const [copiedState, setCopiedState] = useState(false);
   const [activeTab, setActiveTab] = useState<'deliberation' | 'synthesis'>('deliberation');
+  const [isCharterModalOpen, setIsCharterModalOpen] = useState(false);
 
   const abortControllerRef = useRef<AbortController | null>(null);
   const liveInterventionEndRef = useRef<HTMLDivElement | null>(null);
@@ -147,6 +150,35 @@ export const AgoraView: React.FC = () => {
     setCurrentLiveSpeaker(null);
     setSelectedIntervention(null);
     setActiveTab('deliberation');
+  };
+
+  const handleInterpellate = async (thinkerId: string, question: string) => {
+    if (!councilSession) return;
+    try {
+      setCurrentLiveSpeaker(thinkerId, '');
+      await globalCouncilEngine.executeInterpellation(
+        councilSession,
+        thinkerId,
+        question,
+        {
+          onSessionUpdate: (updatedSession) => {
+            setCouncilSession({ ...updatedSession });
+          },
+          onInterventionChunk: (_speakerId, chunk) => {
+            appendLiveChunk(chunk);
+          },
+          onInterventionComplete: (interv) => {
+            setCurrentLiveSpeaker(null);
+            addTokensUsed(interv.tokensUsed);
+            councilAudio.speak(interv.personalityId, interv.content);
+          }
+        }
+      );
+    } catch (err: any) {
+      setErrorNotification(`Erro na interpelação: ${err.message}`);
+    } finally {
+      setCurrentLiveSpeaker(null);
+    }
   };
 
   const handleExportMarkdown = () => {
@@ -429,6 +461,8 @@ export const AgoraView: React.FC = () => {
             liveChunk={currentLiveChunk}
             session={councilSession}
             motion={agoraMotion}
+            isCouncilRunning={isCouncilRunning}
+            onInterpellate={handleInterpellate}
           />
 
           {/* Navigation Tabs between Deliberation Timeline and Final Synthesis */}
@@ -575,7 +609,7 @@ export const AgoraView: React.FC = () => {
           {activeTab === 'synthesis' && councilSession.synthesis && (
             <div className="space-y-6 animate-fade-in">
               <div className="p-6 rounded-3xl bg-gradient-to-br from-mindverse-midnight via-mindverse-deep to-mindverse-void border border-mindverse-gold-subtle/40 space-y-6 shadow-2xl">
-                <div className="flex items-center justify-between border-b border-mindverse-graphite/60 pb-4">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-mindverse-graphite/60 pb-4">
                   <div className="flex items-center gap-2.5">
                     <Sparkles className="w-5 h-5 text-mindverse-gold-subtle" />
                     <div>
@@ -587,6 +621,16 @@ export const AgoraView: React.FC = () => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Botão OPÇÃO 4: Gerar Édito Timbrado */}
+                  <button
+                    onClick={() => setIsCharterModalOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-mindverse-gold via-amber-400 to-amber-200 hover:from-amber-400 hover:to-mindverse-gold text-mindverse-void font-serif font-bold text-xs shadow-gold-glow hover:scale-105 active:scale-95 transition-all"
+                    title="Visualizar, imprimir ou exportar o Édito Executivo Timbrado"
+                  >
+                    <Award className="w-4 h-4 text-mindverse-void" />
+                    <span>Gerar Édito do Conselho (PDF Timbrado)</span>
+                  </button>
                 </div>
 
                 {/* 1. Diagnóstico Coletivo */}
@@ -693,6 +737,13 @@ export const AgoraView: React.FC = () => {
           )}
         </div>
       )}
+
+      {/* Modal OPÇÃO 4: Édito do Conselho Timbrado */}
+      <CouncilCharterModal
+        isOpen={isCharterModalOpen}
+        onClose={() => setIsCharterModalOpen(false)}
+        session={councilSession}
+      />
     </div>
   );
 };
