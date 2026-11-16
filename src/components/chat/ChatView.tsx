@@ -29,6 +29,35 @@ export const ChatView: React.FC = () => {
     addTokensUsed 
   } = useAppStore();
 
+  const getPersonalityGreeting = (p: typeof selectedPersonality): string => {
+    switch (p.slug) {
+      case 'aristoteles':
+        return `Saudações. Sou Aristóteles. Toda a investigação e escolha humana visa alcançar algum bem supremo — aquilo a que chamei 'eudaimonia'. A virtude reside no equilíbrio ativo da justa medida entre os extremos. Que dúvida, decisão ou causa procuras examinar hoje comigo?`;
+      case 'socrates':
+        return `Alegra-me encontrar-te. Sou Sócrates. Dizem que a sabedoria começa no instante em que reconhecemos aquilo que ignoramos. Não venho trazer-te dogmas prontos, mas sim fazer as perguntas certas. Diz-me: que certeza ou inquietação trazes contigo para investigarmos juntos?`;
+      case 'marco-aurelio':
+        return `Saúdo-te. Sou Marco Aurélio. No meio das exigências e do ruído do mundo, o nosso dever é preservar a cidadela interior lúcida e agir com serenidade e justiça em prol do bem comum. Que peso, desafio ou decisão estás a enfrentar neste momento?`;
+      case 'sun-tzu':
+        return `Saudações. Sou Sun Tzu. A vitória e a ordem nunca pertencem ao acaso, mas a quem compreende o terreno, o tempo e a si mesmo antes do primeiro passo. A maior mestria é desarmar o conflito antes do choque. Que estratégia ou desafio tens perante ti?`;
+      case 'peter-drucker':
+        return `Bom dia. Sou Peter Drucker. No trabalho e na liderança, a eficácia consiste em fazer as coisas certas, não apenas fazer as coisas com pressa. Toda a organização e todo o profissional devem saber exatamente qual é o seu propósito exterior. Onde precisamos de colocar o foco hoje?`;
+      case 'marie-curie':
+        return `Saudações. Sou Marie Curie. Na vida e na ciência, nada deve ser temido, mas apenas compreendido com rigor, perseverança e coragem moral. Que problema ou hipótese queres investigar comigo com método e lucidez?`;
+      case 'albert-einstein':
+        return `Olá! Sou Albert Einstein. A imaginação é mais importante que o conhecimento puro, porque o conhecimento é limitado ao que já sabemos, enquanto a imaginação abraça todo o cosmos. Que mistério, princípio ou problema queres explorar comigo?`;
+      case 'leonardo-da-vinci':
+        return `Bem-vindo à minha oficina de pensamento. Sou Leonardo da Vinci. Para compreender o mundo, devemos observar a natureza com curiosidade incansável e unir a arte ao rigor da ciência. Que ideia, invenção ou desafio tens em mãos?`;
+      case 'nikola-tesla':
+        return `Saudações. Sou Nikola Tesla. O presente pertence aos pragmáticos, mas o futuro pertence àqueles que compreendem a energia, a frequência e a harmonia das forças da natureza. Que visão ou desafio tecnológico queres decifrar comigo?`;
+      case 'adam-smith':
+        return `Saudações. Sou Adam Smith. O progresso humano ergue-se sobre duas colunas inseparáveis: os sentimentos morais de empatia e a eficiência da divisão cooperativa do trabalho. Que dilema económico, social ou institucional queres examinar?`;
+      case 'flavio-josefo':
+        return `Saúdo-te. Sou Flávio Josefo. Testemunhei a glória e a queda trágica de civilizações e aprendi que a prudência política e o registo fidedigno dos factos são as únicas defesas contra a sedição e o esquecimento. Que encruzilhada histórica ou humana pretendes analisar?`;
+      default:
+        return `Saudações. Sou ${p.name}. Estou aqui para dialogar contigo e partilhar a sabedoria e os princípios que guiaram a minha vida. Que questão trazes ao meu encontro hoje?`;
+    }
+  };
+
   const [inputPrompt, setInputPrompt] = useState('');
   const [selectedCitation, setSelectedCitation] = useState<MessageCitation | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -36,15 +65,15 @@ export const ChatView: React.FC = () => {
   const [insufficientDocsWarning, setInsufficientDocsWarning] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Mensagens do histórico
+  // Mensagens do histórico — O pensador dá as boas-vindas imediatamente em primeira pessoa
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: 'orientation-01',
+      id: `welcome-${selectedPersonality.id}`,
       conversationId: 'conv-init',
       senderPersonalityId: selectedPersonality.id,
-      role: 'system',
-      content: `[DNA Intelectual Carregado]: Sessão ativa com ${selectedPersonality.name} (${selectedPersonality.titleEpithet}).\n\nMundivisão Canónica: "${selectedPersonality.quoteFeatured}"\n\nCorpus Canónico Disponível para Pesquisa Vetorial: ${selectedPersonality.works.map(w => w.title).join('; ')}.`,
-      epistemicStatus: 'documented_fact',
+      role: 'assistant',
+      content: getPersonalityGreeting(selectedPersonality),
+      epistemicStatus: 'historical_interpretation',
       tokensUsed: 0,
       createdAt: new Date().toISOString()
     }
@@ -234,12 +263,12 @@ export const ChatView: React.FC = () => {
                 setSelectedPersonality(found);
                 setMessages([
                   {
-                    id: `orientation-${found.id}`,
+                    id: `welcome-${found.id}`,
                     conversationId: 'conv-init',
                     senderPersonalityId: found.id,
-                    role: 'system',
-                    content: `[DNA Intelectual Carregado]: Sessão alterada para ${found.name} (${found.titleEpithet}).\n\nMundivisão: "${found.quoteFeatured}".`,
-                    epistemicStatus: 'documented_fact',
+                    role: 'assistant',
+                    content: getPersonalityGreeting(found),
+                    epistemicStatus: 'historical_interpretation',
                     tokensUsed: 0,
                     createdAt: new Date().toISOString()
                   }
