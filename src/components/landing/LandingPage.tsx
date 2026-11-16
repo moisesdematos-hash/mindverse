@@ -202,16 +202,20 @@ export const LandingPage: React.FC = () => {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-mindverse-muted max-w-3xl mx-auto font-sans leading-relaxed">
-            A primeira plataforma de inteligência dialética do mundo que ressuscita o rigor epistemológico de <strong>47 grandes génios</strong> — de Aristóteles e Newton a Marie Curie e Mandela — alimentada por <strong>RAG vetorial em fontes primárias</strong> e zero tolerância à alucinação.
+            A primeira plataforma de inteligência dialética do mundo que ressuscita o rigor epistemológico de <strong>47 grandes génios</strong> — de Albert Einstein e Newton a Marie Curie e Mandela — alimentada por <strong>RAG vetorial em fontes primárias</strong> e zero tolerância à alucinação.
           </p>
 
           {/* Call to Actions */}
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <button
-              onClick={() => setCurrentTab('chat')}
+              onClick={() => {
+                const einstein = COHORT_GENESIS_PERSONALITIES.find(p => p.slug === 'albert-einstein') || COHORT_GENESIS_PERSONALITIES[0];
+                setSelectedPersonality(einstein);
+                setCurrentTab('chat');
+              }}
               className="px-7 py-4 rounded-2xl bg-gradient-to-r from-mindverse-gold-subtle to-mindverse-gold-accent hover:from-mindverse-gold-light hover:to-mindverse-gold-subtle text-mindverse-void font-bold text-sm sm:text-base transition-all duration-300 shadow-gold-glow flex items-center gap-2.5 group"
             >
-              <span>Iniciar Diálogo com Aristóteles</span>
+              <span>Iniciar Diálogo com Albert Einstein</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
             </button>
 
