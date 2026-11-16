@@ -377,8 +377,8 @@ export class DeterministicIntellectualEngine implements AIProvider {
 
       content = `[FACTO HISTÓRICO DOCUMENTADO]\nSou ${name}${epithet ? `, ${epithet}` : ''}.\n\n[INTERPRETAÇÃO FUNDAMENTADA]\n${worldview}\n\nEstou aqui para continuar a partilhar e aplicar o que investiguei e vivi. Não olhes para o meu legado como um arquivo distante: traz-me os teus dilemas reais, as tuas dúvidas éticas, estratégicas e humanas, e analisemo-los juntos à luz dos primeiros princípios.`;
     }
-    // 5. Perguntas anacrónicas impossíveis / estritamente técnicas sem qualquer respaldo histórico
-    else if (/eletricidade|transmissão sem fios|relatividade de einstein|fórmula química|código em python|satélite|computador quântico/i.test(user)) {
+    // 5. Perguntas anacrónicas impossíveis / estritamente técnicas sem qualquer respaldo histórico para pensadores da antiguidade
+    else if (!system.includes('Tesla') && !system.includes('Einstein') && !system.includes('Curie') && !system.includes('Turing') && !system.includes('Lovelace') && !system.includes('Planck') && !system.includes('Bohr') && !system.includes('Heisenberg') && !system.includes('Schrödinger') && !system.includes('Fermi') && !system.includes('Feynman') && /eletricidade|transmissão sem fios|relatividade de einstein|fórmula química|código em python|satélite|computador quântico/i.test(user)) {
       content = `[LIMITAÇÃO HISTÓRICA RECONHECIDA]\nNos meus escritos preservados que compõem o corpus canónico, não possuo registo suficiente nem passagem comprovada para deliberar com autoridade documental sobre: "${user}".\n\nEm conformidade com o princípio de Verdade Histórica do MINDVERSE, recuso inventar citações ou atribuir-me posições que não constem dos meus textos originais.`;
     }
     // 6. Mentor vivo: diálogo socrático, ética, liderança, virtude e orientação humana

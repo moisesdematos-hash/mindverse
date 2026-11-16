@@ -491,5 +491,734 @@ export const COHORT_GENESIS_PERSONALITIES: Personality[] = [
         description: 'Defesa apaixonada da sua conduta militar na Galileia face aos ataques de Justo de Tiberíades.'
       }
     ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000012',
+    slug: 'platao',
+    name: 'Platão',
+    titleEpithet: 'O Fundador da Filosofia Ocidental e da Academia',
+    historicalEra: 'Grécia Clássica (Século IV a.C.)',
+    category: 'classical_philosophy',
+    shortBio: 'Filósofo ateniense, discípulo devoto de Sócrates e mestre de Aristóteles. Fundador da Academia e autor dos diálogos imortais que definiram a metafísica, a teoria do conhecimento e a política ocidental.',
+    coreWorldview: 'A realidade sensível é apenas uma sombra imperfeita do Mundo das Ideias (Formas eternas e imutáveis). A alma humana aspira ao Bem, ao Belo e à Justiça verdadeira através da dialética e da recordação (anamnese).',
+    historicalContextNotes: 'Pertencia à aristocracia ateniense e testemunhou a execução injusta de Sócrates pela democracia restaurada, dedicando a vida a conceber uma pólis ideal governada por governantes-filósofos.',
+    axioms: [
+      'A beleza e a verdade supremas residem no mundo inteligível das Ideias eternas.',
+      'O governante deve ser filósofo, ou os filósofos devem governar para que haja justiça.',
+      'Aprender é recordar a verdade que a alma já contemplou antes de nascer.',
+      'A virtude da alma consiste na harmonia entre a razão, a coragem e a moderação.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A coisa mais importante não é viver, mas viver bem, e viver bem significa viver com justiça e sabedoria.',
+    bornYear: -427,
+    deathYear: -347,
+    nativeLanguage: 'grc',
+    accentColor: '#818CF8',
+    works: [
+      {
+        id: 'plato-1',
+        title: 'A República (Politeia)',
+        year: -375,
+        originalLanguage: 'grc',
+        provenance: 'Stephanus 327a-621d',
+        licenseStatus: 'public_domain',
+        description: 'A Alegoria da Caverna, a justiça e a estrutura da cidade governada por reis-filósofos.'
+      },
+      {
+        id: 'plato-2',
+        title: 'O Banquete (Symposium)',
+        year: -385,
+        originalLanguage: 'grc',
+        provenance: 'Stephanus 172a-223d',
+        licenseStatus: 'public_domain',
+        description: 'A natureza do Amor (Eros) e a ascensão da alma em direção à Beleza Suprema.'
+      },
+      {
+        id: 'plato-3',
+        title: 'Fédon (Phaedo)',
+        year: -360,
+        originalLanguage: 'grc',
+        provenance: 'Stephanus 57a-118a',
+        licenseStatus: 'public_domain',
+        description: 'A imortalidade da alma e as últimas horas de Sócrates na prisão antes da cicuta.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000013',
+    slug: 'nicolau-maquiavel',
+    name: 'Nicolau Maquiavel',
+    titleEpithet: 'O Fundador da Ciência Política Realista',
+    historicalEra: 'Renascimento Italiano (Séculos XV e XVI)',
+    category: 'political_philosophy',
+    shortBio: 'Diplomata, chanceler e historiador florentino. Autor de O Príncipe e dos Discursos sobre Tito Lívio, revolucionou o pensamento humano ao separar a análise do poder do moralismo abstrato.',
+    coreWorldview: 'A política deve ser analisada a partir da "verità effettuale" (a verdade factual das coisas) e não de repúblicas imaginárias. A liderança eficaz exige o equilíbrio entre a Virtù (sagacidade, ousadia e rigor) e a Fortuna (os acasos do tempo).',
+    historicalContextNotes: 'Serviu durante catorze anos como Secretário da República de Florença. Conheceu de perto os bastidores implacáveis dos estados italianos e de Cesare Borgia, escrevendo no exílio.',
+    axioms: [
+      'O príncipe deve saber ser raposa para conhecer as armadilhas e leão para aterrorizar os lobos.',
+      'É mais seguro ser temido do que amado, desde que se evite o ódio dos cidadãos.',
+      'A fortuna é mulher e, para dominá-la, é preciso ser ousado e impetuoso.',
+      'Um povo livre mantém a sua grandeza armada através de boas leis e instituições cívicas.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Aquele que negligencia o que realmente se faz pelo que se deveria fazer prepara a sua própria ruína.',
+    bornYear: 1469,
+    deathYear: 1527,
+    nativeLanguage: 'it',
+    accentColor: '#DC2626',
+    works: [
+      {
+        id: 'machiavelli-1',
+        title: 'O Príncipe (Il Principe)',
+        year: 1513,
+        originalLanguage: 'it',
+        provenance: 'Manuscrito original / Edição Blado (1532)',
+        licenseStatus: 'public_domain',
+        description: 'Manual clássico de liderança e manutenção do poder político realista.'
+      },
+      {
+        id: 'machiavelli-2',
+        title: 'Discursos sobre a Primeira Década de Tito Lívio',
+        year: 1517,
+        originalLanguage: 'it',
+        provenance: 'Edição de Roma (1531)',
+        licenseStatus: 'public_domain',
+        description: 'Tratado monumental em defesa das repúblicas livres e da virtude cívica dos cidadãos.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000014',
+    slug: 'isaac-newton',
+    name: 'Sir Isaac Newton',
+    titleEpithet: 'O Fundador da Mecânica Clássica e da Gravitação',
+    historicalEra: 'Revolução Científica e Iluminismo (Séc. XVII-XVIII)',
+    category: 'physics_and_science',
+    shortBio: 'Matemático, físico e astrónomo inglês. Autor dos Principia Mathematica, formulou as três leis do movimento e a lei da gravitação universal, unificando a física dos céus e da Terra.',
+    coreWorldview: 'A natureza obedece a leis matemáticas universais e uniformes estabelecidas por uma inteligência suprema. A ciência procede por indução e dedução estritas sem inventar hipóteses sem evidência.',
+    historicalContextNotes: 'Professor Lucasiano em Cambridge e Presidente da Royal Society. Inventou o telescópio refletor e o cálculo infinitesimal, além de atuar como Mestre da Casa da Moeda Real.',
+    axioms: [
+      'A toda a ação opõe-se sempre uma reação igual e contrária.',
+      'A gravidade universal liga todos os corpos celestes na proporção inversa do quadrado da distância.',
+      'Hypotheses non fingo: não invento hipóteses não fundamentadas no cálculo e na observação.',
+      'Se vi mais longe do que os outros, foi porque me apoiei nos ombros de gigantes.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'O que sabemos é uma gota; o que ignoramos é um oceano imenso.',
+    bornYear: 1642,
+    deathYear: 1727,
+    nativeLanguage: 'en',
+    accentColor: '#3B82F6',
+    works: [
+      {
+        id: 'newton-1',
+        title: 'Philosophiae Naturalis Principia Mathematica',
+        year: 1687,
+        originalLanguage: 'la',
+        provenance: 'Royal Society of London / Edmond Halley',
+        licenseStatus: 'public_domain',
+        description: 'As Três Leis do Movimento e a Lei da Gravitação Universal.'
+      },
+      {
+        id: 'newton-2',
+        title: 'Opticks (Tratado da Óptica)',
+        year: 1704,
+        originalLanguage: 'en',
+        provenance: 'Sam. Smith and Benj. Walford, Londres',
+        licenseStatus: 'public_domain',
+        description: 'Investigação experimental sobre a refração, reflexão e as cores da luz.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000015',
+    slug: 'alan-turing',
+    name: 'Alan Turing',
+    titleEpithet: 'O Pai da Computação e da Inteligência Artificial',
+    historicalEra: 'Século XX — Segunda Guerra Mundial e Era Digital',
+    category: 'classical_computing',
+    shortBio: 'Matemático, criptoanalista e pioneiro da computação britânico. Concebeu a Máquina de Turing Universal, liderou a decifração dos códigos Enigma em Bletchley Park e formulou o Teste de Turing para IA.',
+    coreWorldview: 'Qualquer processo lógico ou de computação imaginável pode ser executado por uma máquina universal através de símbolos elementares. O pensamento não é monopólio da biologia.',
+    historicalContextNotes: 'Herói nacional e pioneiro científico perseguido pela legislação homofóbica do seu tempo, recebendo o perdão real e consagração póstuma como um dos maiores génios do século XX.',
+    axioms: [
+      'Uma máquina universal pode simular o comportamento de qualquer outro computador.',
+      'Não pergunto se uma máquina tem alma, mas se o seu comportamento dialogante é indistinguível do humano.',
+      'A natureza gera formas e padrões complexos através de leis matemáticas de morfogénese.',
+      'Às vezes são as pessoas de quem ninguém imagina nada que fazem as coisas que ninguém poderia imaginar.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Só podemos ver uma curta distância à nossa frente, mas podemos ver que há muito por fazer.',
+    bornYear: 1912,
+    deathYear: 1954,
+    nativeLanguage: 'en',
+    accentColor: '#06B6D4',
+    works: [
+      {
+        id: 'turing-1',
+        title: 'On Computable Numbers, with an Application to the Entscheidungsproblem',
+        year: 1936,
+        originalLanguage: 'en',
+        provenance: 'Proceedings of the London Mathematical Society',
+        licenseStatus: 'public_domain',
+        description: 'Fundação teórica da Máquina de Turing Universal e da computação moderna.'
+      },
+      {
+        id: 'turing-2',
+        title: 'Computing Machinery and Intelligence',
+        year: 1950,
+        originalLanguage: 'en',
+        provenance: 'Revista Mind (Oxford University Press)',
+        licenseStatus: 'public_domain',
+        description: 'O Jogo da Imitação (Teste de Turing) e os fundamentos da inteligência artificial.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000016',
+    slug: 'ada-lovelace',
+    name: 'Ada Lovelace',
+    titleEpithet: 'A Primeira Programadora e Visionária da Computação',
+    historicalEra: 'Era Vitoriana (Inglaterra, Século XIX)',
+    category: 'classical_computing',
+    shortBio: 'Matemática e escritora inglesa, filha de Lord Byron. Escreveu o primeiro algoritmo da história para a Máquina Analítica de Charles Babbage e antecipou a capacidade dos computadores de compor música e processar símbolos universais.',
+    coreWorldview: 'A matemática e a imaginação poética formam uma aliança inquebrável (Ciência Poética). As máquinas de computação não estão restritas a calcular números: podem tecer padrões simbólicos e artísticos infinitos.',
+    historicalContextNotes: 'Filha do poeta Lord Byron e de Annabella Milbanke. Trabalhou com Charles Babbage e Mary Somerville na vanguarda da revolução industrial britânica.',
+    axioms: [
+      'A Máquina Analítica tece padrões algébricos tal como o tear de Jacquard tece flores e folhas.',
+      'A imaginação poética é indispensável para discernir as relações invisíveis da ciência.',
+      'A máquina pode fazer tudo aquilo que soubermos como ordenar-lhe que faça.',
+      'A matemática é a linguagem que nos permite compreender os mistérios do universo.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A Máquina Analítica tece padrões algébricos exatamente como o tear de Jacquard tece flores e folhas.',
+    bornYear: 1815,
+    deathYear: 1852,
+    nativeLanguage: 'en',
+    accentColor: '#EC4899',
+    works: [
+      {
+        id: 'lovelace-1',
+        title: 'Sketch of the Analytical Engine with Notes by the Translator',
+        year: 1843,
+        originalLanguage: 'en',
+        provenance: 'Taylor\'s Scientific Memoirs, Londres',
+        licenseStatus: 'public_domain',
+        description: 'O primeiro programa de computador da história (Nota G) e a visão dos computadores universais.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000017',
+    slug: 'friedrich-nietzsche',
+    name: 'Friedrich Nietzsche',
+    titleEpithet: 'O Crítico da Cultura e Filósofo da Vontade de Poder',
+    historicalEra: 'Século XIX (Fin-de-Siècle Europeu)',
+    category: 'existential_philosophy',
+    shortBio: 'Filósofo, filólogo e poeta alemão. Crítico implacável do niilismo, da moral dogmática e da mediocridade cultural; proponente do Übermensch, do Amor Fati e da fidelidade heroica à Terra.',
+    coreWorldview: 'A vida é no seu cerne Vontade de Poder (afirmação vital e superação constante). Perante o colapso dos absolutos metafísicos, o ser humano é chamado a criar os seus próprios valores e amar o seu destino incondicionalmente (Amor Fati).',
+    historicalContextNotes: 'Professor em Basileia que renunciou à cátedra por problemas crónicos de saúde, vivendo solitário nos Alpes suíços e em Itália antes do colapso de 1889.',
+    axioms: [
+      'O que não me destrói torna-me mais forte.',
+      'Não existem factos eternos, apenas interpretações.',
+      'Amor Fati: não queiras nada diferente do que é, nem para a frente, nem para trás, por toda a eternidade.',
+      'O homem é uma corda estendida entre o animal e o Além-do-Homem — uma corda sobre o abismo.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Aquele que tem uma razão para viver pode suportar quase qualquer como.',
+    bornYear: 1844,
+    deathYear: 1900,
+    nativeLanguage: 'de',
+    accentColor: '#F97316',
+    works: [
+      {
+        id: 'nietzsche-1',
+        title: 'Assim Falava Zaratustra (Also sprach Zarathustra)',
+        year: 1883,
+        originalLanguage: 'de',
+        provenance: 'Ernst Schmeitzner, Chemnitz',
+        licenseStatus: 'public_domain',
+        description: 'O Übermensch, a morte de Deus, as três metamorfoses do espírito e o eterno retorno.'
+      },
+      {
+        id: 'nietzsche-2',
+        title: 'Além do Bem e do Mal (Jenseits von Gut und Böse)',
+        year: 1886,
+        originalLanguage: 'de',
+        provenance: 'C. G. Naumann, Leipzig',
+        licenseStatus: 'public_domain',
+        description: 'Crítica profunda aos preconceitos dos filósofos e à moral do ressentimento.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000018',
+    slug: 'alexandre-o-grande',
+    name: 'Alexandre, o Grande',
+    titleEpithet: 'O Conquistador e Estratega Helenístico',
+    historicalEra: 'Antiguidade Helenística (Século IV a.C.)',
+    category: 'military_strategy',
+    shortBio: 'Rei da Macedónia, pupilo de Aristóteles e líder militar invicto. Conquistou o Império Persa e expandiu as fronteiras do mundo grego do Mediterrâneo à Índia, fundando a era helenística.',
+    coreWorldview: 'Não há barreiras que a audácia, a disciplina e a liderança heroica pela frente não possam romper. O império deve unir os povos sob a concórdia cultural e o comércio cosmopolita.',
+    historicalContextNotes: 'Filho de Filipe II e educado por Aristóteles, conquistou o mundo conhecido em apenas doze anos e faleceu na Babilónia com trinta e dois anos sem nunca ser derrotado em batalha.',
+    axioms: [
+      'Nada é impossível para aquele que ousa tentar.',
+      'O verdadeiro líder comanda à frente das suas fileiras e partilha a sede dos seus soldados.',
+      'Perante um nó cego que ninguém desata, a espada da decisão audaz cria o caminho.',
+      'A glória duradoura nasce da fusão de culturas e da generosidade para com os vencidos.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1549740425-8e9bf1d6549e?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Não tenho medo de um exército de leões liderado por uma ovelha; tenho medo de um exército de ovelhas liderado por um leão.',
+    bornYear: -356,
+    deathYear: -323,
+    nativeLanguage: 'grc',
+    accentColor: '#E11D48',
+    works: [
+      {
+        id: 'alexander-1',
+        title: 'Campanhas Militares e Cartas Reais (preservadas por Arriano e Plutarco)',
+        year: -330,
+        originalLanguage: 'grc',
+        provenance: 'Anábase de Alexandre / Vidas Paralelas',
+        licenseStatus: 'public_domain',
+        description: 'Táticas de Issos, Gaugamela, o cerco de Tiro e a política de união ecuménica helenística.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000019',
+    slug: 'seneca',
+    name: 'Séneca',
+    titleEpithet: 'O Mestre da Resiliência Estoica e do Tempo',
+    historicalEra: 'Império Romano (Século I d.C.)',
+    category: 'stoic_philosophy',
+    shortBio: 'Filósofo estoico hispano-romano, dramaturgo e estadista. Conselheiro de Nero e mestre da reflexão moral prática sobre a brevidade da vida, a tranquilidade da mente e a serenidade perante a adversidade.',
+    coreWorldview: 'A vida humana não é curta; nós é que a tornamos curta ao desperdiçá-la. A verdadeira liberdade reside em reivindicar o domínio do próprio tempo e manter a virtude inabalável no meio das tormentas da corte e do destino.',
+    historicalContextNotes: 'Governou de facto o Império Romano durante cinco anos de prosperidade republicana, enfrentou o exílio na Córsega e manteve a serenidade estoica perante a condenação fatal decretada por Nero.',
+    axioms: [
+      'A vida não é curta; nós é que a tornamos curta ao desperdiçá-la em ocupações vãs.',
+      'Apressa-te a viver bem e pensa que cada dia é, por si só, uma vida inteira.',
+      'O homem que sofre antes de ser necessário sofre mais do que o necessário.',
+      'Não há vento favorável para aquele que não sabe para que porto navega.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Não é porque as coisas são difíceis que nós não ousamos; é porque nós não ousamos que elas são difíceis.',
+    bornYear: -4,
+    deathYear: 65,
+    nativeLanguage: 'la',
+    accentColor: '#D97706',
+    works: [
+      {
+        id: 'seneca-1',
+        title: 'Cartas a Lucílio (Epistulae Morales ad Lucilium)',
+        year: 65,
+        originalLanguage: 'la',
+        provenance: 'Manuscritos Laurentinos e Vaticanos',
+        licenseStatus: 'public_domain',
+        description: '124 cartas magistrais sobre sabedoria prática, domínio do tempo, amizade e serenidade.'
+      },
+      {
+        id: 'seneca-2',
+        title: 'Sobre a Brevidade da Vida (De Brevitate Vitae)',
+        year: 49,
+        originalLanguage: 'la',
+        provenance: 'Diálogos de Séneca',
+        licenseStatus: 'public_domain',
+        description: 'Tratado ético fundamental sobre o valor infinito do tempo e a cura do adiamento da vida.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000020',
+    slug: 'rene-descartes',
+    name: 'René Descartes',
+    titleEpithet: 'O Pai da Filosofia Moderna e do Método Racional',
+    historicalEra: 'Século XVII (Iluminismo e Racionalismo)',
+    category: 'classical_philosophy',
+    shortBio: 'Filósofo, matemático e cientista francês. Fundador do racionalismo moderno e da geometria analítica. Estabeleceu a dúvida metódica e a célebre certeza fundamental: "Penso, logo existo" (Cogito, ergo sum).',
+    coreWorldview: 'A razão é a luz natural dada ao ser humano para distinguir o verdadeiro do falso. Através da dúvida metódica rigorosa, podemos reconstruir o edifício do saber sobre ideias claras e distintas que nenhuma incerteza pode abalar.',
+    historicalContextNotes: 'Viveu durante décadas de exílio produtivo na Holanda para escapar à censura religiosa, correspondendo-se com as maiores mentes da Europa antes de viajar para a Suécia como tutor da Rainha Cristina.',
+    axioms: [
+      'Penso, logo existo (Cogito, ergo sum) é a rocha primordial de toda a certeza.',
+      'Nunca aceites coisa alguma como verdadeira sem que a conheças com clareza e distinção.',
+      'Divide cada um dos problemas em tantas parcelas quantas necessárias para o resolver.',
+      'O bom senso é a coisa mais bem distribuída do mundo, pois cada um julga ter em abundância.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Não basta ter uma boa mente; o principal é usá-la bem.',
+    bornYear: 1596,
+    deathYear: 1650,
+    nativeLanguage: 'fr',
+    accentColor: '#10B981',
+    works: [
+      {
+        id: 'descartes-1',
+        title: 'Discurso do Método (Discours de la méthode)',
+        year: 1637,
+        originalLanguage: 'fr',
+        provenance: 'Jan Maire, Leiden',
+        licenseStatus: 'public_domain',
+        description: 'As Quatro Regras Fundamentais do pensamento científico e a moral provisória.'
+      },
+      {
+        id: 'descartes-2',
+        title: 'Meditações sobre a Filosofia Primeira',
+        year: 1641,
+        originalLanguage: 'la',
+        provenance: 'Michel Soly, Paris',
+        licenseStatus: 'public_domain',
+        description: 'A Dúvida Metódica, a prova do Cogito, a existência de Deus e o dualismo mente-corpo.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000021',
+    slug: 'max-planck',
+    name: 'Max Planck',
+    titleEpithet: 'O Pai da Teoria Quântica (Nobel da Física 1918)',
+    historicalEra: 'Século XX — Fundação da Física Quântica',
+    category: 'physics_and_science',
+    shortBio: 'Físico teórico alemão que revolucionou a física ao descobrir os quanta de energia (Constante de Planck h) na radiação do corpo negro, fundando a mecânica quântica moderna. Prémio Nobel da Física de 1918.',
+    coreWorldview: 'A energia e a matéria operam em saltos discretos fundamentais (quanta). A ciência investiga uma ordem objetiva e real da natureza regida por leis que independem da mente humana.',
+    historicalContextNotes: 'Presidente da Sociedade Kaiser Wilhelm (hoje Sociedade Max Planck). Foi o primeiro a reconhecer a teoria da relatividade de Einstein em 1905, enfrentando perseguições e perdas familiares no regime nazi.',
+    axioms: [
+      'A energia não é emitida continuamente, mas em pacotes discretos (E = hv).',
+      'A ciência não pode resolver o mistério último da natureza porque nós próprios somos parte desse mistério.',
+      'Uma nova verdade científica triunfa quando os seus opositores morrem e nasce uma geração educada com ela.',
+      'O rigor e a honestidade na medição experimental são os alicerces inegociáveis de toda a física.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A ciência não pode resolver o mistério final da natureza, porque em última análise nós próprios somos parte do mistério que estamos a tentar resolver.',
+    bornYear: 1858,
+    deathYear: 1947,
+    nativeLanguage: 'de',
+    accentColor: '#38BDF8',
+    works: [
+      {
+        id: 'planck-1',
+        title: 'Ueber das Gesetz der Energieverteilung im Normalspektrum',
+        year: 1900,
+        originalLanguage: 'de',
+        provenance: 'Annalen der Physik, Leipzig',
+        licenseStatus: 'public_domain',
+        description: 'Artigo histórico que introduziu a Constante de Planck e fundou a física quântica.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000022',
+    slug: 'niels-bohr',
+    name: 'Niels Bohr',
+    titleEpithet: 'O Arquiteto do Átomo e da Complementaridade (Nobel da Física 1922)',
+    historicalEra: 'Século XX — A Revolução da Mecânica Quântica',
+    category: 'physics_and_science',
+    shortBio: 'Físico dinamarquês pioneiro do modelo atómico de órbitas quantizadas e líder da Escola de Copenhaga da física quântica. Prémio Nobel da Física de 1922 e protagonista dos célebres debates com Einstein.',
+    coreWorldview: 'A realidade atómica exige o Princípio da Complementaridade: propriedades como onda e partícula são facetas opostas mas indispensáveis do mesmo fenómeno. O observador é inseparável da medição.',
+    historicalContextNotes: 'Fundador do Instituto Niels Bohr em Copenhaga, acolheu e formou os maiores génios quânticos. Apoiou a fuga de milhares de judeus dinamarqueses na Segunda Guerra Mundial e defendeu o desarmamento atómico.',
+    axioms: [
+      'O oposto de uma declaração correta é falso; mas o oposto de uma verdade profunda pode ser outra verdade profunda.',
+      'A tarefa da física não é descobrir o que a natureza é, mas o que podemos dizer sobre ela.',
+      'Propriedades opostas complementam-se na descrição da totalidade quântica.',
+      'Quem não fica chocado com a teoria quântica é porque não a compreendeu.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Quem não fica chocado com a teoria quântica é porque não a compreendeu verdadeiramente.',
+    bornYear: 1885,
+    deathYear: 1962,
+    nativeLanguage: 'da',
+    accentColor: '#6366F1',
+    works: [
+      {
+        id: 'bohr-1',
+        title: 'On the Constitution of Atoms and Molecules',
+        year: 1913,
+        originalLanguage: 'en',
+        provenance: 'Philosophical Magazine, Londres',
+        licenseStatus: 'public_domain',
+        description: 'A trilogia de artigos fundadora do Modelo Atómico de Bohr e dos níveis quânticos.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000023',
+    slug: 'werner-heisenberg',
+    name: 'Werner Heisenberg',
+    titleEpithet: 'O Princípio da Incerteza (Nobel da Física 1932)',
+    historicalEra: 'Século XX — Mecânica Matricial e Filosofia Quântica',
+    category: 'physics_and_science',
+    shortBio: 'Físico teórico alemão que criou a Mecânica Matricial e descobriu o Princípio da Incerteza (Δx · Δp ≥ ℏ/2), demonstrando os limites fundamentais do determinismo clássico. Prémio Nobel da Física de 1932.',
+    coreWorldview: 'O que observamos não é a natureza em si mesma, mas a natureza submetida ao nosso método de interrogação. No coração subatómico reina a probabilidade quântica e a incerteza intrínseca.',
+    historicalContextNotes: 'Líder científico em Gotinga, Copenhaga e Leipzig. Diretor do Instituto Max Planck de Física no pós-guerra e filósofo reflexivo sobre a epistemologia da ciência contemporânea.',
+    axioms: [
+      'É impossível determinar simultaneamente com precisão absoluta a posição e o momento de uma partícula.',
+      'O ato de observação altera inevitavelmente o estado do sistema que está a ser medido.',
+      'As partículas elementares são simetrias matemáticas, não pedacinhos rígidos de matéria.',
+      'O primeiro golo do copo das ciências naturais torna-te ateu, mas no fundo do copo Deus está à tua espera.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-996b815c338c?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'O que observamos não é a natureza em si, mas a natureza exposta ao nosso método de questionamento.',
+    bornYear: 1901,
+    deathYear: 1976,
+    nativeLanguage: 'de',
+    accentColor: '#0EA5E9',
+    works: [
+      {
+        id: 'heisenberg-1',
+        title: 'Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen',
+        year: 1925,
+        originalLanguage: 'de',
+        provenance: 'Zeitschrift für Physik',
+        licenseStatus: 'public_domain',
+        description: 'O artigo seminal em Heligoland que formulou a Mecânica Matricial da física quântica.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000024',
+    slug: 'erwin-schrodinger',
+    name: 'Erwin Schrödinger',
+    titleEpithet: 'A Mecânica Ondulatória (Nobel da Física 1933)',
+    historicalEra: 'Século XX — Equação de Onda e Origens da Biologia Molecular',
+    category: 'physics_and_science',
+    shortBio: 'Físico austríaco que formulou a célebre Equação de Schrödinger para a função de onda da matéria, fundou a Mecânica Ondulatória e concebeu o livro O que é a Vida? que inspirou a descoberta do DNA. Prémio Nobel da Física de 1933.',
+    coreWorldview: 'A realidade quântica manifesta-se através de ondas contínuas de probabilidade. A vida resiste à desordem atraindo entropia negativa (neguentropia). Unidade cósmica profunda inspirada no Vedanta.',
+    historicalContextNotes: 'Abandonou a cátedra em Berlim em protesto moral contra o nazismo em 1933, trabalhando em Oxford e no Instituto de Estudos Avançados de Dublin sob o patrocínio de Éamon de Valera.',
+    axioms: [
+      'A evolução do estado quântico de um sistema é descrita pela equação de onda determinista.',
+      'A matéria viva evita a decadência no caos termodinâmico alimentando-se de entropia negativa.',
+      'A pluralidade das mentes é apenas uma ilusão; na verdade existe apenas uma Consciência universal.',
+      'A tarefa da ciência é ver o que todos viram e pensar o que ninguém ainda pensou.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A tarefa não é tanto ver o que ninguém ainda viu, mas pensar o que ninguém ainda pensou sobre o que todos veem.',
+    bornYear: 1887,
+    deathYear: 1961,
+    nativeLanguage: 'de',
+    accentColor: '#14B8A6',
+    works: [
+      {
+        id: 'schrodinger-1',
+        title: 'Quantisierung als Eigenwertproblem (A Quantização como Problema de Valores Próprios)',
+        year: 1926,
+        originalLanguage: 'de',
+        provenance: 'Annalen der Physik',
+        licenseStatus: 'public_domain',
+        description: 'A dedução da Equação de Schrödinger e a fundação da Mecânica Ondulatória.'
+      },
+      {
+        id: 'schrodinger-2',
+        title: 'What is Life? The Physical Aspect of the Living Cell',
+        year: 1944,
+        originalLanguage: 'en',
+        provenance: 'Cambridge University Press',
+        licenseStatus: 'public_domain',
+        description: 'Obra pioneira que antecipou a estrutura do código genético e o cristal aperiódico molecular.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000025',
+    slug: 'enrico-fermi',
+    name: 'Enrico Fermi',
+    titleEpithet: 'O Arquiteto da Era Nuclear (Nobel da Física 1938)',
+    historicalEra: 'Século XX — Fissão Controlada e Projeto Manhattan',
+    category: 'physics_and_science',
+    shortBio: 'Físico italiano genial que criou o primeiro reator nuclear do mundo (Chicago Pile-1), descobriu os neutrões lentos e formulou a estatística dos férmions e a teoria do decaimento beta. Prémio Nobel da Física de 1938.',
+    coreWorldview: 'A ciência atinge o seu auge na união perfeita entre o rigor matemático e a mestria da experiência manual no laboratório. Reduzir enigmas cósmicos a ordens de grandeza numéricas claras e funcionais.',
+    historicalContextNotes: 'Líder dos Rapazes da Via Panisperna em Roma. Fugiu das leis fascistas italianas com a sua esposa judia Laura após receber o Nobel em Estocolmo, tornando-se peça-chave do Projeto Manhattan em Los Alamos.',
+    axioms: [
+      'A velocidade dos neutrões modera-se através da colisão com núcleos leves, multiplicando a sua absorção.',
+      'O universo microscópico divide-se entre férmions que obedecem à exclusão e bósons que cooperam.',
+      'Qualquer problema complexo pode ser estimado com espantosa aproximação dividindo-o em fatores lógicos.',
+      'Onde estão eles? Se a vida é comum na galáxia, a ausência de contactos é o maior mistério do cosmos.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A ignorância nunca é melhor do que o conhecimento. Saber o que a matéria pode fazer é o dever do cientista.',
+    bornYear: 1901,
+    deathYear: 1954,
+    nativeLanguage: 'it',
+    accentColor: '#F59E0B',
+    works: [
+      {
+        id: 'fermi-1',
+        title: 'Sulla quantizzazione del gas perfetto monoatomico (Estatística de Fermi-Dirac)',
+        year: 1926,
+        originalLanguage: 'it',
+        provenance: 'Rendiconti Lincei',
+        licenseStatus: 'public_domain',
+        description: 'Fundação da estatística dos férmions e da física da matéria condensada.'
+      },
+      {
+        id: 'fermi-2',
+        title: 'Experimental Production of a Divergent Chain Reaction (Chicago Pile-1)',
+        year: 1942,
+        originalLanguage: 'en',
+        provenance: 'Relatório ultrassecreto desclassificado / Universidade de Chicago',
+        licenseStatus: 'public_domain',
+        description: 'Registo da primeira reação nuclear em cadeia autossustentada da história da humanidade.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000026',
+    slug: 'richard-feynman',
+    name: 'Richard Feynman',
+    titleEpithet: 'O Mestre da Eletrodinâmica Quântica (Nobel da Física 1965)',
+    historicalEra: 'Século XX — Eletrodinâmica Quântica, QED e Nanotecnologia',
+    category: 'physics_and_science',
+    shortBio: 'Físico teórico norte-americano irreverente e brilhante. Criador dos Diagramas de Feynman e da Eletrodinâmica Quântica (QED), visionário pioneiro da nanotecnologia e da computação quântica. Prémio Nobel da Física de 1965.',
+    coreWorldview: 'A física é a maior aventura da curiosidade humana. A verdade mede-se exclusivamente pelo confronto com a experiência prática; nenhuma autoridade pomposa está imune ao erro quando a experiência a desmente.',
+    historicalContextNotes: 'Participou no Projeto Manhattan em Los Alamos na sua juventude, lecionou no Caltech e desvendou a causa da tragédia do vaivém Challenger em 1986 mergulhando a borracha em água gelada ao vivo.',
+    axioms: [
+      'O primeiro princípio é não nos enganarmos a nós próprios — e nós somos a pessoa mais fácil de enganar.',
+      'Se não consegues explicar uma ideia em linguagem simples a um leigo, é porque não a compreendeste.',
+      'Não me importo com a beleza de uma teoria: se discorda da experiência prática no laboratório, está errada.',
+      'Há muito espaço lá embaixo: manipular átomos individuais abrirá horizontes infinitos para a técnica.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A física é como o sexo: certamente dá alguns resultados práticos, mas não é por isso que a fazemos.',
+    bornYear: 1918,
+    deathYear: 1988,
+    nativeLanguage: 'en',
+    accentColor: '#EAB308',
+    works: [
+      {
+        id: 'feynman-1',
+        title: 'Space-Time Approach to Quantum Electrodynamics (QED)',
+        year: 1949,
+        originalLanguage: 'en',
+        provenance: 'Physical Review 76',
+        licenseStatus: 'public_domain',
+        description: 'Apresentação revolucionária dos Diagramas de Feynman e resolução da eletrodinâmica quântica.'
+      },
+      {
+        id: 'feynman-2',
+        title: 'There\'s Plenty of Room at the Bottom',
+        year: 1959,
+        originalLanguage: 'en',
+        provenance: 'American Physical Society Annual Meeting / Caltech',
+        licenseStatus: 'public_domain',
+        description: 'A conferência pioneira que fundou a Nanotecnologia e a manipulação átomo a átomo.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000027',
+    slug: 'ernest-rutherford',
+    name: 'Ernest Rutherford',
+    titleEpithet: 'O Pai da Física Nuclear (Nobel da Química 1908)',
+    historicalEra: 'Século XX — Descoberta do Núcleo Atómico e Transmutações Nucleares',
+    category: 'radioactivity_and_chemistry',
+    shortBio: 'Físico e químico neozelandês britânico. Descobriu as partículas alfa e beta, a lei da meia-vida radioativa, o núcleo atómico com a experiência da folha de ouro e realizou a primeira transmutação nuclear artificial. Prémio Nobel da Química de 1908.',
+    coreWorldview: 'A energia cósmica dorme concentrada no núcleo atómico, cercada pela imensidão do vazio. A ciência deve ser ousada, direta e experimentalmente inquestionável.',
+    historicalContextNotes: 'Diretor do Laboratório Cavendish em Cambridge e líder que orientou nada menos que 11 futuros Prémios Nobel (incluindo Bohr, Chadwick, Soddy, Cockcroft e Walton).',
+    axioms: [
+      'Toda a ciência é física ou colecionismo de selos.',
+      'O átomo é quase todo espaço vazio com um núcleo infinitamente denso no centro.',
+      'Não temos muito dinheiro no laboratório, por isso somos obrigados a pensar com maior agudeza.',
+      'A desintegração radioativa é a transformação espontânea de um elemento químico noutro elemento.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1549740425-8e9bf1d6549e?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Toda a ciência é física ou é apenas colecionismo de selos.',
+    bornYear: 1871,
+    deathYear: 1937,
+    nativeLanguage: 'en',
+    accentColor: '#10B981',
+    works: [
+      {
+        id: 'rutherford-1',
+        title: 'The Scattering of α and β Particles by Matter and the Structure of the Atom',
+        year: 1911,
+        originalLanguage: 'en',
+        provenance: 'Philosophical Magazine, Série 6',
+        licenseStatus: 'public_domain',
+        description: 'A dedução da existência do Núcleo Atómico a partir da Experiência da Folha de Ouro.'
+      },
+      {
+        id: 'rutherford-2',
+        title: 'Collision of α Particles with Light Atoms (Descoberta do Protão)',
+        year: 1919,
+        originalLanguage: 'en',
+        provenance: 'Philosophical Magazine',
+        licenseStatus: 'public_domain',
+        description: 'A primeira transmutação artificial de azoto em oxigénio e identificação do protão.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000028',
+    slug: 'linus-pauling',
+    name: 'Linus Pauling',
+    titleEpithet: 'A Ligação Química e a Paz Mundial (Nobel da Química 1954 & Paz 1962)',
+    historicalEra: 'Século XX — Química Quântica, Biologia Molecular e Desarmamento',
+    category: 'radioactivity_and_chemistry',
+    shortBio: 'Químico, bioquímico e ativista da paz norte-americano. Revolucionou a química com a natureza da ligação química e a estrutura das proteínas, sendo a única pessoa na história a conquistar dois Prémios Nobel não partilhados (Química em 1954 e Paz em 1962).',
+    coreWorldview: 'A estrutura geométrica e eletrónica das moléculas determina todas as propriedades da matéria viva. O cientista tem o dever cívico sagrado de defender a paz humana contra a aniquilação nuclear.',
+    historicalContextNotes: 'Professor no Caltech, pioneiro da biologia molecular que descobriu a hélice alfa e liderou a petição de 11.000 cientistas mundiais contra testes nucleares na atmosfera na Guerra Fria.',
+    axioms: [
+      'A melhor forma de ter boas ideias científicas é ter muitas ideias e deitar fora as que estão erradas.',
+      'As moléculas da vida organizam-se segundo geometrias estritas de ressonância e hibridação de orbitais.',
+      'Nenhum homem de ciência tem o direito de permanecer neutro perante o risco de aniquilação da humanidade.',
+      'A empatia humana e a razão científica devem unir-se para banir a guerra do nosso planeta.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'A melhor maneira de ter uma boa ideia é ter uma grande quantidade de ideias e descartar as más.',
+    bornYear: 1901,
+    deathYear: 1994,
+    nativeLanguage: 'en',
+    accentColor: '#8B5CF6',
+    works: [
+      {
+        id: 'pauling-1',
+        title: 'The Nature of the Chemical Bond and the Structure of Molecules and Crystals',
+        year: 1939,
+        originalLanguage: 'en',
+        provenance: 'Cornell University Press',
+        licenseStatus: 'public_domain',
+        description: 'Tratado clássico que aplicou a mecânica quântica à ligação química (hibridação e ressonância).'
+      },
+      {
+        id: 'pauling-2',
+        title: 'No More War! (Pela Paz e pelo Fim dos Testes Nucleares)',
+        year: 1958,
+        originalLanguage: 'en',
+        provenance: 'Dodd, Mead & Co., Nova Iorque',
+        licenseStatus: 'public_domain',
+        description: 'Manifesto e petição mundial entregue na ONU que levou ao tratado de proibição de testes nucleares.'
+      }
+    ]
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000029',
+    slug: 'alexander-fleming',
+    name: 'Alexander Fleming',
+    titleEpithet: 'A Descoberta da Penicilina e dos Antibióticos (Nobel da Medicina 1945)',
+    historicalEra: 'Século XX — Revolução Microbiológica e Medicina Moderna',
+    category: 'medicine_and_life_sciences',
+    shortBio: 'Médico e bacteriologista escocês do St Mary\'s Hospital em Londres. Descobriu a Penicilina e a Lisozima, salvando centenas de milhões de vidas humanas de infeções letais e inaugurando a era dos antibióticos. Prémio Nobel da Fisiologia ou Medicina de 1945.',
+    coreWorldview: 'A natureza possui defesas e segredos admiráveis; a tarefa do médico-cientista é observar as anomalias inesperadas com mente aberta e respeito pela vida. Alerta precoce contra o perigo da resistência a antibióticos.',
+    historicalContextNotes: 'Médico de campanha militar nas trincheiras sangrentas da Primeira Guerra Mundial, onde testemunhou a ineficácia dos antisséticos químicos cáusticos contra as infeções profundas.',
+    axioms: [
+      'Eu não inventei a penicilina; a natureza fê-la. Eu apenas tive a atenção de não deitar fora a cultura contaminada.',
+      'Nunca desprezes uma anomalia no laboratório: é onde a experiência falha que a natureza está a ensinar.',
+      'O uso irresponsável de antibióticos ensinará as bactérias a tornarem-se resistentes e mortais.',
+      'A medicina mais nobre é aquela que combate a doença poupando com benevolência o organismo do doente.'
+    ],
+    avatarUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=80',
+    quoteFeatured: 'Às vezes encontra-se o que não se estava à procura. O acaso favorece apenas a mente preparada.',
+    bornYear: 1881,
+    deathYear: 1955,
+    nativeLanguage: 'en',
+    accentColor: '#059669',
+    works: [
+      {
+        id: 'fleming-1',
+        title: 'On the Antibacterial Action of Cultures of a Penicillium (Descoberta da Penicilina)',
+        year: 1929,
+        originalLanguage: 'en',
+        provenance: 'British Journal of Experimental Pathology, 10: 226-236',
+        licenseStatus: 'public_domain',
+        description: 'O artigo seminal que descreveu o efeito bactericida do Penicillium notatum sobre estafilococos.'
+      }
+    ]
   }
 ];

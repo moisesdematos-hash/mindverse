@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { COHORT_GENESIS_PERSONALITIES } from '../data/personalities';
 
 describe('Cohort Genesis Personalities Dataset', () => {
-  it('should contain exactly 11 canonical historical personalities', () => {
-    expect(COHORT_GENESIS_PERSONALITIES).toHaveLength(11);
+  it('should contain the 29 canonical historical personalities and minds', () => {
+    expect(COHORT_GENESIS_PERSONALITIES).toHaveLength(29);
   });
 
   it('should include Flavius Josephus (Flávio Josefo) with all 4 required canonical works', () => {

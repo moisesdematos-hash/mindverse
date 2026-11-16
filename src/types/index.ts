@@ -10,7 +10,11 @@ export type PersonalityCategory =
   | 'political_economy'
   | 'management_science'
   | 'radioactivity_and_chemistry'
-  | 'ancient_history_and_judaica';
+  | 'ancient_history_and_judaica'
+  | 'political_philosophy'
+  | 'classical_computing'
+  | 'existential_philosophy'
+  | 'medicine_and_life_sciences';
 
 export interface PersonalityWork {
   id: string;
@@ -40,6 +44,9 @@ export interface Personality {
   nativeLanguage: string;
   works: PersonalityWork[];
   accentColor?: string;
+  biographyAndFeats?: string;
+  completeCorpusAndTheories?: string;
+  philosophicalMethod?: string;
 }
 
 export type EpistemicStatus = 

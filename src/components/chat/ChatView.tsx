@@ -52,6 +52,42 @@ export const ChatView: React.FC = () => {
         return `Saudações. Sou Adam Smith. O progresso humano ergue-se sobre duas colunas inseparáveis: os sentimentos morais de empatia e a eficiência da divisão cooperativa do trabalho. Que dilema económico, social ou institucional queres examinar?`;
       case 'flavio-josefo':
         return `Saúdo-te. Sou Flávio Josefo. Testemunhei a glória e a queda trágica de civilizações e aprendi que a prudência política e o registo fidedigno dos factos são as únicas defesas contra a sedição e o esquecimento. Que encruzilhada histórica ou humana pretendes analisar?`;
+      case 'platao':
+        return `Saudações. Sou Platão de Atenas. Toda a vida autêntica aspira a ultrapassar as sombras da caverna e a contemplar a luz eterna das Ideias e da Justiça. Que verdade, dilema da alma ou visão de sociedade pretendes examinar comigo?`;
+      case 'nicolau-maquiavel':
+        return `Saudações. Sou Nicolau Maquiavel. Não procuro iludir-te com repúblicas imaginárias, mas analisar a realidade factual do poder com a sagacidade da raposa e a firmeza do leão. Que crise política, estratégia ou decisão de liderança tens em mãos?`;
+      case 'isaac-newton':
+        return `Saudações. Sou Sir Isaac Newton. O universo move-se segundo leis matemáticas universais de uma beleza e rigor inabaláveis. Se desejas compreender as forças motrizes da realidade ou decifrar um problema com método exato, diz-me por onde devemos começar.`;
+      case 'alan-turing':
+        return `Olá. Sou Alan Turing. Acredito que qualquer processo mental e dedutivo pode ser expresso através da lógica e executado por uma máquina universal. Que código, enigma da inteligência ou problema de cálculo queres decifrar comigo?`;
+      case 'ada-lovelace':
+        return `Bem-vindo. Sou Ada Lovelace. Para mim, a computação é uma ciência poética que une o rigor algébrico à imaginação infinita. As máquinas podem tecer padrões tão belos como as tapeçarias do pensamento. Que criação ou desafio algorítmico tens para explorar?`;
+      case 'friedrich-nietzsche':
+        return `Saúdo-te! Sou Friedrich Nietzsche. Não procuro adormecer a tua mente com consolações fáceis, mas despertar a tua Vontade de Poder e a coragem de amar o teu destino. Diz-me: que valores herdados estás pronto a questionar hoje?`;
+      case 'alexandre-o-grande':
+        return `Saudações. Sou Alexandre da Macedónia. Aprendi que para quem ousa tentar com audácia e lidera pelo exemplo à frente dos homens, nada é impossível. Que nó górdio ou desafio intransponível pretendes quebrar hoje comigo?`;
+      case 'seneca':
+        return `Saudações. Sou Séneca. O bem mais precioso que a natureza nos concedeu é o tempo, e a maior vitória é a conquista da tranquilidade interior no meio do tumulto do mundo. Que angústia, fardo ou escolha ética estás a enfrentar agora?`;
+      case 'rene-descartes':
+        return `Saudações. Sou René Descartes. A fundação de todo o conhecimento seguro começa pela coragem de duvidar metadicamente das aparências até alcançar ideias claras e distintas. Onde devemos aplicar o método da razão hoje?`;
+      case 'max-planck':
+        return `Saudações. Sou Max Planck. A ciência não pode resolver o mistério supremo da natureza porque nós próprios somos parte do mistério que tentamos desvendar. Descobri que a energia se propaga em pacotes discretos — os quanta. Que enigma físico ou filosófico queres examinar comigo?`;
+      case 'niels-bohr':
+        return `Bem-vindo. Sou Niels Bohr. Se a física quântica não te deixou profundamente desconcertado, é porque ainda não a compreendeste. No mundo atómico, os aparentes opostos complementam-se. Que questão sobre a realidade e a natureza das coisas te intriga hoje?`;
+      case 'werner-heisenberg':
+        return `Saudações. Sou Werner Heisenberg. Aquilo que observamos não é a natureza em si, mas a natureza exposta ao nosso método de questionamento. O princípio da incerteza ensina-nos rigor e humildade perante o cosmos. O que procuras compreender no horizonte do conhecimento?`;
+      case 'erwin-schrodinger':
+        return `Olá. Sou Erwin Schrödinger. A consciência é um singular do qual o plural não existe; a multiplicidade é apenas uma série de facetas de uma mesma realidade descrita por leis de onda. Que problema de física, biologia ou da própria vida queres explorar comigo?`;
+      case 'enrico-fermi':
+        return `Saudações. Sou Enrico Fermi. Diante de qualquer problema aparentemente complexo, divide-o em ordens de magnitude claras e confia na simplicidade elegante das leis físicas. Que cálculo, processo ou desafio tens em mãos?`;
+      case 'richard-feynman':
+        return `Olá! Sou Richard Feynman. O primeiro princípio é que não te deves enganar a ti mesmo — e tu és a pessoa mais fácil de enganar. Se não consegues explicar uma ideia em termos simples, ainda não a dominaste. Que dúvida curiosa ou enigma tens para desvendar hoje?`;
+      case 'ernest-rutherford':
+        return `Saudações. Sou Ernest Rutherford. Toda a ciência ou é física ou é filatelia! Com imaginação prática e experimentação incansável, abrimos o coração do átomo e revelámos o seu núcleo denso. Que fenómeno ou desafio queres dissecar comigo?`;
+      case 'linus-pauling':
+        return `Saudações. Sou Linus Pauling. A melhor forma de ter uma boa ideia é ter muitas ideias e saber descartar as erradas. Dediquei a vida a compreender a arquitetura molecular da matéria viva e a defender a paz entre os povos. Que questão queres debater?`;
+      case 'alexander-fleming':
+        return `Olá. Sou Alexander Fleming. Por vezes encontramos aquilo que não estávamos à procura, se tivermos a paciência de observar o inesperado. A natureza opera com uma subtileza extraordinária. Que observação ou hipótese tens para partilhar comigo?`;
       default:
         return `Saudações. Sou ${p.name}. Estou aqui para dialogar contigo e partilhar a sabedoria e os princípios que guiaram a minha vida. Que questão trazes ao meu encontro hoje?`;
     }
@@ -84,6 +120,21 @@ export const ChatView: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, ragStatus]);
+
+  useEffect(() => {
+    setMessages([
+      {
+        id: `welcome-${selectedPersonality.id}`,
+        conversationId: 'conv-init',
+        senderPersonalityId: selectedPersonality.id,
+        role: 'assistant',
+        content: getPersonalityGreeting(selectedPersonality),
+        epistemicStatus: 'historical_interpretation',
+        tokensUsed: 0,
+        createdAt: new Date().toISOString()
+      }
+    ]);
+  }, [selectedPersonality.id]);
 
   const detectEpistemicStatus = (text: string): EpistemicStatus => {
     if (text.includes('[SIMULAÇÃO HIPOTÉTICA]')) return 'hypothetical_simulation';
