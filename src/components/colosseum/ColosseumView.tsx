@@ -9,7 +9,8 @@ import {
   Play, 
   Volume2, 
   Flame, 
-  UserCheck
+  UserCheck,
+  Bell
 } from 'lucide-react';
 
 interface DuelRound {
@@ -204,16 +205,16 @@ export const ColosseumView: React.FC = () => {
           <button
             onClick={executeDuel}
             disabled={isDueling || !motion.trim()}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-mindverse-gold hover:bg-mindverse-gold-light text-mindverse-deep font-mono font-bold text-sm shadow-gold-glow transition-all hover:scale-105 disabled:opacity-50 disabled:pointer-events-none"
+            className="flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-[#05070B] font-mono font-black text-sm shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
           >
             {isDueling ? (
               <>
-                <Flame className="w-4 h-4 text-amber-900 animate-spin" />
+                <Flame className="w-5 h-5 text-amber-950 animate-spin" />
                 <span>Assalto {currentRoundIndex} em Curso...</span>
               </>
             ) : (
               <>
-                <Play className="w-4 h-4 fill-current" />
+                <Bell className="w-5 h-5 fill-current text-amber-950 animate-bounce" />
                 <span>Soar o Gongo do Duelo</span>
               </>
             )}
@@ -352,6 +353,42 @@ export const ColosseumView: React.FC = () => {
         />
       </div>
 
+      {/* Prominent Duel Action Bar right under Motion */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-mindverse-midnight via-amber-950/20 to-mindverse-midnight border-2 border-mindverse-gold/40 shadow-[0_0_25px_rgba(212,175,55,0.2)]">
+        <div className="flex items-center gap-3">
+          <div className="p-3 rounded-xl bg-mindverse-gold/20 border border-mindverse-gold/40 text-mindverse-gold">
+            <Swords className="w-6 h-6 text-amber-400" />
+          </div>
+          <div>
+            <h3 className="font-serif font-bold text-base text-mindverse-softwhite flex items-center gap-2">
+              Pronto para o Combate Dialético
+            </h3>
+            <p className="text-xs text-mindverse-muted">
+              {fighter1.name} (Tese) vs {fighter2.name} (Antítese) • 2 Assaltos Canónicos
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={executeDuel}
+          disabled={isDueling || !motion.trim()}
+          className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-[#05070B] font-mono font-black text-sm sm:text-base shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+        >
+          {isDueling ? (
+            <>
+              <Flame className="w-5 h-5 text-amber-950 animate-spin" />
+              <span>Assalto {currentRoundIndex} em Curso...</span>
+            </>
+          ) : (
+            <>
+              <Bell className="w-5 h-5 fill-current text-amber-950 animate-bounce" />
+              <span>Soar o Gongo do Duelo</span>
+              <Play className="w-4 h-4 fill-current text-amber-950" />
+            </>
+          )}
+        </button>
+      </div>
+
       {/* Duel Rounds Transcript */}
       <div className="space-y-4">
         {rounds.length === 0 ? (
@@ -363,6 +400,14 @@ export const ColosseumView: React.FC = () => {
             <p className="text-xs text-mindverse-muted/70 max-w-md mx-auto">
               Clica em "Soar o Gongo do Duelo" para ver {fighter1.name} e {fighter2.name} confrontarem-se assalto a assalto com os seus argumentos históricos.
             </p>
+            <button
+              onClick={executeDuel}
+              disabled={isDueling || !motion.trim()}
+              className="mt-4 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-[#05070B] font-mono font-black text-sm shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+            >
+              <Bell className="w-5 h-5 fill-current text-amber-950" />
+              <span>Soar o Gongo do Duelo Agora</span>
+            </button>
           </div>
         ) : (
           rounds.map((round, idx) => {

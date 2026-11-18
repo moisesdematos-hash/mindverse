@@ -18,6 +18,7 @@ export default {
           muted: '#94A3B8',      // Texto secundário refinado
           softwhite: '#F8FAFC',  // Branco suave para títulos
           gold: {
+            DEFAULT: '#D4AF37',  // Dourado padrão Mindverse
             subtle: '#D4AF37',   // Dourado subtil clássico
             light: '#F5E6B3',    // Dourado claro para highlights
             dim: '#8C7426',      // Dourado escuro para bordas finas
